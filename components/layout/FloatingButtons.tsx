@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FiPhone } from "react-icons/fi";
 import { motion } from "framer-motion";
 
@@ -7,11 +8,14 @@ export default function FloatingButtons() {
   const [mounted, setMounted] = useState(false);
   const phone = process.env.NEXT_PUBLIC_PHONE || "+14077938143";
 
+  const pathname = usePathname();
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">

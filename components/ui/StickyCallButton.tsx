@@ -2,9 +2,11 @@
 
 import { FiPhoneCall } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function StickyCallButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Show after scrolling down a bit to prevent overlapping hero CTAs
@@ -21,6 +23,7 @@ export default function StickyCallButton() {
   }, []);
 
   if (!isVisible) return null;
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <a
