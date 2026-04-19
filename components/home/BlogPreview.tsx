@@ -15,10 +15,11 @@ export default function BlogPreview() {
       { _id: '3', title: 'Why Corporate Taxis are Better than Rideshares', excerpt: 'Security, billing transparency, and strict professionalism. Why your business should switch to dedicated taxi services today.', slug: 'corporate-taxis-vs-rideshares', createdAt: new Date().toISOString(), category: 'Corporate', views: 200 }
     ];
 
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/blogs?limit=3`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/blogs?limit=3&published=true`)
       .then(res => {
-        if (Array.isArray(res.data) && res.data.length > 0) {
-          setBlogs(res.data as any);
+        const fetchedBlogs = res.data.blogs || res.data;
+        if (Array.isArray(fetchedBlogs) && fetchedBlogs.length > 0) {
+          setBlogs(fetchedBlogs as any);
         } else {
           setBlogs(fallbackBlogs as any);
         }
@@ -45,7 +46,7 @@ export default function BlogPreview() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {Array.isArray(blogs) && blogs.map((blog: any) => (
-            <div key={blog._id} className="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div key={blog.id || blog._id} className="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
               <Link href={`/blog/${blog.slug}`} className="block h-48 bg-slate-900 overflow-hidden relative">
                 <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply group-hover:bg-transparent transition-all duration-500 z-10" />
                 <div className="w-full h-full flex items-center justify-center text-white/10 font-black text-7xl font-heading transform group-hover:scale-110 transition-transform duration-700">
@@ -58,7 +59,7 @@ export default function BlogPreview() {
                   <span className="bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-md">{blog.category}</span>
                   <span className="text-slate-400 text-xs font-bold flex items-center gap-1.5 uppercase tracking-wider">
                     <FiCalendar className="w-3.5 h-3.5" /> 
-                    {new Date(blog.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    {new Date(blog.created_at || blog.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </span>
                 </div>
                 
