@@ -1,0 +1,54 @@
+export const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://ozservices.com",
+  name: "Oz Services Taxi",
+  alternateName: "Oz Services",
+  description: "Florida's most trusted taxi service. Professional, reliable, and affordable taxi rides 24/7 across Orlando, Miami and Tampa.",
+  url: "https://ozservices.com",
+  telephone: "+14077938143",
+  email: "info@ozservices.com",
+  priceRange: "$$",
+  currenciesAccepted: "USD",
+  paymentAccepted: "Cash, Credit Card, Debit Card",
+  openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: "00:00", closes: "23:59" },
+  address: { "@type": "PostalAddress", addressCountry: "US", addressRegion: "FL", addressLocality: "Orlando", postalCode: "32801" },
+  geo: { "@type": "GeoCoordinates", latitude: 28.5383, longitude: -81.3792 },
+  image: "https://ozservices.com/images/taxi-hero.png",
+  logo: "https://ozservices.com/logo.png",
+  sameAs: ["https://www.facebook.com/ozservices", "https://twitter.com/ozservices", "https://www.instagram.com/ozservices"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Taxi Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Local Taxi", description: "Local taxi service near you in Florida" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Airport Transfer", description: "Professional airport taxi transfers to MCO, MIA, TPA" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Corporate Taxi", description: "Executive corporate taxi service" } },
+    ],
+  },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "2400", bestRating: "5" },
+};
+
+export const taxiServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  name: "Oz Services Taxi Near Me",
+  description: "Find a taxi near me instantly with Oz Services. Professional taxi bookings across Australia.",
+  provider: { "@type": "LocalBusiness", name: "Oz Services" },
+  areaServed: { "@type": "Country", name: "Australia" },
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: "https://ozservices.com.au/booking",
+    servicePhone: "+61400000000",
+  },
+};
+
+export const faqSchema = (faqs: { q: string; a: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(faq => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+});

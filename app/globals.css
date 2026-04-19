@@ -1,26 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+@source "../components";
+@source "../app";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== THEME TOKENS ===== */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-blue: #2563EB;
+  --color-brand-dark: #0F172A;
+  --color-brand-light: #F8FAFC;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ===== BASE RESET ===== */
+*, *::before, *::after { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+/* ===== UTILITY ===== */
+.font-heading { font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; }
+
+/* ===== PROSE ===== */
+.prose h2 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: #1E293B; font-family: 'Outfit', sans-serif; font-size: 1.875rem; line-height: 1.2; }
+.prose h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; color: #1E293B; font-family: 'Outfit', sans-serif; font-size: 1.5rem; line-height: 1.2; }
+.prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #475569; }
+.prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: #475569; }
+.prose li { margin-bottom: 0.5rem; line-height: 1.7; }
+.prose strong { color: #0F172A; font-weight: 600; }
+
+/* ===== CONTAINER UTIL ===== */
+.section-container { width: 100%; max-width: 80rem; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+@media (min-width: 640px) { .section-container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+@media (min-width: 1024px) { .section-container { padding-left: 2rem; padding-right: 2rem; } }
