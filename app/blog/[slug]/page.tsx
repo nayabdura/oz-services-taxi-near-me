@@ -16,10 +16,11 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const resolvedParams = await params;
   const db = getDB();
   const blog = db
     .prepare("SELECT meta_title, meta_description, image_url FROM blogs WHERE slug = ?")
-    .get(params.slug) as any;
+    .get(resolvedParams.slug) as any;
 
   if (!blog) return { title: "Post Not Found" };
 
@@ -35,15 +36,16 @@ export async function generateMetadata(
 }
 
 export default async function BlogPostPage({ params }: Props) {
+  const resolvedParams = await params;
   const db = getDB();
   
   // Increment view count
-  db.prepare("UPDATE blogs SET views = views + 1 WHERE slug = ?").run(params.slug);
+  db.prepare("UPDATE blogs SET views = views + 1 WHERE slug = ?").run(resolvedParams.slug);
 
   // Fetch post
   const post = db
     .prepare("SELECT * FROM blogs WHERE slug = ? AND published = 1")
-    .get(params.slug) as any;
+    .get(resolvedParams.slug) as any;
 
   if (!post) {
     notFound();
