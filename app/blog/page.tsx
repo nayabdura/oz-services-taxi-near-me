@@ -16,10 +16,10 @@ export default function BlogPage() {
       try {
         const { data } = await axios.get("/api/blogs?published=true");
         // format date simply for display
-        const formatted = data.blogs.map((b: any) => ({
+        const formatted = Array.isArray(data) ? data.map((b: any) => ({
           ...b,
-          date: new Date(b.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-        }));
+          date: new Date(b.createdAt || b.created_at || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        })) : [];
         setPosts(formatted);
       } catch (error) {
         console.error("Failed to load blogs", error);
@@ -65,7 +65,7 @@ export default function BlogPage() {
               <article key={post.slug} className={`blog-card bg-white ${i === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="h-52 bg-blue-50 flex items-center justify-center text-6xl relative overflow-hidden">
                   <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply" />
-                  {post.image_url && post.image_url.startsWith('/') ? (
+                  {post.image_url ? (
                     <Image src={post.image_url} alt={post.title} fill className="object-cover" />
                   ) : (
                     <span className="relative z-10 text-gray-400 text-xl font-bold">Image</span>
