@@ -1,13 +1,13 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { FiTrash2, FiPlus, FiEdit3, FiImage, FiToggleLeft, FiToggleRight, FiUploadCloud } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiEdit3, FiImage, FiToggleLeft, FiToggleRight, FiX, FiSave } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AdminLayout from "@/components/admin/AdminLayout";
 
 interface FleetCar {
-  id: number;
+  _id: string;
   name: string;
   price: string;
   description: string;
@@ -16,298 +16,168 @@ interface FleetCar {
   sort_order: number;
 }
 
+const empty = { name: "", price: "", description: "", image_url: "", active: 1, sort_order: 0 };
+
 export default function AdminFleetPage() {
   const [fleet, setFleet] = useState<FleetCar[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState<Partial<FleetCar>>({});
+  const [showModal, setShowModal] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
+  const [form, setForm] = useState<Partial<FleetCar>>(empty);
   const [uploading, setUploading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    if (!token) return;
-    fetchFleet(token);
-  }, []);
+  const token = () => localStorage.getItem("adminToken") || "";
 
-  const fetchFleet = async (token: string) => {
+  useEffect(() => { fetchFleet(); }, []);
+
+  const fetchFleet = async () => {
     try {
-      const { data } = await axios.get("/api/admin/fleet", { headers: { Authorization: `Bearer ${token}` } });
-      setFleet(data);
-    } catch { 
-      toast.error("Failed to fetch fleet"); 
-    } finally { 
-      setLoading(false); 
-    }
+      const { data } = await axios.get("/api/admin/fleet", { headers: { Authorization: `Bearer ${token()}` } });
+      setFleet(Array.isArray(data) ? data : []);
+    } catch { toast.error("Failed to fetch fleet"); }
+    finally { setLoading(false); }
   };
 
-  const deleteCar = async (id: number) => {
-    if (!confirm("Delete this vehicle?")) return;
-    const token = localStorage.getItem("adminToken");
-    try {
-      await axios.delete(`/api/admin/fleet/${id}`, { headers: { Authorization: `Bearer ${token}` } });
-      setFleet(fleet.filter((c) => c.id !== id));
-      toast.success("Vehicle deleted");
-    } catch { 
-      toast.error("Failed to delete vehicle"); 
-    }
-  };
-
-  const toggleActive = async (car: FleetCar) => {
-    const token = localStorage.getItem("adminToken");
-    try {
-      const newActive = car.active ? 0 : 1;
-      const { data } = await axios.put(`/api/admin/fleet/${car.id}`, { active: newActive }, { headers: { Authorization: `Bearer ${token}` } });
-      setFleet(fleet.map(c => c.id === car.id ? data : c));
-      toast.success(`Vehicle ${newActive ? 'Enabled' : 'Disabled'}`);
-    } catch {
-      toast.error("Failed to update status");
-    }
-  };
-
-  const saveCar = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const token = localStorage.getItem("adminToken");
-    try {
-      if (formData.id) {
-        const { data } = await axios.put(`/api/admin/fleet/${formData.id}`, formData, { headers: { Authorization: `Bearer ${token}` } });
-        setFleet(fleet.map(c => c.id === formData.id ? data : c));
-        toast.success("Vehicle updated");
-      } else {
-        const { data } = await axios.post(`/api/admin/fleet`, formData, { headers: { Authorization: `Bearer ${token}` } });
-        setFleet([...fleet, data]);
-        toast.success("Vehicle added");
-      }
-      setIsModalOpen(false);
-    } catch {
-      toast.error("Failed to save vehicle");
-    }
-  };
-
-  const openNewModal = () => {
-    setFormData({ active: 1, sort_order: 0, image_url: '' });
-    setIsModalOpen(true);
-  };
-
-  const openEditModal = (car: FleetCar) => {
-    setFormData(car);
-    setIsModalOpen(true);
-  };
+  const openAdd = () => { setEditId(null); setForm(empty); setShowModal(true); };
+  const openEdit = (car: FleetCar) => { setEditId(car._id); setForm(car); setShowModal(true); };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error('Image must be less than 5MB');
-      return;
-    }
-
     setUploading(true);
-    const token = localStorage.getItem("adminToken");
-
     try {
-      const uploadData = new FormData();
-      uploadData.append('image', file);
-      uploadData.append('folder', 'fleet');
-
-      const { data } = await axios.post('/api/upload', uploadData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      setFormData({ ...formData, image_url: data.url });
-      toast.success('Image uploaded');
-    } catch (error) {
-      console.error('Upload error', error);
-      toast.error('Upload failed');
-    } finally {
-      setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    }
+      const fd = new FormData();
+      fd.append("image", file);
+      fd.append("folder", "fleet");
+      const { data } = await axios.post("/api/upload", fd, { headers: { Authorization: `Bearer ${token()}` } });
+      setForm(f => ({ ...f, image_url: data.url }));
+      toast.success("Image uploaded!");
+    } catch { toast.error("Image upload failed"); }
+    finally { setUploading(false); }
   };
 
-  return (
-    <AdminLayout 
-      title="Fleet Management" 
-      headerAction={
-        <button onClick={openNewModal} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all active:scale-95">
-          <FiPlus className="w-4 h-4" /> Add Vehicle
-        </button>
+  const handleSave = async () => {
+    if (!form.name) return toast.error("Vehicle name is required");
+    try {
+      if (editId) {
+        await axios.put(`/api/admin/fleet/${editId}`, form, { headers: { Authorization: `Bearer ${token()}` } });
+        toast.success("Vehicle updated!");
+      } else {
+        await axios.post("/api/admin/fleet", form, { headers: { Authorization: `Bearer ${token()}` } });
+        toast.success("Vehicle added!");
       }
-    >
+      setShowModal(false); fetchFleet();
+    } catch { toast.error("Failed to save vehicle"); }
+  };
+
+  const toggleActive = async (car: FleetCar) => {
+    try {
+      await axios.put(`/api/admin/fleet/${car._id}`, { ...car, active: car.active ? 0 : 1 }, { headers: { Authorization: `Bearer ${token()}` } });
+      setFleet(fleet.map(c => c._id === car._id ? { ...c, active: c.active ? 0 : 1 } : c));
+    } catch { toast.error("Failed to toggle status"); }
+  };
+
+  const deleteCar = async (id: string) => {
+    if (!confirm("Delete this vehicle?")) return;
+    try {
+      await axios.delete(`/api/admin/fleet/${id}`, { headers: { Authorization: `Bearer ${token()}` } });
+      setFleet(fleet.filter(c => c._id !== id));
+      toast.success("Vehicle deleted");
+    } catch { toast.error("Delete failed"); }
+  };
+
+  const inp = "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 placeholder-slate-500";
+
+  return (
+    <AdminLayout title="Fleet Management" headerAction={
+      <button onClick={openAdd} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
+        <FiPlus className="w-4 h-4" /> Add Vehicle
+      </button>
+    }>
       <div className="max-w-6xl mx-auto">
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-          {loading ? (
-            <div className="p-16 text-center text-slate-400">
-              <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              Loading fleet...
-            </div>
-          ) : fleet.length === 0 ? (
-            <div className="p-16 text-center">
-              <div className="text-5xl mb-4">🚘</div>
-              <div className="text-white font-bold mb-2">No vehicles in fleet</div>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm mt-2">
-                <thead className="border-b border-slate-800 bg-slate-800/20">
-                  <tr>
-                    {["Image", "Vehicle", "Price", "Status", "Actions"].map((h) => (
-                      <th key={h} className="text-left px-6 py-4 text-slate-400 text-xs font-bold uppercase tracking-wider">{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800">
-                  {fleet.map((car) => (
-                    <tr key={car.id} className="hover:bg-slate-800/50 transition-colors">
-                      <td className="px-6 py-4">
-                         {car.image_url ? (
-                           <div className="w-20 h-12 rounded overflow-hidden relative border border-slate-700">
-                             <img src={car.image_url} alt={car.name} className="object-cover w-full h-full" />
-                           </div>
-                         ) : (
-                           <div className="w-20 h-12 bg-slate-800 rounded flex items-center justify-center text-slate-500 border border-slate-700">
-                             <FiImage className="w-5 h-5"/>
-                           </div>
-                         )}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-white font-medium max-w-xs">{car.name}</div>
-                        <div className="text-slate-500 text-xs mt-1 truncate">{car.description?.substring(0, 40)}...</div>
-                      </td>
-                      <td className="px-6 py-4 font-semibold text-sky-400">{car.price || '-'}</td>
-                      <td className="px-6 py-4">
-                        <button 
-                          onClick={() => toggleActive(car)}
-                          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${
-                            car.active ? "bg-green-400/15 text-green-400 border border-green-400/30 hover:bg-red-400/15 hover:text-red-400 hover:border-red-400/30" : "bg-slate-800 text-slate-400 border border-slate-700 hover:bg-green-400/15 hover:text-green-400 hover:border-green-400/30"
-                          }`}
-                        >
-                          {car.active ? <><FiToggleRight className="w-4 h-4" /> Active</> : <><FiToggleLeft className="w-4 h-4" /> Disabled</>}
-                        </button>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <button onClick={() => openEditModal(car)} className="p-2 text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 rounded-lg transition-all" title="Edit">
-                            <FiEdit3 className="w-4 h-4" />
-                          </button>
-                          <button onClick={() => deleteCar(car.id)} className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all" title="Delete">
-                            <FiTrash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl">
-            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/20">
-              <h2 className="text-xl font-bold text-white">{formData.id ? 'Edit Vehicle' : 'Add Vehicle'}</h2>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-            <form onSubmit={saveCar} className="p-6 space-y-5">
-              
-              <div className="grid grid-cols-2 gap-4">
-                 <div>
-                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Vehicle Name</label>
-                    <input 
-                      type="text" 
-                      required 
-                      value={formData.name || ''} 
-                      onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                      placeholder="e.g. Premium SUV"
-                    />
-                 </div>
-                 <div>
-                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Pricing</label>
-                    <input 
-                      type="text" 
-                      value={formData.price || ''} 
-                      onChange={e => setFormData({...formData, price: e.target.value})}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                      placeholder="e.g. From $45"
-                    />
-                 </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Short Description</label>
-                <textarea 
-                  value={formData.description || ''} 
-                  onChange={e => setFormData({...formData, description: e.target.value})}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
-                  rows={3}
-                  placeholder="Seating up to 6 passengers comfortably..."
-                />
-              </div>
-
-               <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Vehicle Image</label>
-                <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-center gap-4">
-                  {formData.image_url ? (
-                    <div className="w-24 h-16 relative rounded-lg overflow-hidden border border-slate-700 shrink-0">
-                      <img src={formData.image_url} alt="Preview" className="object-cover w-full h-full" />
-                    </div>
+        {loading ? (
+          <div className="p-16 text-center text-slate-400">Loading fleet...</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {fleet.map(car => (
+              <div key={car._id} className={`bg-slate-900 border rounded-2xl overflow-hidden transition-all ${car.active ? "border-slate-800" : "border-slate-800 opacity-60"}`}>
+                {/* Image */}
+                <div className="relative h-48 bg-slate-800">
+                  {car.image_url ? (
+                    <Image src={car.image_url} alt={car.name} fill className="object-cover" />
                   ) : (
-                    <div className="w-24 h-16 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-700 shrink-0">
-                       <FiImage className="w-6 h-6 text-slate-500"/>
-                    </div>
+                    <div className="w-full h-full flex items-center justify-center text-slate-600"><FiImage className="w-12 h-12" /></div>
                   )}
-                  <div className="flex-1">
-                    <input 
-                      type="file" 
-                      accept="image/*"
-                      ref={fileInputRef}
-                      onChange={handleImageUpload}
-                      className="hidden"
-                    />
-                    <button 
-                      type="button"
-                      disabled={uploading}
-                      onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-lg transition-colors border border-slate-700"
-                    >
-                      {uploading ? <div className="w-4 h-4 border-2 border-slate-400 border-t-white rounded-full animate-spin" /> : <FiUploadCloud className="w-4 h-4" />}
-                      {uploading ? 'Uploading...' : 'Upload Image'}
+                  <div className="absolute top-3 right-3 flex gap-2">
+                    <button onClick={() => toggleActive(car)} className="p-1.5 bg-slate-900/80 backdrop-blur rounded-lg text-slate-300 hover:text-white" title={car.active ? "Disable" : "Enable"}>
+                      {car.active ? <FiToggleRight className="w-5 h-5 text-green-400" /> : <FiToggleLeft className="w-5 h-5 text-slate-500" />}
                     </button>
-                    <p className="text-xs text-slate-500 mt-2">JPG, PNG or WEBP. Max 5MB.</p>
+                  </div>
+                </div>
+                {/* Info */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-white font-bold text-lg">{car.name}</h3>
+                    <span className="text-blue-400 font-bold text-sm whitespace-nowrap">{car.price}</span>
+                  </div>
+                  <p className="text-slate-400 text-sm line-clamp-2 mb-4">{car.description}</p>
+                  <div className="flex gap-2">
+                    <button onClick={() => openEdit(car)} className="flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">
+                      <FiEdit3 className="w-4 h-4" /> Edit
+                    </button>
+                    <button onClick={() => deleteCar(car._id)} className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all">
+                      <FiTrash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               </div>
+            ))}
+            {/* Add Card */}
+            <button onClick={openAdd} className="border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-2xl h-full min-h-64 flex flex-col items-center justify-center text-slate-500 hover:text-blue-400 transition-all gap-3">
+              <FiPlus className="w-10 h-10" />
+              <span className="text-sm font-medium">Add New Vehicle</span>
+            </button>
+          </div>
+        )}
+      </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
-                <button 
-                  type="button" 
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl font-bold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
-                >
-                  Cancel
-                </button>
-                <button 
-                  type="submit" 
-                  disabled={uploading}
-                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition-transform active:scale-95 disabled:opacity-50"
-                >
-                  {formData.id ? 'Save Changes' : 'Add Vehicle'}
-                </button>
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={() => setShowModal(false)}>
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-lg" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-white font-bold text-xl">{editId ? "Edit Vehicle" : "Add Vehicle"}</h2>
+              <button onClick={() => setShowModal(false)} className="text-slate-400 hover:text-white"><FiX className="w-5 h-5"/></button>
+            </div>
+            <div className="space-y-4">
+              <div><label className="text-slate-400 text-xs mb-1 block">Vehicle Name *</label><input className={inp} placeholder="e.g. Premium SUV" value={form.name} onChange={e => setForm({...form, name: e.target.value})} /></div>
+              <div><label className="text-slate-400 text-xs mb-1 block">Starting Price</label><input className={inp} placeholder="e.g. From $45" value={form.price} onChange={e => setForm({...form, price: e.target.value})} /></div>
+              <div><label className="text-slate-400 text-xs mb-1 block">Description</label><textarea className={inp} rows={3} placeholder="Brief description of this vehicle..." value={form.description} onChange={e => setForm({...form, description: e.target.value})} /></div>
+              <div>
+                <label className="text-slate-400 text-xs mb-1 block">Vehicle Photo</label>
+                {form.image_url ? (
+                  <div className="relative rounded-xl overflow-hidden h-36">
+                    <img src={form.image_url} alt="preview" className="w-full h-full object-cover" />
+                    <button onClick={() => setForm({...form, image_url: ""})} className="absolute top-2 right-2 p-1 bg-red-600 rounded-full text-white"><FiX className="w-3 h-3"/></button>
+                  </div>
+                ) : (
+                  <button onClick={() => fileRef.current?.click()} disabled={uploading} className="w-full h-28 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-700 hover:border-blue-500 text-slate-500 hover:text-blue-400 transition-all">
+                    <FiImage className="w-7 h-7 mb-1" />
+                    <span className="text-xs">{uploading ? "Uploading..." : "Click to upload photo"}</span>
+                  </button>
+                )}
+                <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
               </div>
-            </form>
+              <div className="grid grid-cols-2 gap-4">
+                <div><label className="text-slate-400 text-xs mb-1 block">Sort Order</label><input type="number" className={inp} value={form.sort_order} onChange={e => setForm({...form, sort_order: parseInt(e.target.value)})} /></div>
+                <div className="flex items-end pb-2.5"><label className="flex items-center gap-2 text-slate-300 text-sm cursor-pointer"><input type="checkbox" className="accent-blue-500 w-4 h-4" checked={!!form.active} onChange={e => setForm({...form, active: e.target.checked ? 1 : 0})} />Active on site</label></div>
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg transition-colors"><FiSave className="w-4 h-4"/> {editId ? "Update" : "Add Vehicle"}</button>
+              <button onClick={() => setShowModal(false)} className="px-5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">Cancel</button>
+            </div>
           </div>
         </div>
       )}
