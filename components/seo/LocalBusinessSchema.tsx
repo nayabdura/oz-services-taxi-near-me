@@ -11,7 +11,7 @@ export default function LocalBusinessSchema() {
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card",
     "openingHours": "Mo-Su 00:00-23:59",
-    "description": "Oz Services is Florida's premier 24/7 taxi service providing airport transfers to MCO, MIA, and TPA, plus local city rides, corporate accounts, and late night transportation across Orlando, Miami, Tampa, and surrounding regions.",
+    "description": "Oz Services is America's premier 24/7 nationwide taxi service providing airport transfers, local city rides, corporate accounts, and late night transportation across all USA states.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Orlando",
@@ -26,19 +26,14 @@ export default function LocalBusinessSchema() {
       "longitude": -81.3792
     },
     "areaServed": [
-      { "@type": "City", "name": "Orlando", "containedInPlace": { "@type": "State", "name": "Florida" } },
-      { "@type": "City", "name": "Miami", "containedInPlace": { "@type": "State", "name": "Florida" } },
-      { "@type": "City", "name": "Tampa", "containedInPlace": { "@type": "State", "name": "Florida" } },
-      { "@type": "City", "name": "Fort Lauderdale", "containedInPlace": { "@type": "State", "name": "Florida" } },
-      { "@type": "City", "name": "West Palm Beach", "containedInPlace": { "@type": "State", "name": "Florida" } },
-      { "@type": "City", "name": "Kissimmee", "containedInPlace": { "@type": "State", "name": "Florida" } }
+      { "@type": "Country", "name": "United States" }
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Florida Taxi Services",
+      "name": "USA Taxi Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local Taxi Near Me", "description": "Fast, reliable local taxi dispatch across Florida cities" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Airport Taxi Transfer", "description": "Professional airport transfers to MCO, MIA, TPA with flight tracking" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local Taxi Near Me", "description": "Fast, reliable local taxi dispatch across USA cities" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Airport Taxi Transfer", "description": "Professional airport transfers with flight tracking" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Taxi Account", "description": "Dedicated corporate travel management with monthly invoicing" } }
       ]
     },

@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <p className="font-bold text-slate-900 mb-1">Share this article</p>
-              <p className="text-slate-500 text-sm">Help others find reliable Florida taxi guides.</p>
+              <p className="text-slate-500 text-sm">Help others find reliable taxi guides.</p>
             </div>
             <div className="flex gap-3">
               <a

@@ -19,8 +19,8 @@ const benefits = [
   },
   {
     icon: FiMap,
-    title: "Statewide Florida Coverage",
-    desc: "From Orlando theme parks to Miami Beach, from Tampa Bay to Fort Lauderdale — if you're in Florida, we can get you there.",
+    title: "Nationwide USA Coverage",
+    desc: "From New York City to Los Angeles, from Chicago to Miami — if you're in the USA, we have a driver ready to get you there.",
   },
 ];
 
@@ -38,9 +38,9 @@ export default function WhyChooseUs() {
               Built on Trust,<br />Driven by Excellence
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-medium mb-10">
-              We're not a rideshare algorithm. We're a real Florida taxi company with
+              We're not a rideshare algorithm. We're a real nationwide taxi company with
               real accountability, real drivers, and real service standards that have
-              earned the trust of over 10,000 passengers.
+              earned the trust of over 10,000 passengers across America.
             </p>
 
             <div className="space-y-7">
@@ -79,7 +79,7 @@ export default function WhyChooseUs() {
                   { num: "10K+", label: "Rides Completed" },
                   { num: "99%", label: "On-Time Rate" },
                   { num: "4.9★", label: "Star Rating" },
-                  { num: "50+", label: "Florida Cities" },
+                  { num: "50*", label: "US States covered" },
                 ].map(({ num, label }) => (
                   <div key={label} className="text-center py-4 border border-slate-100 rounded-xl">
                     <div className="text-3xl font-black text-blue-600 font-heading tracking-tight mb-1">

@@ -2,6 +2,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ServicesOverview from "@/components/home/ServicesOverview";
 import StatsSection from "@/components/home/StatsSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
+import FleetShowcase from "@/components/home/FleetShowcase";
 import ServiceAreasSection from "@/components/home/ServiceAreasSection";
 import Testimonials from "@/components/home/Testimonials";
 import PricingPreview from "@/components/home/PricingPreview";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <HeroSection />
       <ServicesOverview />
       <WhyChooseUs />
+      <FleetShowcase />
       <StatsSection />
       <ServiceAreasSection />
       <Testimonials />
@@ -25,3 +27,4 @@ export default function HomePage() {
     </div>
   );
 }
+

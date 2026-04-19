@@ -4,7 +4,7 @@ const services = [
   {
     emoji: "🚗",
     title: "Local Taxi Near Me",
-    desc: "Rapid dispatch for daily commutes and errands. Local drivers stationed across every Florida city for sub-10-minute pickup times.",
+    desc: "Rapid dispatch for daily commutes and errands. Local drivers stationed across every major USA city for sub-10-minute pickup times.",
     link: "/taxi-near-me",
   },
   {
@@ -16,7 +16,7 @@ const services = [
   {
     emoji: "🏙️",
     title: "City & Suburban Rides",
-    desc: "Navigate Florida like a local. Fixed-rate city trips with zero surge pricing, even during rush hour or major events.",
+    desc: "Navigate new cities like a local. Fixed-rate city trips with zero surge pricing, even during rush hour or major events.",
     link: "/services",
   },
   {
@@ -53,7 +53,7 @@ export default function ServicesOverview() {
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
             From quick local trips to executive corporate travel — Oz Services
-            covers every transportation need across Florida with professional
+            covers every transportation need across the USA with professional
             reliability.
           </p>
         </div>

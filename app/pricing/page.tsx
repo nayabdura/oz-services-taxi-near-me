@@ -3,13 +3,13 @@ import Link from "next/link";
 import { FiCheck, FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Transparent Taxi Pricing in Florida | No Surge Pricing | Oz Services",
+  title: "Transparent Taxi Pricing | No Surge Pricing | Oz Services USA",
   description:
-    "View our competitive Florida taxi fare rates. Economy, Premium, and Luxury tiers with upfront pricing, zero surge fees, and no hidden charges. Airport transfers, city rides, and corporate accounts.",
+    "View our competitive nationwide taxi fare rates. Economy, Premium, and Luxury tiers with upfront pricing, zero surge fees, and no hidden charges. Airport transfers, city rides, and corporate accounts across all USA states.",
   openGraph: {
-    title: "Transparent Taxi Pricing | No Hidden Fees | Oz Services Florida",
+    title: "Transparent Taxi Pricing | No Hidden Fees | Oz Services USA",
     description:
-      "Honest taxi fares across Florida. No surge pricing. No hidden fees. Guaranteed upfront pricing on every ride.",
+      "Honest taxi fares nationwide. No surge pricing. No hidden fees. Guaranteed upfront pricing on every ride.",
   },
 };
 
@@ -77,9 +77,9 @@ const plans = [
 ];
 
 const notes = [
-  "All prices shown in USD and include applicable Florida state taxes.",
-  "Airport authority surcharges (MCO, MIA, TPA) are passed at cost — zero markup.",
-  "SunPass toll road fees passed at exact cost. No markup on tolls.",
+  "All prices shown in USD. Applicable state and local taxes may vary by location.",
+  "Airport authority surcharges are passed at exact cost — zero markup.",
+  "Toll road fees passed at exact cost. No markup on tolls.",
   "Corporate accounts receive custom volume discounts and monthly billing cycles.",
   "Waiting time billed at $0.50/minute after an initial complimentary 5 minutes.",
   "Holiday surcharges may apply on Thanksgiving, Christmas Eve, and New Year's Eve.",
@@ -100,7 +100,7 @@ export default function PricingPage() {
           <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
             We publish our full fare structure publicly because we have nothing
             to hide. No surge algorithms. No dynamic pricing. Just honest, fair
-            Florida taxi rates.
+            taxi rates — available nationwide across all USA states.
           </p>
         </div>
       </section>

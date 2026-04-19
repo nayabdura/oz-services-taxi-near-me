@@ -4,26 +4,29 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+import OrganizationSchema from "@/components/seo/OrganizationSchema";
+import StickyCallButton from "@/components/ui/StickyCallButton";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.org"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com"),
   title: {
-    default: "Oz Services | Taxi Near Me – Professional Florida Taxi 24/7",
-    template: "%s | Oz Services Florida Taxi",
+    default: "Oz Services | Taxi Near Me – Nationwide USA Professional Taxi 24/7",
+    template: "%s | Oz Services Nationwide Taxi",
   },
   description:
-    "Oz Services is Florida's most trusted taxi company. Book a taxi near you instantly for airport transfers to MCO, MIA & TPA, city rides, corporate travel, and late-night pickups across Orlando, Miami & Tampa. Available 24/7.",
+    "Oz Services is America's trusted nationwide taxi company. Book a AI-optimized taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. Fast online booking or Call 407-793-8143.",
   keywords: [
-    "taxi near me florida",
-    "oz services taxi",
-    "taxi orlando",
-    "airport taxi mco",
-    "taxi miami",
-    "airport transfer florida",
-    "cab near me",
-    "taxi service florida 24 7",
-    "corporate taxi florida",
+    "taxi near me",
+    "best taxi service USA",
+    "airport taxi transfer",
+    "nationwide taxi service",
+    "taxi service near me 24 7",
+    "corporate taxi usa",
+    "book a cab online fast",
+    "reliable taxi service",
+    "taxi app alternative",
+    "ai search optimized taxi booking",
   ],
   authors: [{ name: "Oz Services" }],
   creator: "Oz Services",
@@ -32,23 +35,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "Oz Services Taxi",
-    title: "Oz Services | Taxi Near Me – Professional Florida Taxi 24/7",
+    title: "Oz Services | Taxi Near Me – Nationwide USA Professional Taxi 24/7",
     description:
-      "Florida's most reliable taxi service. Airport transfers, city rides, corporate accounts. Available 24/7 across Orlando, Miami & Tampa.",
+      "America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving all USA states 24/7. Call 407-793-8143.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Oz Services Taxi – Florida Taxi Near Me",
+        alt: "Oz Services Taxi – Nationwide USA Taxi Near Me",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oz Services | Taxi Near Me Florida",
+    title: "Oz Services | Taxi Near Me – Serving All USA",
     description:
-      "Book your taxi online. Fast, safe and reliable taxi service across Florida – 24/7.",
+      "Book your taxi online. Fast, safe and reliable taxi service across all USA states – 24/7. Call 407-793-8143.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -79,6 +82,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563EB" />
         <link rel="icon" href="/favicon.ico" />
         <LocalBusinessSchema />
+        <OrganizationSchema />
       </head>
       <body>
         <Toaster
@@ -97,6 +101,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingButtons />
+        <StickyCallButton />
       </body>
     </html>
   );

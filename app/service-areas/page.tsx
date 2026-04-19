@@ -3,30 +3,30 @@ import Link from "next/link";
 import { FiMapPin, FiArrowRight, FiPhone } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Oz Services Taxi - Florida",
-  description: "Oz Services provides taxi services across major Florida cities including Orlando, Miami, Tampa, Jacksonville, and more. Check your area now.",
+  title: "Service Areas | Oz Services Taxi - Nationwide USA",
+  description: "Oz Services provides taxi services across all USA states including New York, Los Angeles, Chicago, Miami, Orlando, and more. Check your area now.",
   alternates: { canonical: "/service-areas" },
 };
 
 const regions = [
   {
-    name: "Central Florida", areas: [
-      "Orlando", "Kissimmee", "Winter Park", "Sanford", "Daytona Beach", "Melbourne", "Lakeland"
+    name: "Northeast USA", areas: [
+      "New York City, NY", "Boston, MA", "Philadelphia, PA", "Newark, NJ", "Baltimore, MD", "Washington DC", "Hartford, CT"
     ]
   },
   {
-    name: "South Florida", areas: [
-      "Miami", "Miami Beach", "Fort Lauderdale", "West Palm Beach", "Boca Raton", "Hollywood", "Coral Springs"
+    name: "Southeast USA", areas: [
+      "Miami, FL", "Orlando, FL", "Tampa, FL", "Atlanta, GA", "Charlotte, NC", "Nashville, TN", "Jacksonville, FL"
     ]
   },
   {
-    name: "Tampa Bay Area", areas: [
-      "Tampa", "St. Petersburg", "Clearwater", "Sarasota", "Bradenton", "Spring Hill"
+    name: "Midwest USA", areas: [
+      "Chicago, IL", "Detroit, MI", "Columbus, OH", "Indianapolis, IN", "Minneapolis, MN", "Kansas City, MO", "Cleveland, OH"
     ]
   },
   {
-    name: "North Florida", areas: [
-      "Jacksonville", "Tallahassee", "Gainesville", "Pensacola", "St. Augustine", "Panama City"
+    name: "West & Southwest USA", areas: [
+      "Los Angeles, CA", "Las Vegas, NV", "Phoenix, AZ", "Houston, TX", "Dallas, TX", "Denver, CO", "Seattle, WA"
     ]
   },
 ];
@@ -38,14 +38,14 @@ export default function ServiceAreasPage() {
         <div className="container text-center max-w-3xl mx-auto">
           <span className="badge mb-6">📍 Service Areas</span>
           <h1 className="section-title text-5xl lg:text-6xl text-gray-900 mb-6">
-            We Serve <span className="text-blue-600">Florida</span>
+            We Serve <span className="text-blue-600">All USA</span>
           </h1>
           <p className="text-gray-600 text-lg mb-8">
-            From the theme parks of Orlando to the beaches of Miami, Oz Services has professional drivers ready to pick you up.
+            From coast to coast, Oz Services has professional drivers ready to pick you up anywhere in the United States. Call our dispatcher 24/7.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/booking" className="btn-primary">Book Your Taxi</Link>
-            <a href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} className="btn-outline bg-white"><FiPhone /> Call Now</a>
+            <a href="tel:4077938143" className="btn-outline bg-white"><FiPhone /> Call 407-793-8143</a>
           </div>
         </div>
       </section>
@@ -77,11 +77,11 @@ export default function ServiceAreasPage() {
           </div>
 
           <div className="mt-20 glass-card p-10 text-center bg-white border-blue-100 shadow-xl max-w-4xl mx-auto">
-            <h3 className="text-gray-900 font-black text-2xl mb-4" style={{ fontFamily: "Outfit, sans-serif" }}>Don&apos;t See Your Area?</h3>
-            <p className="text-gray-600 mb-8 max-w-lg mx-auto text-lg">We may still be able to help! Contact us to check taxi availability in your specific Florida location.</p>
+            <h3 className="text-gray-900 font-black text-2xl mb-4" style={{ fontFamily: "Outfit, sans-serif" }}>Don&apos;t See Your City?</h3>
+            <p className="text-gray-600 mb-8 max-w-lg mx-auto text-lg">We cover all 50 states! Contact our dispatcher to confirm availability in your specific location across the USA.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-primary">Contact Us</Link>
-              <a href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} className="btn-outline bg-gray-50"><FiPhone /> Call {process.env.NEXT_PUBLIC_PHONE}</a>
+              <a href="tel:4077938143" className="btn-outline bg-gray-50"><FiPhone /> Call 407-793-8143</a>
             </div>
           </div>
         </div>

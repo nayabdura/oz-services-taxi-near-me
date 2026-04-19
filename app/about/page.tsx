@@ -3,13 +3,13 @@ import Link from "next/link";
 import { FiShield, FiClock, FiTarget, FiUsers } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "About Oz Services | Florida's Most Trusted Taxi Company",
+  title: "About Oz Services | America's Most Trusted Taxi Company",
   description:
-    "Learn about Oz Services — Florida's premier 24/7 taxi network. Discover our story, our mission, and our commitment to safe, transparent, and reliable transportation across Orlando, Miami, and Tampa.",
+    "Learn about Oz Services — America's premier 24/7 nationwide taxi network. Discover our story, our mission, and our commitment to safe, transparent, and reliable transportation across all 50 states.",
   openGraph: {
-    title: "About Oz Services | Florida's Most Trusted Taxi Company",
+    title: "About Oz Services | America's Most Trusted Taxi Company",
     description:
-      "Florida's premier 24/7 taxi network. Reliable airport transfers, local rides, and corporate travel across Orlando, Miami, and Tampa.",
+      "America's premier 24/7 nationwide taxi network. Reliable airport transfers, local rides, and corporate travel across the USA.",
   },
 };
 
@@ -32,7 +32,7 @@ const values = [
   {
     icon: FiUsers,
     title: "Real People Behind Every Ride",
-    desc: "We're a real Florida taxi company — not a tech startup with contractor drivers. Every dispatch is handled by our in-house team who knows Florida roads intimately.",
+    desc: "We're a real nationwide taxi company — not a tech startup with contractor drivers. Every dispatch is handled by our in-house team who knows the roads intimately.",
   },
 ];
 
@@ -49,8 +49,8 @@ export default function AboutPage() {
             About Oz Services
           </h1>
           <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
-            Born in Orlando. Serving all of Florida. Built with one mission — to
-            give passengers a taxi service they can genuinely rely on, every
+            Serving all of the USA. Built with one mission — to
+            give passengers a nationwide taxi service they can genuinely rely on, every
             single time.
           </p>
         </div>
@@ -62,13 +62,13 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-6 tracking-tight">
-                From a Small Fleet to Florida's Premier Taxi Network
+                From a Small Fleet to America's Premier Taxi Network
               </h2>
               <div className="space-y-5 text-slate-600 font-medium leading-relaxed text-[15px]">
                 <p>
-                  Oz Services launched from a three-vehicle fleet operating
-                  around Orlando's major hotel corridors and Orlando International
-                  Airport. The problem we kept hearing from travelers was
+                  Oz Services launched from a small regional fleet operating
+                  around major hotel corridors and international
+                  airports. The problem we kept hearing from travelers was
                   consistent: rideshare apps were unpredictable — surge pricing,
                   wrong vehicles, drivers who didn't know the airport terminals.
                 </p>
@@ -81,9 +81,9 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Today, our fleet of sedans, premium SUVs, and executive minivans
-                  serves tens of thousands of passengers annually across 50+
-                  Florida cities, covering every major airport hub and every corner
-                  of the Sunshine State.
+                  serves tens of thousands of passengers annually across 50
+                  states, covering every major airport hub and every corner
+                  of the USA.
                 </p>
               </div>
               <div className="mt-8">
@@ -99,9 +99,9 @@ export default function AboutPage() {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "10+", label: "Years Operating", sub: "Since 2014 in Florida" },
+                { value: "10+", label: "Years Operating", sub: "Nationwide coverage" },
                 { value: "10K+", label: "Rides Completed", sub: "Verified passenger trips" },
-                { value: "50+", label: "Cities Covered", sub: "Statewide network" },
+                { value: "50+", label: "States Covered", sub: "Nationwide network" },
                 { value: "4.9★", label: "Star Rating", sub: "From 847+ reviews" },
               ].map(({ value, label, sub }) => (
                 <div
@@ -163,7 +163,7 @@ export default function AboutPage() {
       <section className="py-16 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-black text-white font-heading mb-4">
-            Ready to Ride with Florida's Best?
+            Ready to Ride with America's Best?
           </h2>
           <p className="text-blue-100 font-medium text-lg mb-8 max-w-xl mx-auto">
             Book your next ride in under 60 seconds. No apps, no surge pricing, no
@@ -177,10 +177,10 @@ export default function AboutPage() {
               Book a Taxi Now
             </Link>
             <a
-              href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+              href="tel:4077938143"
               className="inline-flex items-center justify-center text-white font-bold px-8 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm"
             >
-              📞 Call Dispatch
+              📞 Call 407-793-8143
             </a>
           </div>
         </div>

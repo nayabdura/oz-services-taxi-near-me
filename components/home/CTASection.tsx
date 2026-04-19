@@ -17,7 +17,7 @@ export default function CTASection() {
         <p className="text-xl text-slate-300 font-medium leading-relaxed mb-10 max-w-2xl mx-auto">
           Skip the app. Skip the surge pricing. Call or book online and have a
           professional Oz Services driver dispatched to your exact location
-          within minutes — anywhere in Florida.
+          within minutes — anywhere in the USA.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -28,10 +28,10 @@ export default function CTASection() {
             Book Online — It's Instant
           </Link>
           <a
-            href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+            href="tel:4077938143"
             className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold text-base px-9 py-4 rounded-xl border border-white/20 transition-colors backdrop-blur-sm active:scale-95"
           >
-            📞 Call Dispatch Directly
+            📞 Call 407-793-8143
           </a>
         </div>
 

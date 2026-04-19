@@ -1,9 +1,9 @@
 const reviews = [
   {
     name: "Michael T.",
-    location: "Orlando, FL",
+    location: "Chicago, IL",
     rating: 5,
-    text: "The best taxi service I've ever used in Florida. Driver arrived 10 minutes early for my early-morning MCO flight. Immaculate car and extremely professional attitude — I won't use anything else.",
+    text: "The best taxi service I've ever used. Driver arrived 10 minutes early for my early-morning ORD flight. Immaculate car and extremely professional attitude — I won't use anything else.",
     service: "Airport Transfer",
   },
   {
@@ -15,9 +15,9 @@ const reviews = [
   },
   {
     name: "David R.",
-    location: "Tampa, FL",
+    location: "Houston, TX",
     rating: 5,
-    text: "Saved us during a torrential downpour in Tampa last December. Driver was calm, courteous, and the quoted price didn't change one cent despite the awful conditions. Remarkable consistency.",
+    text: "Saved us during a torrential downpour in Houston last December. Driver was calm, courteous, and the quoted price didn't change one cent despite the awful conditions. Remarkable consistency.",
     service: "Local Taxi",
   },
 ];
@@ -32,10 +32,10 @@ export default function Testimonials() {
             Passenger Reviews
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
-            Trusted by Thousands of Floridians
+            Trusted by Thousands Nationwide
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
-            Over 10,000 verified rides across Florida. Here's what our passengers
+            Over 10,000 verified rides across the USA. Here's what our passengers
             say about their Oz Services experience.
           </p>
         </div>

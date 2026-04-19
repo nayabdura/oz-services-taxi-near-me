@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const navItems = [
   { href: "/admin/dashboard", icon: FiHome, label: "Dashboard" },
   { href: "/admin/bookings", icon: FiCalendar, label: "Bookings" },
+  { href: "/admin/fleet", icon: FiTruck, label: "Fleet" },
   { href: "/admin/blogs", icon: FiFileText, label: "Blog Posts" },
   { href: "/admin/pricing", icon: FiDollarSign, label: "Pricing" },
   { href: "/admin/testimonials", icon: FiMessageSquare, label: "Reviews" },

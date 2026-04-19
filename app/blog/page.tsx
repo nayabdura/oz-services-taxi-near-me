@@ -36,7 +36,7 @@ export default function BlogPage() {
         <div className="container text-center max-w-3xl mx-auto">
           <span className="badge mb-6">📝 Blog</span>
           <h1 className="section-title text-5xl lg:text-6xl text-gray-900 mb-6">
-            Florida Taxi Tips &amp; <span className="text-blue-600">Travel Guides</span>
+            USA Taxi Tips &amp; <span className="text-blue-600">Travel Guides</span>
           </h1>
           <p className="text-gray-600 text-lg">Expert advice, travel tips, and the latest news from the Oz Services team.</p>
         </div>

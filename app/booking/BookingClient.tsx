@@ -5,7 +5,7 @@ import { FiArrowRight, FiArrowLeft, FiMapPin, FiCalendar, FiClock, FiUsers, FiPh
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const steps = ["Trip Details", "Personal Info", "Confirmation"];
+const steps = ["Trip Details", "Personal Info", "Review", "Confirmation"];
 
 export default function BookingClient() {
   const [step, setStep] = useState(0);
@@ -20,14 +20,14 @@ export default function BookingClient() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const validateStep = () => {
-    if (step === 0) {
+  const validateStep = (currentStep: number) => {
+    if (currentStep === 0) {
       if (!form.pickupLocation || !form.dropoffLocation || !form.pickupDate || !form.pickupTime) {
         toast.error("Please fill in all required trip details.");
         return false;
       }
     }
-    if (step === 1) {
+    if (currentStep === 1) {
       if (!form.name || !form.email || !form.phone) {
         toast.error("Please provide your complete personal details.");
         return false;
@@ -37,7 +37,7 @@ export default function BookingClient() {
   };
 
   const handleNext = () => {
-    if (validateStep()) setStep((s) => Math.min(s + 1, steps.length - 1));
+    if (validateStep(step)) setStep((s) => Math.min(s + 1, steps.length - 1));
   };
 
   const handleBack = () => {
@@ -45,7 +45,7 @@ export default function BookingClient() {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep()) return;
+    if (!validateStep(2)) return;
     
     setLoading(true);
     try {
@@ -56,9 +56,7 @@ export default function BookingClient() {
         service_type: form.serviceType, passengers: parseInt(form.passengers), notes: form.notes
       };
       await axios.post("/api/bookings", payload);
-      toast.success("Booking confirmed successfully. Check your email for details.");
-      setStep(0);
-      setForm({ pickupLocation: "", dropoffLocation: "", pickupDate: "", pickupTime: "", passengers: "1", serviceType: "local", notes: "", name: "", email: "", phone: "" });
+      setStep(3); // Move to Success State
     } catch {
       toast.error("Booking failed. Please call us directly or try again later.");
     } finally {
@@ -73,19 +71,19 @@ export default function BookingClient() {
         <div className="text-center mb-12">
           <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Online Reservation</span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Book Your Taxi</h1>
-          <p className="text-gray-600 max-w-xl mx-auto text-lg leading-relaxed">Fill in your travel details across Florida and we will confirm your ride instantly.</p>
+          <p className="text-gray-600 max-w-xl mx-auto text-lg leading-relaxed">Fill in your travel details and we will confirm your ride instantly. Available 24/7 nationwide.</p>
         </div>
 
         {/* Minimal Progress indicator */}
         <div className="mb-12">
-          <div className="flex items-center justify-between max-w-md mx-auto relative">
+          <div className="flex items-center justify-between max-w-md mx-auto relative hidden sm:flex">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 z-0 rounded"></div>
             <div 
               className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-blue-600 z-0 rounded transition-all duration-500 ease-in-out"
-              style={{ width: `${(step / (steps.length - 1)) * 100}%` }}
+              style={{ width: `${(Math.min(step, 2) / 2) * 100}%` }}
             ></div>
             
-            {steps.map((label, i) => (
+            {steps.slice(0, 3).map((label, i) => (
               <div key={label} className="relative z-10 flex flex-col items-center">
                 <div 
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-medium border-2 transition-all duration-300 ${
@@ -259,40 +257,63 @@ export default function BookingClient() {
                   </div>
                 </div>
               )}
+
+              {step === 3 && (
+                <div className="space-y-6 text-center py-10">
+                  <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FiCheckCircle className="w-10 h-10" />
+                  </div>
+                  <h2 className="text-3xl font-black text-gray-900 font-heading tracking-tight mb-4">Request Received!</h2>
+                  <p className="text-gray-600 text-lg max-w-md mx-auto leading-relaxed mb-8">
+                    Your ride details have been securely processed. Our dispatch team is reviewing your booking and will reach out shortly. You will also receive an email confirmation.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setStep(0);
+                      setForm({ pickupLocation: "", dropoffLocation: "", pickupDate: "", pickupTime: "", passengers: "1", serviceType: "local", notes: "", name: "", email: "", phone: "" });
+                    }}
+                    className="inline-flex items-center justify-center bg-blue-600 text-white font-bold px-8 py-3.5 rounded-xl hover:bg-blue-700 transition-colors shadow-md shadow-blue-600/20"
+                  >
+                    Book Another Ride
+                  </button>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
 
           {/* Action Buttons */}
-          <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-            {step > 0 ? (
-              <button 
-                type="button"
-                onClick={handleBack} 
-                className="w-full sm:w-auto px-6 py-3 rounded-xl border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
-              >
-                <FiArrowLeft className="w-4 h-4" /> Back
-              </button>
-            ) : <div className="hidden sm:block"></div>}
-            
-            {step < 2 ? (
-              <button 
-                type="button"
-                onClick={handleNext} 
-                className="w-full sm:w-auto px-8 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors shadow-sm flex items-center justify-center gap-2"
-              >
-                Continue <FiArrowRight className="w-4 h-4" />
-              </button>
-            ) : (
-              <button 
-                type="button"
-                onClick={handleSubmit} 
-                disabled={loading} 
-                className="w-full sm:w-auto px-8 py-3 rounded-xl bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {loading ? "Processing..." : "Confirm Reservation"}
-              </button>
-            )}
-          </div>
+          {step < 3 && (
+            <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+              {step > 0 ? (
+                <button 
+                  type="button"
+                  onClick={handleBack} 
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+                >
+                  <FiArrowLeft className="w-4 h-4" /> Back
+                </button>
+              ) : <div className="hidden sm:block"></div>}
+              
+              {step < 2 ? (
+                <button 
+                  type="button"
+                  onClick={handleNext} 
+                  className="w-full sm:w-auto px-8 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors shadow-sm flex items-center justify-center gap-2"
+                >
+                  Continue <FiArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button 
+                  type="button"
+                  onClick={handleSubmit} 
+                  disabled={loading} 
+                  className="w-full sm:w-auto px-8 py-3 rounded-xl bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {loading ? "Processing..." : "Confirm Reservation"}
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
       </div>

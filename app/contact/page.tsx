@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiPhone, FiMail, FiMapPin, FiClock, FiSend } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -35,7 +34,7 @@ export default function ContactPage() {
           <h1 className="section-title text-5xl text-gray-900 mb-5">
             Get In <span className="text-blue-600">Touch</span>
           </h1>
-          <p className="text-gray-600 text-lg">We&apos;re available 24/7. Contact us anytime for bookings, enquiries, or support in Florida.</p>
+          <p className="text-gray-600 text-lg">We&apos;re available 24/7. Contact us anytime for bookings, enquiries, or support nationwide.</p>
         </div>
       </section>
 
@@ -45,9 +44,9 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="space-y-5">
               {[
-                { icon: FiPhone, title: "Phone", value: process.env.NEXT_PUBLIC_PHONE || "+1 407 793 8143", href: `tel:${process.env.NEXT_PUBLIC_PHONE}`, sub: "Available 24/7" },
+                { icon: FiPhone, title: "Phone", value: process.env.NEXT_PUBLIC_PHONE || "+1 407 793 8143", href: `tel:${process.env.NEXT_PUBLIC_PHONE || "+14077938143"}`, sub: "Available 24/7" },
                 { icon: FiMail, title: "Email", value: "info@ozservices.com", href: "mailto:info@ozservices.com", sub: "Reply within 4 hours" },
-                { icon: FiMapPin, title: "Location", value: "Orlando, Florida", href: "#", sub: "Serving all FL" },
+                { icon: FiMapPin, title: "Location", value: "Nationwide USA", href: "#", sub: "Serving all states" },
                 { icon: FiClock, title: "Hours", value: "Open 24/7", href: "#", sub: "Every day of the year" },
               ].map(item => (
                 <motion.a
@@ -68,23 +67,6 @@ export default function ContactPage() {
                   </div>
                 </motion.a>
               ))}
-
-              {/* WhatsApp */}
-              <a
-                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP || "14077938143").replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card bg-white p-6 flex items-center gap-5 hover:border-green-500 transition-all block border-green-100 shadow-sm hover:shadow-md group"
-              >
-                <div className="w-14 h-14 bg-green-50 border border-green-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-green-100 transition-colors">
-                  <FaWhatsapp className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">WhatsApp</div>
-                  <div className="text-gray-900 font-bold text-base">Chat with us</div>
-                  <div className="text-gray-500 text-sm mt-0.5">Instant response</div>
-                </div>
-              </a>
             </div>
 
             {/* Form */}

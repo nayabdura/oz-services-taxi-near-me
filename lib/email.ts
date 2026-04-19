@@ -21,7 +21,7 @@ export const sendBookingConfirmationEmail = async (booking: {
         <!-- Header -->
         <div style="background: #0F172A; padding: 32px; text-align: center;">
           <div style="display: inline-block; background: #2563EB; color: white; font-weight: 900; font-size: 22px; padding: 10px 20px; border-radius: 8px; letter-spacing: 2px;">OZ SERVICES</div>
-          <p style="color: #94A3B8; margin: 12px 0 0; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;">Florida Taxi Network</p>
+          <p style="color: #94A3B8; margin: 12px 0 0; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;">Nationwide Taxi Network</p>
         </div>
         <!-- Body -->
         <div style="padding: 40px 32px;">
@@ -48,7 +48,7 @@ export const sendBookingConfirmationEmail = async (booking: {
         </div>
         <!-- Footer -->
         <div style="background: #F8FAFC; padding: 24px 32px; border-top: 1px solid #E2E8F0; text-align: center;">
-          <p style="margin: 0; color: #94A3B8; font-size: 12px;">Oz Services · Florida Taxi Network · Available 24/7<br>Questions? Email us at ${ADMIN}</p>
+          <p style="margin: 0; color: #94A3B8; font-size: 12px;">Oz Services · Nationwide Taxi Network · Available 24/7<br>Questions? Email us at ${ADMIN}</p>
         </div>
       </div>
     </body>
@@ -59,7 +59,7 @@ export const sendBookingConfirmationEmail = async (booking: {
     await resend.emails.send({
       from: `Oz Services <${FROM}>`,
       to: booking.email,
-      subject: `✓ Booking Confirmed #${booking.bookingId} — Oz Services Florida Taxi`,
+      subject: `✓ Booking Confirmed #${booking.bookingId} — Oz Services Taxi`,
       html,
     });
   } catch (err) {

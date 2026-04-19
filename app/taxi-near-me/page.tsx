@@ -3,20 +3,20 @@ import Link from "next/link";
 import BookingWidget from "@/components/home/BookingWidget";
 
 export const metadata: Metadata = {
-  title: "Taxi Near Me | Instant Cab Booking in Florida — Oz Services",
+  title: "Taxi Near Me | Instant Cab Booking in the USA — Oz Services",
   description:
-    "Searching for a taxi near me in Florida? Oz Services dispatches professional, licensed drivers instantly across Orlando, Miami, Tampa, and 50+ cities. Zero surge pricing. Available 24/7.",
+    "Searching for a taxi near me? Oz Services dispatches professional, licensed drivers instantly across all USA states. Zero surge pricing. Available 24/7.",
   openGraph: {
-    title: "Taxi Near Me | Instant Cab Booking in Florida",
+    title: "Taxi Near Me | Instant Cab Booking in the USA",
     description:
-      "Fast taxi dispatch across 50+ Florida cities. No surge pricing. Licensed drivers. Available 24/7.",
+      "Fast taxi dispatch nationwide. No surge pricing. Licensed drivers. Available 24/7.",
   },
 };
 
 const reasons = [
   {
     title: "Drivers Stationed Locally",
-    desc: "Unlike scattered gig-worker apps, our professional drivers are positioned within Florida city centers and airport hubs — giving us under-10-minute average pickup times.",
+    desc: "Unlike scattered gig-worker apps, our professional drivers are positioned within major city centers and airport hubs across the USA — giving us under-10-minute average pickup times.",
   },
   {
     title: "Zero Surge Pricing, Ever",
@@ -33,18 +33,18 @@ const reasons = [
 ];
 
 const cities = [
-  { name: "Orlando", note: "Serving MCO airport" },
+  { name: "New York", note: "Serving JFK/LGA" },
+  { name: "Los Angeles", note: "Serving LAX area" },
+  { name: "Chicago", note: "Serving ORD/MDW" },
+  { name: "Houston", note: "Serving IAH area" },
   { name: "Miami", note: "Serving MIA airport" },
-  { name: "Tampa", note: "Serving TPA airport" },
-  { name: "Fort Lauderdale", note: "Serving FLL airport" },
-  { name: "West Palm Beach", note: "Serving PBI airport" },
-  { name: "Kissimmee", note: "Theme park corridor" },
-  { name: "St. Petersburg", note: "Gulf Coast coverage" },
-  { name: "Jacksonville", note: "Serving JAX airport" },
-  { name: "Clearwater", note: "Beach & resort area" },
-  { name: "Daytona Beach", note: "East coast coverage" },
-  { name: "Boca Raton", note: "South Florida" },
-  { name: "Tallahassee", note: "Serving TLH airport" },
+  { name: "Orlando", note: "Serving MCO airport" },
+  { name: "Las Vegas", note: "Serving LAS area" },
+  { name: "Atlanta", note: "Serving ATL airport" },
+  { name: "Dallas", note: "Serving DFW area" },
+  { name: "Seattle", note: "Serving SEA area" },
+  { name: "Phoenix", note: "Serving PHX area" },
+  { name: "Denver", note: "Serving DEN area" },
 ];
 
 export default function TaxiNearMePage() {
@@ -61,19 +61,19 @@ export default function TaxiNearMePage() {
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
                 Find a Taxi <span className="text-blue-500">Near You</span> in
-                Florida — Right Now
+                the USA — Right Now
               </h1>
               <p className="text-xl text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
                 No app downloads. No unpredictable surge pricing. Oz Services
                 dispatches a professional, licensed driver to your exact location
-                within minutes — 24 hours a day, 7 days a week.
+                across the USA within minutes — 24 hours a day, 7 days a week.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+                  href="tel:4077938143"
                   className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-sm active:scale-95"
                 >
-                  📞 Call for Immediate Pickup
+                  📞 Call 407-793-8143
                 </a>
               </div>
             </div>
@@ -129,11 +129,11 @@ export default function TaxiNearMePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
-              Serving 50+ Florida Cities
+              Serving All 50 States
             </h2>
             <p className="text-slate-600 font-medium text-lg">
               Whether it's an airport run or a late-night local trip, chances are
-              we have a driver near you right now.
+              we have a driver near you right now. 
             </p>
           </div>
 

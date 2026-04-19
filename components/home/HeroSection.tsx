@@ -26,30 +26,30 @@ export default function HeroSection() {
                 {"★★★★★"}
               </span>
               <span className="text-blue-400 text-xs font-bold tracking-widest uppercase">
-                #1 Rated Florida Taxi
+                #1 Rated Nationwide Taxi
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading leading-[1.05] tracking-tight mb-6">
               Professional{" "}
               <span className="text-blue-500">Taxi Near Me</span>
-              <br className="hidden sm:block" /> Across Florida
+              <br className="hidden sm:block" /> Across All USA
             </h1>
 
             <p className="text-lg text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
               Fast, reliable, and transparent taxi service operating 24/7 across
-              Florida. Specializing in airport transfers to MCO, MIA, and TPA,
-              plus local city rides with zero surge pricing.
+              all USA states. Specializing in airport transfers, local city rides,
+              and corporate travel — with zero surge pricing.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <a
-                href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+                href="tel:4077938143"
                 className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/25 active:scale-95 text-base"
               >
                 <FiPhone className="w-4 h-4" />
-                Call Dispatch Now
+                Call 407-793-8143
               </a>
               <Link
                 href="/booking"

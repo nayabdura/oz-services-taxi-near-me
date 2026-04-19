@@ -3,13 +3,13 @@ import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Florida Taxi Services | Airport, Corporate & City Transfers",
+  title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
   description:
-    "Oz Services provides professional Florida taxi services including airport transfers to MCO, MIA & TPA, local city rides, corporate accounts, late-night pickups, and group travel — all with zero surge pricing.",
+    "Oz Services provides professional USA taxi services including airport transfers, local city rides, corporate accounts, late-night pickups, and group travel — all with zero surge pricing.",
   openGraph: {
-    title: "Florida Taxi Services | Airport, Corporate & City Transfers",
+    title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
     description:
-      "Professional taxi services across Florida. Airport transfers, corporate accounts, city rides, and group transport — no surge pricing.",
+      "Professional taxi services across the USA. Airport transfers, corporate accounts, city rides, and group transport — no surge pricing.",
   },
 };
 
@@ -18,14 +18,14 @@ const services = [
     icon: "🚗",
     title: "Local Taxi Near Me",
     slug: "/taxi-near-me",
-    desc: "Rapid dispatch for daily errands, appointments, and commutes. Our localized fleet is positioned within Florida cities for under-10-minute response times.",
+    desc: "Rapid dispatch for daily errands, appointments, and commutes. Our localized fleet is positioned within major USA cities for under-10-minute response times.",
     features: ["Same-day booking", "Real-time driver tracking", "Zero surge pricing", "24/7 availability"],
   },
   {
     icon: "✈️",
     title: "Airport Taxi Transfers",
     slug: "/taxi-near-me",
-    desc: "Reliable trips to and from MCO, MIA, TPA, FLL, and PBI. We monitor your flight data live and adjust for any delays — your driver waits for you, not the other way around.",
+    desc: "Reliable trips to and from every major US airport. We monitor your flight data live and adjust for any delays — your driver waits for you, not the other way around.",
     features: ["Live flight tracking", "Meet & greet in terminal", "Flight delay protection", "No extra waiting fees"],
   },
   {
@@ -39,7 +39,7 @@ const services = [
     icon: "💼",
     title: "Corporate Taxi Accounts",
     slug: "/pricing",
-    desc: "Dedicated executive travel management for Florida businesses. Consolidated monthly billing, priority dispatching, and a dedicated account manager for your team.",
+    desc: "Dedicated executive travel management for US businesses. Consolidated monthly billing, priority dispatching, and a dedicated account manager for your team.",
     features: ["Monthly invoicing", "Priority booking queue", "Dedicated account manager", "Volume discounts available"],
   },
   {
@@ -68,13 +68,13 @@ export default function ServicesPage() {
             What We Offer
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
-            Complete Florida{" "}
+            Complete Nationwide{" "}
             <span className="text-blue-500">Taxi Services</span>
           </h1>
           <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
             From airport terminals to city centers, from corporate boardrooms to
             family reunions — Oz Services has a professional solution for every
-            Florida transportation need.
+            transportation need across America.
           </p>
         </div>
       </section>
@@ -133,10 +133,10 @@ export default function ServicesPage() {
             <p className="text-blue-100 font-medium">Call our dispatchers and we'll match you with the right vehicle immediately.</p>
           </div>
           <a
-            href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+            href="tel:4077938143"
             className="inline-flex items-center gap-2 bg-white text-blue-600 font-bold px-7 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap flex-shrink-0 text-sm active:scale-95"
           >
-            📞 Call Dispatch Now
+            📞 Call 407-793-8143
           </a>
         </div>
       </section>
