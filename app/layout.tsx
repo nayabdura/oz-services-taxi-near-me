@@ -7,7 +7,7 @@ import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.org"),
   title: {
     default: "Oz Services | Taxi Near Me – Professional Florida Taxi 24/7",
     template: "%s | Oz Services Florida Taxi",
@@ -74,7 +74,7 @@ export default function RootLayout({
       <head>
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com"}
+          href={process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.org"}
         />
         <meta name="theme-color" content="#2563EB" />
         <link rel="icon" href="/favicon.ico" />

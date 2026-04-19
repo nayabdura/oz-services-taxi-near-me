@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { FiArrowLeft, FiCheck, FiTrash2, FiPhone, FiMail, FiCalendar, FiUser } from "react-icons/fi";
+import { FiCheck, FiTrash2, FiPhone, FiMail, FiCalendar, FiUser } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 interface Booking {
   id: number;
@@ -30,23 +29,21 @@ const STATUS_STYLES: Record<string, string> = {
 };
 
 export default function AdminBookingsPage() {
-  const router = useRouter();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
-    if (!token) { router.push("/admin"); return; }
+    if (!token) return;
     fetchBookings(token);
-  }, [router]);
+  }, []);
 
   const fetchBookings = async (token: string) => {
     try {
       const { data } = await axios.get(`/api/bookings`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // handle both {bookings:[]} and [] response shapes
       setBookings(Array.isArray(data) ? data : data.bookings || []);
     } catch {
       toast.error("Failed to fetch bookings");
@@ -82,26 +79,11 @@ export default function AdminBookingsPage() {
     }
   };
 
-  const filtered =
-    filter === "all" ? bookings : bookings.filter((b) => b.status === filter);
+  const filtered = filter === "all" ? bookings : bookings.filter((b) => b.status === filter);
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
+    <AdminLayout title="Bookings">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Link
-            href="/admin/dashboard"
-            className="text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-800"
-          >
-            <FiArrowLeft className="w-5 h-5" />
-          </Link>
-          <div>
-            <h1 className="text-white font-black text-2xl font-heading">Bookings</h1>
-            <p className="text-slate-400 text-sm">{bookings.length} total reservations</p>
-          </div>
-        </div>
-
         {/* Filter Tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
           {["all", "pending", "confirmed", "completed", "cancelled"].map((f) => (
@@ -240,6 +222,6 @@ export default function AdminBookingsPage() {
           </p>
         )}
       </div>
-    </div>
+    </AdminLayout>
   );
 }

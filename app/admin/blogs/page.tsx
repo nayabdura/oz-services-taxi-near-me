@@ -1,28 +1,27 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { FiArrowLeft, FiEdit, FiTrash2, FiPlus, FiEye } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 interface Blog { id: number; title: string; category: string; published: number; read_time: number; created_at: string; slug: string; }
 
 export default function AdminBlogsPage() {
-  const router = useRouter();
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
-    if (!token) { router.push("/admin"); return; }
+    if (!token) return;
     fetchBlogs(token);
-  }, [router]);
+  }, []);
 
   const fetchBlogs = async (token: string) => {
     try {
       const { data } = await axios.get("/api/blogs?limit=100", { headers: { Authorization: `Bearer ${token}` } });
-      setBlogs(data.blogs || []);
+      setBlogs(data.blogs);
     } catch { toast.error("Failed to fetch blogs"); }
     finally { setLoading(false); }
   };
@@ -38,20 +37,15 @@ export default function AdminBlogsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
+    <AdminLayout 
+      title="Blog Posts" 
+      headerAction={
+        <Link href="/admin/blogs/new" className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all active:scale-95">
+          <FiPlus className="w-4 h-4" /> New Post
+        </Link>
+      }
+    >
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Link href="/admin/dashboard" className="text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-800">
-              <FiArrowLeft className="w-5 h-5" />
-            </Link>
-            <h1 className="text-white font-black text-2xl font-heading">Blog Posts</h1>
-          </div>
-          {/* <Link href="/admin/blogs/new" className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all active:scale-95">
-            <FiPlus className="w-4 h-4" /> New Post
-          </Link> */}
-        </div>
-
         <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
           {loading ? (
             <div className="p-16 text-center text-slate-400">
@@ -62,7 +56,6 @@ export default function AdminBlogsPage() {
             <div className="p-16 text-center">
               <div className="text-5xl mb-4">📝</div>
               <div className="text-white font-bold mb-2">No blog posts yet</div>
-              {/* <Link href="/admin/blogs/new" className="btn-primary bg-blue-600 text-white">Create your first post</Link> */}
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -111,6 +104,6 @@ export default function AdminBlogsPage() {
           )}
         </div>
       </div>
-    </div>
+    </AdminLayout>
   );
 }
