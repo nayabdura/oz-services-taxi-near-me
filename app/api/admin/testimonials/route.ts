@@ -1,37 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
-import getDB from '@/lib/db';
+import connectDB from '@/lib/db';
+import { Testimonial } from '@/lib/models';
 import { requireAdmin } from '@/lib/auth';
 
 export async function GET(req: NextRequest) {
   try {
     const admin = requireAdmin(req);
-    if (!admin) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
+    if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const db = getDB();
-    const testimonials = db.prepare('SELECT * FROM testimonials ORDER BY created_at DESC').all();
-    return NextResponse.json({ testimonials });
+    await connectDB();
+    const items = await Testimonial.find().sort({ created_at: -1 });
+    return NextResponse.json(items);
   } catch (error) {
-    console.error('GET /api/admin/testimonials error:', error);
-    return NextResponse.json({ error: 'Failed to fetch testimonials.' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
   }
 }
 
-export async function PATCH(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const admin = requireAdmin(req);
-    if (!admin) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
+    if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await req.json();
-    const { id, published } = body;
-    
-    if (!id) return NextResponse.json({ error: 'ID is required.' }, { status: 400 });
-
-    const db = getDB();
-    db.prepare('UPDATE testimonials SET published = ? WHERE id = ?').run(published ? 1 : 0, id);
-    
-    return NextResponse.json({ success: true });
+    await connectDB();
+    const item = await Testimonial.create(body);
+    return NextResponse.json({ ...item.toObject(), id: item._id });
   } catch (error) {
-    console.error('PATCH /api/admin/testimonials error:', error);
-    return NextResponse.json({ error: 'Failed to update testimonial.' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to add' }, { status: 500 });
   }
 }

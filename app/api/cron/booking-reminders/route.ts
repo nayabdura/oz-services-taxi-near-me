@@ -1,29 +1,23 @@
 import { NextResponse } from 'next/server';
-import getDB from '@/lib/db';
+import connectDB from '@/lib/db';
+import { Booking } from '@/lib/models';
 
-// Vercel Cron Job route — runs every day at 8am EST
-// Configure in vercel.json: { "crons": [{ "path": "/api/cron/booking-reminders", "schedule": "0 13 * * *" }] }
 export async function GET(request: Request) {
-  // Verify it's a legitimate Vercel cron call
   const authHeader = request.headers.get('authorization');
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
-    const db = getDB();
+    await connectDB();
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
-    // Get all confirmed bookings for tomorrow
-    const upcomingBookings = db.prepare(
-      `SELECT * FROM bookings WHERE date = ? AND status IN ('pending', 'confirmed') ORDER BY time ASC`
-    ).all(tomorrowStr) as Array<{
-      id: number; name: string; email: string; phone: string;
-      pickup: string; dropoff: string; date: string; time: string;
-      service_type: string; passengers: number;
-    }>;
+    const upcomingBookings = await Booking.find({
+      date: tomorrowStr,
+      status: { $in: ['pending', 'confirmed'] }
+    }).sort({ time: 1 });
 
     const { sendEmail } = await import('@/lib/email');
 
@@ -41,17 +35,14 @@ export async function GET(request: Request) {
               <p style="margin: 0 0 8px; color: #64748B; font-size: 13px;">📍 Drop-off: <strong style="color:#0F172A;">${booking.dropoff}</strong></p>
               <p style="margin: 0; color: #64748B; font-size: 13px;">🕐 Time: <strong style="color:#2563EB;">${booking.date} at ${booking.time}</strong></p>
             </div>
-            <p style="color: #475569; font-size: 14px;">Your driver will call you before arriving. For changes, call us: <a href="tel:${process.env.NEXT_PUBLIC_PHONE}" style="color: #2563EB;">${process.env.NEXT_PUBLIC_PHONE}</a></p>
           </div>
         `,
       });
       sent++;
     }
 
-    console.log(`[Cron] Sent ${sent} booking reminder(s) for ${tomorrowStr}`);
     return NextResponse.json({ success: true, reminders_sent: sent, date: tomorrowStr });
   } catch (err) {
-    console.error('[Cron] booking-reminders failed:', err);
     return NextResponse.json({ error: 'Cron job failed' }, { status: 500 });
   }
 }

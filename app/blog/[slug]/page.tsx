@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FiArrowLeft, FiCalendar, FiClock, FiUser } from "react-icons/fi";
-import getDB from "@/lib/db";
+import connectDB from "@/lib/db";
+import { Blog } from "@/lib/models";
 
 // Force dynamic because we are reading from SQLite DB
 export const dynamic = "force-dynamic";
@@ -17,10 +18,8 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const resolvedParams = await params;
-  const db = getDB();
-  const blog = db
-    .prepare("SELECT meta_title, meta_description, image_url FROM blogs WHERE slug = ?")
-    .get(resolvedParams.slug) as any;
+  await connectDB();
+  const blog = await Blog.findOne({ slug: resolvedParams.slug }).lean() as any;
 
   if (!blog) return { title: "Post Not Found" };
 
@@ -37,24 +36,24 @@ export async function generateMetadata(
 
 export default async function BlogPostPage({ params }: Props) {
   const resolvedParams = await params;
-  const db = getDB();
+  await connectDB();
   
   // Increment view count
-  db.prepare("UPDATE blogs SET views = views + 1 WHERE slug = ?").run(resolvedParams.slug);
+  await Blog.updateOne({ slug: resolvedParams.slug }, { $inc: { views: 1 } });
 
   // Fetch post
-  const post = db
-    .prepare("SELECT * FROM blogs WHERE slug = ? AND published = 1")
-    .get(resolvedParams.slug) as any;
+  const post = await Blog.findOne({ slug: resolvedParams.slug, published: 1 }).lean() as any;
 
   if (!post) {
     notFound();
   }
 
   // Fetch related posts (same category, excluding current)
-  const relatedPosts = db
-    .prepare("SELECT id, title, slug, image_url, created_at FROM blogs WHERE category = ? AND id != ? AND published = 1 LIMIT 3")
-    .all(post.category, post.id) as any[];
+  const relatedPosts = await Blog.find({ 
+    category: post.category, 
+    _id: { $ne: post._id }, 
+    published: 1 
+  }).limit(3).lean() as any[];
 
   return (
     <div className="pt-20 bg-white">

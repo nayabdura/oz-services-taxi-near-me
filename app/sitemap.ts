@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { USA_STATES } from "@/lib/data/states";
-import getDB from "@/lib/db";
+import connectDB from "@/lib/db";
+import { Blog } from "@/lib/models";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com";
   const now = new Date();
 
@@ -33,11 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Map DB Blogs
   let blogPages: MetadataRoute.Sitemap = [];
   try {
-    const db = getDB();
-    const publishedBlogs = db.prepare("SELECT slug, updated_at FROM blogs WHERE published = 1").all() as any[];
-    blogPages = publishedBlogs.map((b) => ({
+    await connectDB();
+    const dbBlogs = await Blog.find({ published: 1 });
+    blogPages = dbBlogs.map((b) => ({
       url: `${baseUrl}/blog/${b.slug}`,
-      lastModified: new Date(b.updated_at || b.created_at || now),
+      lastModified: new Date(b.updatedAt || b.createdAt || now),
       changeFrequency: "monthly",
       priority: 0.7,
     }));

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import getDB from '@/lib/db';
+import connectDB from '@/lib/db';
+import { User } from '@/lib/models';
 import { signToken } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
@@ -10,10 +11,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 });
     }
 
-    const db = getDB();
-    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email) as {
-      id: number; name: string; email: string; password: string; role: string;
-    } | undefined;
+    await connectDB();
+    
+    const user = await User.findOne({ email });
 
     if (!user) {
       return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
@@ -24,11 +24,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
     }
 
-    const token = signToken({ id: user.id, email: user.email, role: user.role, name: user.name });
+    const token = signToken({ id: user._id.toString(), email: user.email, role: user.role, name: user.name });
 
     return NextResponse.json({
       token,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      user: { id: user._id.toString(), name: user.name, email: user.email, role: user.role },
     });
   } catch (error) {
     console.error('Login error:', error);

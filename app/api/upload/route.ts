@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, access, mkdir } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 import { requireAdmin } from '@/lib/auth';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,13 +22,11 @@ export async function POST(req: NextRequest) {
     const allowedFolders = ['blogs', 'fleet'];
     const targetFolder = allowedFolders.includes(folder) ? folder : 'blogs';
 
-    // Validate type
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json({ error: 'Invalid file type. Only JPG, PNG, WEBP allowed.' }, { status: 400 });
     }
 
-    // 5MB max
     if (file.size > 5 * 1024 * 1024) {
       return NextResponse.json({ error: 'File too large. Max 5MB.' }, { status: 400 });
     }
@@ -31,23 +34,22 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
-    const filename = `${targetFolder}-${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    
-    // Ensure the directory exists
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', targetFolder);
-    try {
-      await access(uploadDir);
-    } catch {
-      await mkdir(uploadDir, { recursive: true });
-    }
+    const uploadPromise = new Promise<{ secure_url: string }>((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: `ozservices/${targetFolder}` },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result as { secure_url: string });
+        }
+      );
+      stream.end(buffer);
+    });
 
-    const uploadPath = path.join(uploadDir, filename);
-    await writeFile(uploadPath, buffer);
+    const result = await uploadPromise;
 
-    return NextResponse.json({ url: `/uploads/${targetFolder}/${filename}` });
+    return NextResponse.json({ url: result.secure_url });
   } catch (error) {
-    console.error('Upload error:', error);
+    console.error('Cloudinary Upload error:', error);
     return NextResponse.json({ error: 'Upload failed.' }, { status: 500 });
   }
 }

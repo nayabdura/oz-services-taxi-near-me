@@ -1,19 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
-import getDB from '@/lib/db';
+import connectDB from '@/lib/db';
+import { Testimonial } from '@/lib/models';
 import { requireAdmin } from '@/lib/auth';
+
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params;
+    const admin = requireAdmin(req);
+    if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    const body = await req.json();
+    await connectDB();
+    const item = await Testimonial.findByIdAndUpdate(id, body, { new: true });
+    if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    return NextResponse.json({ ...item.toObject(), id: item._id });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update' }, { status: 500 });
+  }
+}
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const admin = requireAdmin(req);
-    if (!admin) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
-
     const { id } = await params;
-    const db = getDB();
-    db.prepare('DELETE FROM testimonials WHERE id = ?').run(id);
-    
+    const admin = requireAdmin(req);
+    if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    await connectDB();
+    const item = await Testimonial.findByIdAndDelete(id);
+    if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('DELETE /api/admin/testimonials/[id] error:', error);
-    return NextResponse.json({ error: 'Failed to delete testimonial.' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to delete' }, { status: 500 });
   }
 }

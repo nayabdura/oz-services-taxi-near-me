@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
-import getDB from '@/lib/db';
+import connectDB from '@/lib/db';
+import { Fleet } from '@/lib/models';
 
 export async function GET() {
   try {
-    const db = getDB();
-    const fleet = db.prepare('SELECT * FROM fleet WHERE active = 1 ORDER BY sort_order ASC').all();
-
+    await connectDB();
+    const fleet = await Fleet.find({ active: 1 }).sort({ sort_order: 1 });
     return NextResponse.json(fleet);
   } catch (error) {
-    console.error('Error fetching fleet:', error);
+    console.error('Fleet API error', error);
     return NextResponse.json({ error: 'Failed to fetch fleet' }, { status: 500 });
   }
 }
