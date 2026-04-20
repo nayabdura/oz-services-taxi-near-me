@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { FiShield, FiClock, FiTarget, FiUsers } from "react-icons/fi";
 
 export const metadata: Metadata = {
@@ -40,8 +41,15 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="bg-slate-900 pt-28 pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-slate-950 pt-28 pb-20 overflow-hidden">
+        <Image
+          src="/images/about_hero.png"
+          alt="Modern high-tech taxi dispatch center map representing nationwide USA coverage"
+          fill
+          priority
+          className="object-cover opacity-30 mix-blend-luminosity"
+        />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-blue-500 font-bold tracking-widest uppercase text-xs mb-4">
             Our Story
           </p>
@@ -96,8 +104,20 @@ export default function AboutPage() {
               </div>
             </div>
 
+            {/* Image side */}
+            <div className="relative w-full h-80 lg:h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 order-first lg:order-last">
+              <Image
+                src="/images/why_choose_us_luxury.png"
+                alt="Professional chauffeur providing excellent customer taxi service"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="mt-20">
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { value: "10+", label: "Years Operating", sub: "Nationwide coverage" },
                 { value: "10K+", label: "Rides Completed", sub: "Verified passenger trips" },
