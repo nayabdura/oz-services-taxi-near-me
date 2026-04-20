@@ -4,7 +4,7 @@ import connectDB from "@/lib/db";
 import { Blog } from "@/lib/models";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com";
   const now = new Date();
 
   // Basic robust pages

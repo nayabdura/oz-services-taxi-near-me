@@ -75,9 +75,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="li8J4CvRGePXTHxmhALH5UemqkYbLIxlfG6q2wmasbk" />
         <link
           rel="canonical"
-          href={process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.org"}
+          href={process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"}
         />
         <meta name="theme-color" content="#2563EB" />
         <link rel="icon" href="/favicon.ico" />
