@@ -1,11 +1,11 @@
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://ozservices.com",
+  "@id": "https://www.oztaxinearme.com",
   name: "Oz Services Taxi",
   alternateName: "Oz Services",
-  description: "Florida's most trusted taxi service. Professional, reliable, and affordable taxi rides 24/7 across Orlando, Miami and Tampa.",
-  url: "https://ozservices.com",
+  description: "America's most trusted taxi service. Professional, reliable, and affordable taxi rides 24/7.",
+  url: "https://www.oztaxinearme.com",
   telephone: "+14077938143",
   email: "info@ozservices.com",
   priceRange: "$$",
@@ -14,8 +14,8 @@ export const localBusinessSchema = {
   openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: "00:00", closes: "23:59" },
   address: { "@type": "PostalAddress", addressCountry: "US", addressRegion: "FL", addressLocality: "Orlando", postalCode: "32801" },
   geo: { "@type": "GeoCoordinates", latitude: 28.5383, longitude: -81.3792 },
-  image: "https://ozservices.com/images/taxi-hero.png",
-  logo: "https://ozservices.com/logo.png",
+  image: "https://www.oztaxinearme.com/og-image.jpg",
+  logo: "https://www.oztaxinearme.com/logo.png",
   sameAs: ["https://www.facebook.com/ozservices", "https://twitter.com/ozservices", "https://www.instagram.com/ozservices"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -33,13 +33,13 @@ export const taxiServiceSchema = {
   "@context": "https://schema.org",
   "@type": "TaxiService",
   name: "Oz Services Taxi Near Me",
-  description: "Find a taxi near me instantly with Oz Services. Professional taxi bookings across Australia.",
+  description: "Find a taxi near me instantly with Oz Services. Professional taxi bookings across the USA.",
   provider: { "@type": "LocalBusiness", name: "Oz Services" },
-  areaServed: { "@type": "Country", name: "Australia" },
+  areaServed: { "@type": "Country", name: "USA" },
   availableChannel: {
     "@type": "ServiceChannel",
-    serviceUrl: "https://ozservices.com.au/booking",
-    servicePhone: "+61400000000",
+    serviceUrl: "https://www.oztaxinearme.com/booking",
+    servicePhone: "+14077938143",
   },
 };
 

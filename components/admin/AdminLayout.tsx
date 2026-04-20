@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { FiHome, FiFileText, FiDollarSign, FiMessageSquare, FiLogOut, FiMenu, FiX, FiCalendar, FiTruck } from "react-icons/fi";
 import toast from "react-hot-toast";
 
@@ -53,8 +54,8 @@ export default function AdminLayout({ children, title, headerAction }: { childre
         {/* Logo */}
         <div className="p-5 border-b border-slate-800">
           <Link href="/" className="flex items-center gap-3" onClick={() => setSidebarOpen(false)}>
-            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
-              <FiTruck className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden relative border border-slate-700 bg-white">
+              <Image src="/logo.png" alt="Oz Services Logo" fill className="object-cover" />
             </div>
             <div>
               <div className="text-white font-bold text-sm font-heading">Oz Services</div>

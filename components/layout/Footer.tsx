@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FiPhone, FiMail, FiMapPin, FiFacebook, FiTwitter, FiInstagram, FiArrowRight } from "react-icons/fi";
 
@@ -50,8 +51,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 rounded-lg bg-slate-900 flex items-center justify-center">
-                <span className="text-white font-black text-xl font-heading">OZ</span>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden border border-slate-800 relative bg-white">
+                <Image src="/logo.png" alt="Oz Services Logo" fill className="object-cover" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-black text-slate-900 text-2xl leading-none tracking-tight font-heading">

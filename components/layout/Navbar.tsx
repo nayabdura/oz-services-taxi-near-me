@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiPhone, FiChevronDown, FiMapPin } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -83,8 +84,8 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center transition-transform group-hover:scale-105">
-              <span className="text-white font-black text-base font-heading">OZ</span>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden border border-slate-200 shadow-sm relative">
+              <Image src="/logo.png" alt="Oz Services Logo" fill className="object-cover" />
             </div>
             <div className="flex flex-col justify-center">
               <div className="font-black text-slate-900 text-lg leading-none tracking-tight font-heading">

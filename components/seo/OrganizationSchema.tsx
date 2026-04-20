@@ -3,8 +3,8 @@ export default function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Oz Services Taxi Network",
-    url: "https://ozservices.com",
-    logo: "https://ozservices.com/logo.png",
+    url: "https://www.oztaxinearme.com",
+    logo: "https://www.oztaxinearme.com/logo.png",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+1-407-793-8143",
