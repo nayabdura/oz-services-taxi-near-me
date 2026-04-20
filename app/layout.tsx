@@ -81,7 +81,8 @@ export default function RootLayout({
           href={process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"}
         />
         <meta name="theme-color" content="#2563EB" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <LocalBusinessSchema />
         <OrganizationSchema />
       </head>
