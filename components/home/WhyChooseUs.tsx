@@ -1,5 +1,6 @@
 import { FiShield, FiClock, FiDollarSign, FiMap } from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
 
 const benefits = [
   {
@@ -72,7 +73,10 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Right: Stats Visual */}
-          <div className="relative flex flex-col gap-4">
+          <div className="relative flex flex-col gap-6">
+            <div className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+              <Image src="/images/why_choose_us_luxury.png" alt="Well-dressed business person relaxing in the back of a luxury taxi vehicle" fill className="object-cover" />
+            </div>
             <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
               <div className="grid grid-cols-2 gap-6">
                 {[

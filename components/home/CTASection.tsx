@@ -1,8 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CTASection() {
   return (
-    <section className="relative bg-slate-900 py-20 lg:py-28 overflow-hidden">
+    <section className="relative bg-slate-950 py-20 lg:py-28 overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/images/cta_luxury.png"
+        alt="Sleek, black luxury Mercedes S-Class driving smoothly through a modern city at night"
+        fill
+        className="object-cover opacity-20 mix-blend-luminosity"
+      />
       {/* Glow blobs */}
       <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-600 rounded-full blur-3xl opacity-20 pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-15 pointer-events-none" />

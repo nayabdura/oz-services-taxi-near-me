@@ -1,10 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FiPhone } from "react-icons/fi";
 import BookingWidget from "./BookingWidget";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-slate-900 pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
+    <section className="relative bg-slate-950 pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/images/hero_luxury.png"
+        alt="Sleek black luxury Mercedes sedan parked on a runway next to a modern private jet with chauffeur"
+        fill
+        className="object-cover opacity-40 mix-blend-luminosity"
+        priority
+      />
       {/* Subtle grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.04]"

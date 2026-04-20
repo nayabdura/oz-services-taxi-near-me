@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FiUsers, FiStar, FiArrowRight, FiPhoneCall } from "react-icons/fi";
 
 const vehicles = [
@@ -37,7 +38,7 @@ const vehicles = [
     badge: "Top Rated",
     badgeColor: "bg-amber-600",
     price: "From $75",
-    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&h=500&auto=format&fit=crop",
+    image: "/images/fleet_luxury.png",
     gradient: "from-amber-900/80",
   },
   {
@@ -113,11 +114,11 @@ export default function FleetShowcase() {
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
-                <img
+                <Image
                   src={car.image}
-                  alt={`${car.name} - Oz Services Nationwide Taxi`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
+                  alt={`${car.name} - Premium luxury taxi vehicle, Mercedes or BMW style`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-t ${car.gradient} via-transparent to-transparent opacity-90`} />
