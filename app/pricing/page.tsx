@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Transparent Taxi Pricing | No Surge Pricing | Oz Services USA",
   description:
     "View our competitive nationwide taxi fare rates. Economy, Premium, and Luxury tiers with upfront pricing, zero surge fees, and no hidden charges. Airport transfers, city rides, and corporate accounts across all USA states.",
+  alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Transparent Taxi Pricing | No Hidden Fees | Oz Services USA",
     description:

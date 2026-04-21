@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "About Oz Services | America's Most Trusted Taxi Company",
   description:
     "Learn about Oz Services — America's premier 24/7 nationwide taxi network. Discover our story, our mission, and our commitment to safe, transparent, and reliable transportation across all 50 states.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About Oz Services | America's Most Trusted Taxi Company",
     description:

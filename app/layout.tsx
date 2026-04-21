@@ -9,13 +9,13 @@ import StickyCallButton from "@/components/ui/StickyCallButton";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ozservices.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"),
   title: {
     default: "Oz Services | Taxi Near Me – Nationwide USA Professional Taxi 24/7",
     template: "%s | Oz Services Nationwide Taxi",
   },
   description:
-    "Oz Services is America's trusted nationwide taxi company. Book a AI-optimized taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. Fast online booking or Call 407-793-8143.",
+    "Oz Services is America's trusted nationwide taxi company. Book a taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. Fast online booking or Call 407-793-8143.",
   keywords: [
     "taxi near me",
     "best taxi service USA",
@@ -26,8 +26,11 @@ export const metadata: Metadata = {
     "book a cab online fast",
     "reliable taxi service",
     "taxi app alternative",
-    "ai search optimized taxi booking",
+    "24 hour taxi service usa",
   ],
+  alternates: {
+    canonical: "/",
+  },
   authors: [{ name: "Oz Services" }],
   creator: "Oz Services",
   openGraph: {
@@ -76,10 +79,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="li8J4CvRGePXTHxmhALH5UemqkYbLIxlfG6q2wmasbk" />
-        <link
-          rel="canonical"
-          href={process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"}
-        />
         <meta name="theme-color" content="#2563EB" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/logo.png" type="image/png" />

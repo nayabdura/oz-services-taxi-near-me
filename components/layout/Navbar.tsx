@@ -11,6 +11,7 @@ const PHONE_TEL = "4077938143";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/fleet", label: "Fleet" },
   { href: "/taxi-near-me", label: "Taxi Near Me" },

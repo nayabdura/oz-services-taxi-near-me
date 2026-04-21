@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Taxi Near Me | Instant Cab Booking in the USA — Oz Services",
   description:
     "Searching for a taxi near me? Oz Services dispatches professional, licensed drivers instantly across all USA states. Zero surge pricing. Available 24/7.",
+  alternates: { canonical: "/taxi-near-me" },
   openGraph: {
     title: "Taxi Near Me | Instant Cab Booking in the USA",
     description:

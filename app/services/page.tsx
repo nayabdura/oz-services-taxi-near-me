@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
   description:
     "Oz Services provides professional USA taxi services including airport transfers, local city rides, corporate accounts, late-night pickups, and group travel — all with zero surge pricing.",
+  alternates: { canonical: "/services" },
   openGraph: {
     title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
     description:
