@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FiSave, FiArrowLeft, FiImage, FiX } from "react-icons/fi";
+import { FiSave, FiArrowLeft, FiImage, FiX, FiLink, FiUploadCloud } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Link from "next/link";
@@ -18,6 +18,7 @@ function BlogEditorInner() {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
 
   const token = () => localStorage.getItem("adminToken") || "";
 
@@ -48,6 +49,53 @@ function BlogEditorInner() {
       toast.success("Image uploaded!");
     } catch { toast.error("Image upload failed"); }
     finally { setUploading(false); }
+  };
+
+  const insertAtCursor = (text: string) => {
+    const el = contentRef.current;
+    if (!el) {
+      setForm(f => ({ ...f, content: f.content + text }));
+      return;
+    }
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const newContent = form.content.substring(0, start) + text + form.content.substring(end);
+    setForm(f => ({ ...f, content: newContent }));
+    setTimeout(() => {
+      el.focus();
+      el.setSelectionRange(start + text.length, start + text.length);
+    }, 10);
+  };
+
+  const handleInsertLink = () => {
+    const url = prompt("Enter internal URL (e.g., /locations/florida, /blog/post-slug, or /):");
+    if (!url) return;
+    const anchorText = prompt("Enter anchor text (e.g., local taxi near me):");
+    if (!anchorText) return;
+    insertAtCursor(`<a href="${url}" title="Oz Services - ${anchorText}">${anchorText}</a>`);
+  };
+
+  const handleInsertContentImage = async () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.onchange = async (e: any) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      toast.loading("Uploading image...", { id: 'content-upload' });
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "blogs");
+        const { data } = await axios.post("/api/upload", fd, { headers: { Authorization: `Bearer ${token()}` } });
+        const altText = prompt("Enter SEO alt text for this image (e.g., airport taxi service in Orlando):") || "Taxi service";
+        insertAtCursor(`\n<img src="${data.url}" alt="${altText}" loading="lazy" />\n`);
+        toast.success("Image inserted!", { id: 'content-upload' });
+      } catch {
+        toast.error("Image upload failed", { id: 'content-upload' });
+      }
+    };
+    fileInput.click();
   };
 
   const handleSave = async () => {
@@ -106,9 +154,21 @@ function BlogEditorInner() {
             <label className={label}>Excerpt (short summary)</label>
             <textarea className={inp} rows={2} placeholder="A short description shown on blog listing page..." value={form.excerpt} onChange={e => setForm({...form, excerpt: e.target.value})} />
           </div>
-          <div>
-            <label className={label}>Content (HTML supported)</label>
-            <textarea className={`${inp} font-mono text-xs`} rows={18} placeholder="<h2>Your heading</h2><p>Your content...</p>" value={form.content} onChange={e => setForm({...form, content: e.target.value})} />
+          
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className={label}>Content (HTML supported)</label>
+              <div className="flex gap-2">
+                <button onClick={handleInsertLink} className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
+                  <FiLink className="w-3.5 h-3.5" /> Insert Internal Link
+                </button>
+                <button onClick={handleInsertContentImage} className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
+                  <FiUploadCloud className="w-3.5 h-3.5" /> Insert Image
+                </button>
+              </div>
+            </div>
+            <textarea ref={contentRef} className={`${inp} font-mono text-xs`} rows={20} placeholder="<h2>Your heading</h2><p>Your content...</p>" value={form.content} onChange={e => setForm({...form, content: e.target.value})} />
+            <p className="text-slate-500 text-xs mt-1">Select text to overwrite or just click to insert at cursor position.</p>
           </div>
         </div>
 

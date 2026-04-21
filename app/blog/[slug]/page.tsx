@@ -85,10 +85,13 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <div className="flex items-center gap-2">
               <FiCalendar className="w-4 h-4" />
-              {new Date(post.created_at).toLocaleDateString("en-US", {
-                month: "long",
+              {new Date(post.createdAt || post.created_at || Date.now()).toLocaleString("en-US", {
+                month: "short",
                 day: "numeric",
                 year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
               })}
             </div>
             <div className="flex items-center gap-2">
@@ -96,7 +99,7 @@ export default async function BlogPostPage({ params }: Props) {
               {post.read_time} min read
             </div>
             <div className="flex items-center gap-2">
-              👁️ {post.views} views
+              <span className="text-base leading-none">👁️</span> {post.views} {post.views === 1 ? 'person viewed this' : 'people viewed this'}
             </div>
           </div>
         </div>
@@ -181,7 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                   <div className="p-6">
                     <p className="text-slate-500 text-xs font-semibold mb-3 flex items-center gap-2">
-                       <FiCalendar /> {new Date(related.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                       <FiCalendar /> {new Date(related.createdAt || related.created_at || Date.now()).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                     </p>
                     <h3 className="text-slate-900 font-bold font-heading text-lg group-hover:text-blue-600 transition-colors line-clamp-2">
                       {related.title}
