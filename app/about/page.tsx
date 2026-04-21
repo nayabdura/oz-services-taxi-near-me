@@ -50,6 +50,7 @@ export default function AboutPage() {
           alt="Modern high-tech taxi dispatch center map representing nationwide USA coverage"
           fill
           priority
+          sizes="100vw"
           className="object-cover opacity-30 mix-blend-luminosity"
         />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -113,6 +114,7 @@ export default function AboutPage() {
                 src="/images/why_choose_us_luxury.png"
                 alt="Professional chauffeur providing excellent customer taxi service"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

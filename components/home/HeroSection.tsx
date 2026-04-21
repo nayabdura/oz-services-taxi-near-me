@@ -12,6 +12,7 @@ export default function HeroSection() {
         alt="Sleek black luxury Mercedes sedan parked on a runway next to a modern private jet with chauffeur"
         fill
         className="object-cover opacity-40 mix-blend-luminosity"
+        sizes="100vw"
         priority
       />
       {/* Subtle grid overlay */}

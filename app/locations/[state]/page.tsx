@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FiMapPin, FiClock, FiStar, FiPhoneCall, FiChevronRight } from "react-icons/fi";
 import FAQSchema from "@/components/seo/FAQSchema";
-
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 // Pre-generate static paths for all 50 states for incredible SSG performance
 export async function generateStaticParams() {
   return USA_STATES.map((s) => ({ state: s.slug }));
@@ -70,6 +70,31 @@ export default async function LocationPage({ params }: Props) {
   return (
     <>
       <FAQSchema faqs={faqs} />
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "https://www.oztaxinearme.com/" },
+          { name: "Locations", url: "https://www.oztaxinearme.com/service-areas" },
+          { name, url: `https://www.oztaxinearme.com/locations/${stateObj.slug}` }
+        ]} 
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: `Oz Services Taxi ${name}`,
+            description: `Reliable and professional 24/7 taxi services across ${name}. Airport transfers, corporate travel, and local dispatch.`,
+            url: `https://www.oztaxinearme.com/locations/${stateObj.slug}`,
+            telephone: "407-793-8143",
+            image: "https://www.oztaxinearme.com/og-image.jpg",
+            areaServed: {
+              "@type": "State",
+              name: name,
+            },
+          }),
+        }}
+      />
       
       {/* Hero Section */}
       <section className="bg-slate-900 pt-32 pb-20 relative overflow-hidden">
