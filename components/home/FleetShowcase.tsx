@@ -97,7 +97,7 @@ export default function FleetShowcase() {
             transition={{ delay: 0.2 }}
             className="text-slate-400 text-lg max-w-2xl mx-auto"
           >
-            From economy sedans to luxury chauffeur cars — every vehicle in our fleet is immaculately maintained, fully insured, and ready 24/7 across the USA.
+            From economy sedans to luxury chauffeur cars — every vehicle in our fleet is immaculately maintained, fully insured, and ready 24/7 locally and regionally.
           </motion.p>
         </div>
 

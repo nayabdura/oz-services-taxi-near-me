@@ -4,7 +4,7 @@ const services = [
   {
     emoji: "🚗",
     title: "Local Taxi Near Me",
-    desc: "Rapid dispatch for daily commutes and errands. Local drivers stationed across every major USA city for sub-10-minute pickup times.",
+    desc: "Rapid dispatch for daily commutes and errands. Local drivers stationed throughout the area for sub-10-minute pickup times.",
     link: "/taxi-near-me",
   },
   {
@@ -53,7 +53,7 @@ export default function ServicesOverview() {
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
             From quick local trips to executive corporate travel — Oz Services
-            covers every transportation need across the USA with professional
+            covers every transportation need locally and regionally with professional
             reliability.
           </p>
         </div>

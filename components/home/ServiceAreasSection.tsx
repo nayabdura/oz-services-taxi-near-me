@@ -28,13 +28,13 @@ export default function ServiceAreasSection() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <div className="max-w-xl">
             <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">
-              Nationwide Coverage
+              Extensive Coverage
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-4">
-              Serving All USA States
+              Serving Your Area
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-medium">
-              Our professional driver network spans every state coast to coast.
+              Our professional driver network spans across all major local regions.
               Major city centers, airports, and suburban areas — all covered.
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function ServiceAreasSection() {
           ))}
           {/* All USA catch-all */}
           <div className="col-span-2 sm:col-span-3 md:col-span-4 flex items-center justify-center bg-blue-600 text-white rounded-xl px-4 py-3.5 font-bold text-sm">
-            + All 50 States Covered — Call Us to Book Anywhere in the USA
+            + Extensive Coverage — Call Us to Book Your Ride Anywhere
           </div>
         </div>
       </div>

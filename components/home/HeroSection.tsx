@@ -36,19 +36,19 @@ export default function HeroSection() {
                 {"★★★★★"}
               </span>
               <span className="text-blue-400 text-xs font-bold tracking-widest uppercase">
-                #1 Rated Nationwide Taxi
+                Oz Taxi Near Me
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading leading-[1.05] tracking-tight mb-6">
               Professional{" "}
               <span className="text-blue-500">Taxi Near Me</span>
-              <br className="hidden sm:block" /> Across All USA
+              <br className="hidden sm:block" /> Available 24/7
             </h1>
 
             <p className="text-lg text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
-              Fast, reliable, and transparent taxi service operating 24/7 across
-              all USA states. Specializing in airport transfers, local city rides,
+              Fast, reliable, and transparent taxi service operating 24/7
+              locally and regionally. Specializing in airport transfers, local city rides,
               and corporate travel — with zero surge pricing.
             </p>
 

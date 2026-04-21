@@ -32,10 +32,10 @@ export default function Testimonials() {
             Passenger Reviews
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
-            Trusted by Thousands Nationwide
+            Trusted by Thousands
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
-            Over 10,000 verified rides across the USA. Here's what our passengers
+            Over 10,000 verified rides. Here's what our passengers
             say about their Oz Services experience.
           </p>
         </div>
