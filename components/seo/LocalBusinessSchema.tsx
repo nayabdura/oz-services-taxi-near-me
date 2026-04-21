@@ -1,7 +1,7 @@
 export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "TaxiService"],
+    "@type": "LocalBusiness",
     "name": "Oz Services Taxi",
     "image": `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
     "url": process.env.NEXT_PUBLIC_SITE_URL,
