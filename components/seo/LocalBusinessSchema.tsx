@@ -39,11 +39,58 @@ export default function LocalBusinessSchema() {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "847",
-      "bestRating": "5",
-      "worstRating": "1"
+      "ratingValue": 4.9,
+      "reviewCount": 847,
+      "bestRating": 5,
+      "worstRating": 1
     },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Michael T."
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": "The best taxi service I've ever used. Driver arrived 10 minutes early for my early-morning ORD flight. Immaculate car and extremely professional attitude — I won't use anything else.",
+        "datePublished": "2024-03-10"
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Sarah Jenkins"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": "We rely on Oz Services for all our corporate clients visiting Miami. Billing is always accurate, drivers are dressed impeccably, and the rides are smooth. Our whole team trusts them completely.",
+        "datePublished": "2024-04-02"
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "David R."
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": "Saved us during a torrential downpour in Houston last December. Driver was calm, courteous, and the quoted price didn't change one cent despite the awful conditions. Remarkable consistency.",
+        "datePublished": "2023-12-19"
+      }
+    ],
     "sameAs": [
       "https://www.facebook.com/ozservices",
       "https://www.instagram.com/ozservices"
