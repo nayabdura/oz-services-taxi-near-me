@@ -25,18 +25,7 @@ export default function LocalBusinessSchema() {
       "latitude": 28.5383,
       "longitude": -81.3792
     },
-    "areaServed": [
-      { "@type": "Country", "name": "United States" }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "USA Taxi Services",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local Taxi Near Me", "description": "Fast, reliable local taxi dispatch across USA cities" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Airport Taxi Transfer", "description": "Professional airport transfers with flight tracking" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Taxi Account", "description": "Dedicated corporate travel management with monthly invoicing" } }
-      ]
-    },
+    "areaServed": "US",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": 4.9,
