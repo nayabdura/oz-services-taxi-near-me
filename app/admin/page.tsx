@@ -59,7 +59,7 @@ export default function AdminLoginPage() {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="Ozaseel1978@gmail.com"
+                  placeholder="admin@example.com"
                   className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl pl-11 pr-4 py-3.5 text-sm font-medium placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                   required
                 />

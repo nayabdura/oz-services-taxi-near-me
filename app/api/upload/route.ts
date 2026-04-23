@@ -22,13 +22,13 @@ export async function POST(req: NextRequest) {
     const allowedFolders = ['blogs', 'fleet'];
     const targetFolder = allowedFolders.includes(folder) ? folder : 'blogs';
 
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
     if (!allowedTypes.includes(file.type)) {
-      return NextResponse.json({ error: 'Invalid file type. Only JPG, PNG, WEBP allowed.' }, { status: 400 });
+      return NextResponse.json({ error: 'Invalid file type. Only JPG, PNG, WEBP, GIF allowed.' }, { status: 400 });
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      return NextResponse.json({ error: 'File too large. Max 5MB.' }, { status: 400 });
+    if (file.size > 10 * 1024 * 1024) {
+      return NextResponse.json({ error: 'File too large. Max 10MB.' }, { status: 400 });
     }
 
     const bytes = await file.arrayBuffer();
@@ -36,20 +36,30 @@ export async function POST(req: NextRequest) {
 
     const uploadPromise = new Promise<{ secure_url: string }>((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
-        { folder: `ozservices/${targetFolder}` },
+        {
+          folder: `ozservices/${targetFolder}`,
+          resource_type: 'image',
+          transformation: [{ quality: 'auto:good', fetch_format: 'auto' }],
+        },
         (error, result) => {
-          if (error) reject(error);
-          else resolve(result as { secure_url: string });
+          if (error) {
+            console.error('[Cloudinary] Upload error:', JSON.stringify(error));
+            reject(new Error(error.message || 'Cloudinary upload failed'));
+          } else {
+            resolve(result as { secure_url: string });
+          }
         }
       );
       stream.end(buffer);
     });
 
     const result = await uploadPromise;
-
     return NextResponse.json({ url: result.secure_url });
-  } catch (error) {
-    console.error('Cloudinary Upload error:', error);
-    return NextResponse.json({ error: 'Upload failed.' }, { status: 500 });
+  } catch (error: any) {
+    console.error('[Upload API] Error:', error?.message || error);
+    return NextResponse.json(
+      { error: error?.message || 'Upload failed. Check Cloudinary credentials.' },
+      { status: 500 }
+    );
   }
 }

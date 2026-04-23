@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FiSave, FiArrowLeft, FiImage, FiX, FiLink, FiUploadCloud } from "react-icons/fi";
+import { FiSave, FiArrowLeft, FiImage, FiX, FiLink, FiUploadCloud, FiExternalLink } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Link from "next/link";
@@ -17,6 +17,8 @@ function BlogEditorInner() {
   const [form, setForm] = useState(empty);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [pasteUrlMode, setPasteUrlMode] = useState(false);
+  const [pasteUrlValue, setPasteUrlValue] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
@@ -47,8 +49,21 @@ function BlogEditorInner() {
       const { data } = await axios.post("/api/upload", fd, { headers: { Authorization: `Bearer ${token()}` } });
       setForm(f => ({ ...f, image_url: data.url }));
       toast.success("Image uploaded!");
-    } catch { toast.error("Image upload failed"); }
+    } catch (err: any) {
+      const msg = err?.response?.data?.error || "Image upload failed";
+      toast.error(msg);
+    }
     finally { setUploading(false); }
+  };
+
+  const handlePasteUrl = () => {
+    const url = pasteUrlValue.trim();
+    if (!url) return toast.error("Please enter an image URL");
+    if (!url.startsWith("http")) return toast.error("URL must start with http:// or https://");
+    setForm(f => ({ ...f, image_url: url }));
+    setPasteUrlMode(false);
+    setPasteUrlValue("");
+    toast.success("Image URL set!");
   };
 
   const insertAtCursor = (text: string) => {
@@ -68,11 +83,17 @@ function BlogEditorInner() {
   };
 
   const handleInsertLink = () => {
-    const url = prompt("Enter internal URL (e.g., /locations/florida, /blog/post-slug, or /):");
+    const url = prompt("Enter URL — use relative paths for internal links (e.g. /booking, /locations/florida) or full URL for external:");
     if (!url) return;
-    const anchorText = prompt("Enter anchor text (e.g., local taxi near me):");
+    const anchorText = prompt("Enter anchor text (e.g. book a taxi near me):");
     if (!anchorText) return;
-    insertAtCursor(`<a href="${url}" title="Oz Services - ${anchorText}">${anchorText}</a>`);
+    const isExternal = url.startsWith("http");
+    // Internal links: do-follow (no rel). External links: nofollow noopener noreferrer
+    if (isExternal) {
+      insertAtCursor(`<a href="${url}" title="${anchorText}" rel="nofollow noopener noreferrer" target="_blank">${anchorText}</a>`);
+    } else {
+      insertAtCursor(`<a href="${url}" title="Oz Services - ${anchorText}">${anchorText}</a>`);
+    }
   };
 
   const handleInsertContentImage = async () => {
@@ -88,11 +109,12 @@ function BlogEditorInner() {
         fd.append("image", file);
         fd.append("folder", "blogs");
         const { data } = await axios.post("/api/upload", fd, { headers: { Authorization: `Bearer ${token()}` } });
-        const altText = prompt("Enter SEO alt text for this image (e.g., airport taxi service in Orlando):") || "Taxi service";
+        const altText = prompt("Enter SEO alt text for this image (e.g. airport taxi service in Orlando):") || "Taxi service";
         insertAtCursor(`\n<img src="${data.url}" alt="${altText}" loading="lazy" />\n`);
         toast.success("Image inserted!", { id: 'content-upload' });
-      } catch {
-        toast.error("Image upload failed", { id: 'content-upload' });
+      } catch (err: any) {
+        const msg = err?.response?.data?.error || "Image upload failed";
+        toast.error(msg, { id: 'content-upload' });
       }
     };
     fileInput.click();
@@ -160,7 +182,7 @@ function BlogEditorInner() {
               <label className={label}>Content (HTML supported)</label>
               <div className="flex gap-2">
                 <button onClick={handleInsertLink} className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
-                  <FiLink className="w-3.5 h-3.5" /> Insert Internal Link
+                  <FiLink className="w-3.5 h-3.5" /> Insert Link
                 </button>
                 <button onClick={handleInsertContentImage} className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
                   <FiUploadCloud className="w-3.5 h-3.5" /> Insert Image
@@ -168,14 +190,42 @@ function BlogEditorInner() {
               </div>
             </div>
             <textarea ref={contentRef} className={`${inp} font-mono text-xs`} rows={20} placeholder="<h2>Your heading</h2><p>Your content...</p>" value={form.content} onChange={e => setForm({...form, content: e.target.value})} />
-            <p className="text-slate-500 text-xs mt-1">Select text to overwrite or just click to insert at cursor position.</p>
+            <p className="text-slate-500 text-xs mt-1">
+              <span className="text-green-400 font-bold">Internal links</span> (starting with /) are do-follow. <span className="text-yellow-400 font-bold">External links</span> are auto marked nofollow.
+            </p>
           </div>
         </div>
 
         {/* Image */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-          <label className={label}>Featured Image</label>
-          {form.image_url ? (
+          <div className="flex items-center justify-between mb-3">
+            <label className={label}>Featured Image</label>
+            <button
+              onClick={() => { setPasteUrlMode(v => !v); setPasteUrlValue(""); }}
+              className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-blue-400 border border-slate-700 hover:border-blue-500 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              <FiExternalLink className="w-3.5 h-3.5" />
+              {pasteUrlMode ? "Cancel URL paste" : "Paste image URL instead"}
+            </button>
+          </div>
+
+          {pasteUrlMode ? (
+            <div className="flex gap-3">
+              <input
+                className={`${inp} flex-1`}
+                placeholder="https://res.cloudinary.com/... or any image URL"
+                value={pasteUrlValue}
+                onChange={e => setPasteUrlValue(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && handlePasteUrl()}
+              />
+              <button
+                onClick={handlePasteUrl}
+                className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+              >
+                Set Image
+              </button>
+            </div>
+          ) : form.image_url ? (
             <div className="relative">
               <img src={form.image_url} alt="preview" className="w-full h-48 object-cover rounded-xl" />
               <button onClick={() => setForm({...form, image_url: ""})} className="absolute top-2 right-2 p-1.5 bg-red-600 rounded-full text-white hover:bg-red-700"><FiX className="w-4 h-4"/></button>
@@ -184,6 +234,7 @@ function BlogEditorInner() {
             <button onClick={() => fileRef.current?.click()} disabled={uploading} className="w-full h-36 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-700 hover:border-blue-500 text-slate-400 hover:text-blue-400 transition-all">
               <FiImage className="w-8 h-8 mb-2" />
               <span className="text-sm">{uploading ? "Uploading to Cloudinary..." : "Click to upload image"}</span>
+              <span className="text-xs text-slate-600 mt-1">JPG, PNG, WEBP up to 10MB</span>
             </button>
           )}
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />

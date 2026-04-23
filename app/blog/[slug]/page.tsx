@@ -6,8 +6,23 @@ import { FiArrowLeft, FiCalendar, FiClock, FiUser } from "react-icons/fi";
 import connectDB from "@/lib/db";
 import { Blog } from "@/lib/models";
 
-// Force dynamic because we are reading from SQLite DB
+// Force dynamic because we are reading from MongoDB
 export const dynamic = "force-dynamic";
+
+// Processes HTML content: adds rel="nofollow noopener noreferrer" to external links
+// Internal links (starting with /) remain untouched (do-follow)
+function processContent(html: string): string {
+  return html.replace(
+    /<a\s([^>]*href=["'])(https?:\/\/(?!(?:www\.)?oztaxinearme\.com)[^"']+)(["'][^>]*)>/gi,
+    (match, pre, url, post) => {
+      // Already has rel attribute — replace it
+      if (/rel=/i.test(post)) {
+        return `<a ${pre}${url}${post.replace(/rel=["'][^"']*["']/i, 'rel="nofollow noopener noreferrer"')}>`;
+      }
+      return `<a ${pre}${url}${post} rel="nofollow noopener noreferrer" target="_blank">`;
+    }
+  );
+}
 
 type Props = {
   params: { slug: string };
@@ -125,7 +140,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="prose prose-lg prose-slate max-w-none prose-headings:font-heading prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: processContent(post.content) }}
           />
 
           {/* Share CTA */}
@@ -138,7 +153,7 @@ export default async function BlogPostPage({ params }: Props) {
               <a
                 href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="nofollow noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#1DA1F2] hover:text-white transition-all"
               >
                 𝕏
@@ -146,7 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="nofollow noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#1877F2] hover:text-white transition-all"
               >
                 f

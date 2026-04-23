@@ -135,13 +135,13 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@ozservices.com" className="flex items-start gap-4 text-slate-600 hover:text-blue-600 transition-colors group">
+                  <a href="mailto:Ozaseel1978@gmail.com" className="flex items-start gap-4 text-slate-600 hover:text-blue-600 transition-colors group">
                     <div className="mt-1 shrink-0">
                       <FiMail className="w-5 h-5 text-blue-600" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Email Support</span>
-                      <span className="text-sm font-bold text-slate-900">info@ozservices.com</span>
+                      <span className="text-sm font-bold text-slate-900">Ozaseel1978@gmail.com</span>
                     </div>
                   </a>
                 </li>

@@ -3,8 +3,12 @@ import { USA_STATES } from "@/lib/data/states";
 import connectDB from "@/lib/db";
 import { Blog } from "@/lib/models";
 
+// Must be dynamic — sitemap includes live blog posts from MongoDB
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com";
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com").replace(/\/$/, "");
   const now = new Date();
 
   // Basic robust pages

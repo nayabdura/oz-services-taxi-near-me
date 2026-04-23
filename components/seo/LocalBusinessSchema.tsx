@@ -6,7 +6,7 @@ export default function LocalBusinessSchema() {
     "image": `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
     "url": process.env.NEXT_PUBLIC_SITE_URL,
     "telephone": process.env.NEXT_PUBLIC_PHONE,
-    "email": "info@ozservices.com",
+    "email": "Ozaseel1978@gmail.com",
     "priceRange": "$8 - $20 base fare",
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card",

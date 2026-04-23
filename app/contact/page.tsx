@@ -45,7 +45,7 @@ export default function ContactPage() {
             <div className="space-y-5">
               {[
                 { icon: FiPhone, title: "Phone", value: process.env.NEXT_PUBLIC_PHONE || "+1 407 793 8143", href: `tel:${process.env.NEXT_PUBLIC_PHONE || "+14077938143"}`, sub: "Available 24/7" },
-                { icon: FiMail, title: "Email", value: "info@ozservices.com", href: "mailto:info@ozservices.com", sub: "Reply within 4 hours" },
+                { icon: FiMail, title: "Email", value: "Ozaseel1978@gmail.com", href: "mailto:Ozaseel1978@gmail.com", sub: "Reply within 4 hours" },
                 { icon: FiMapPin, title: "Location", value: "Nationwide USA", href: "#", sub: "Serving all states" },
                 { icon: FiClock, title: "Hours", value: "Open 24/7", href: "#", sub: "Every day of the year" },
               ].map(item => (
