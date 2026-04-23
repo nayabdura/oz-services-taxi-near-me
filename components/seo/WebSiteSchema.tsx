@@ -3,7 +3,7 @@ export default function WebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Oz Services",
-    alternateName: "Oz Services Taxi",
+    alternateName: "Oz Services Taxi Near Me",
     url: "https://www.oztaxinearme.com/",
     potentialAction: {
       "@type": "SearchAction",

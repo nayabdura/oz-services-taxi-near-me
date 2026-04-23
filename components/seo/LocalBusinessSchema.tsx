@@ -2,7 +2,7 @@ export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Oz Services Taxi",
+    "name": "Oz Services Taxi Near Me",
     "image": `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
     "url": process.env.NEXT_PUBLIC_SITE_URL,
     "telephone": process.env.NEXT_PUBLIC_PHONE,

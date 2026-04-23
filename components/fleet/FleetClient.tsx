@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiPhoneCall, FiCalendar, FiCheckCircle } from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
 import axios from "axios";
 
 interface FleetCar {
@@ -121,10 +122,12 @@ export default function FleetClient() {
                     transition={{ duration: 0.4 }}
                     className="w-full h-full"
                   >
-                    <img 
+                    <Image
                       src={car.image_url || '/images/blog-placeholder.jpg'} 
                       alt={car.name} 
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </motion.div>
                   {car.price && (

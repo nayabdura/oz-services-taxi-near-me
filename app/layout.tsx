@@ -6,13 +6,14 @@ import FloatingButtons from "@/components/layout/FloatingButtons";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import WebSiteSchema from "@/components/seo/WebSiteSchema";
+import ServiceSchema from "@/components/seo/ServiceSchema";
 import StickyCallButton from "@/components/ui/StickyCallButton";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"),
   title: {
-    default: "Oz Services | Taxi Near Me – Nationwide USA Professional Taxi 24/7",
+    default: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
     template: "%s | Oz Services Nationwide Taxi",
   },
   description:
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "Oz Services Taxi",
-    title: "Oz Services | Taxi Near Me – Nationwide USA Professional Taxi 24/7",
+    title: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
     description:
       "America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving all USA states 24/7. Call 407-793-8143.",
     images: [
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oz Services | Taxi Near Me – Serving All USA",
+    title: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
     description:
       "Book your taxi online. Fast, safe and reliable taxi service across all USA states – 24/7. Call 407-793-8143.",
     images: ["/og-image.jpg"],
@@ -88,6 +89,7 @@ export default function RootLayout({
         <LocalBusinessSchema />
         <OrganizationSchema />
         <WebSiteSchema />
+        <ServiceSchema />
       </head>
       <body>
         <Toaster

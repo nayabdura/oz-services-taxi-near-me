@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import FAQSchema from "@/components/seo/FAQSchema";
 
 const faqs = [
   {
@@ -34,6 +35,7 @@ export default function FAQSection() {
 
   return (
     <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
+      <FAQSchema faqs={faqs.map(f => ({ question: f.q, answer: f.a }))} />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
