@@ -2,8 +2,8 @@ export default function WebSiteSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Oz Services",
-    alternateName: "Oz Services Taxi Near Me",
+    name: "Oz Taxi Near Me",
+    alternateName: "Oz Taxi Near Me",
     url: "https://www.oztaxinearme.com/",
     potentialAction: {
       "@type": "SearchAction",

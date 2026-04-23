@@ -2,7 +2,7 @@ export default function OrganizationSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Oz Services Taxi Network Near Me",
+    name: "Oz Taxi Near Me",
     url: "https://www.oztaxinearme.com",
     logo: "https://www.oztaxinearme.com/logo.png",
     contactPoint: {

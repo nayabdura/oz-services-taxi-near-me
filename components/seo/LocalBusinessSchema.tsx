@@ -2,7 +2,7 @@ export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Oz Services Taxi Near Me",
+    "name": "Oz Taxi Near Me",
     "image": `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`,
     "url": process.env.NEXT_PUBLIC_SITE_URL,
     "telephone": process.env.NEXT_PUBLIC_PHONE,
@@ -11,7 +11,7 @@ export default function LocalBusinessSchema() {
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card",
     "openingHours": "Mo-Su 00:00-23:59",
-    "description": "Oz Services is America's premier 24/7 nationwide taxi service providing airport transfers, local city rides, corporate accounts, and late night transportation across all USA states.",
+    "description": "Oz Taxi Near Me is America's premier 24/7 nationwide taxi service providing airport transfers, local city rides, corporate accounts, and late night transportation across all USA states.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Orlando",
@@ -61,7 +61,7 @@ export default function LocalBusinessSchema() {
           "bestRating": 5,
           "worstRating": 1
         },
-        "reviewBody": "We rely on Oz Services for all our corporate clients visiting Miami. Billing is always accurate, drivers are dressed impeccably, and the rides are smooth. Our whole team trusts them completely.",
+        "reviewBody": "We rely on Oz Taxi Near Me for all our corporate clients visiting Miami. Billing is always accurate, drivers are dressed impeccably, and the rides are smooth. Our whole team trusts them completely.",
         "datePublished": "2024-04-02"
       },
       {

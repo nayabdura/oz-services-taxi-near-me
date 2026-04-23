@@ -5,7 +5,7 @@ export default function ServiceSchema() {
     "serviceType": "Taxi Service",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Oz Services Taxi Near Me"
+      "name": "Oz Taxi Near Me"
     },
     "areaServed": [
       {

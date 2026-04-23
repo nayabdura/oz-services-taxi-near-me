@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"),
   title: {
     default: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
-    template: "%s | Oz Services Nationwide Taxi",
+    template: "%s | Oz Taxi Near Me",
   },
   description:
-    "Oz Services is America's trusted nationwide taxi company. Book a taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. Fast online booking or Call 407-793-8143.",
+    "Oz Taxi Near Me is America's trusted nationwide taxi company. Book a taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. Fast online booking or Call 407-793-8143.",
   keywords: [
     "taxi near me",
     "best taxi service USA",
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   authors: [{ name: "Oz Services" }],
-  creator: "Oz Services",
+  creator: "Oz Taxi Near Me",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    siteName: "Oz Services Taxi",
+    siteName: "Oz Taxi Near Me",
     title: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
     description:
       "America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving all USA states 24/7. Call 407-793-8143.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reliable Taxi Service | Oz Taxi Near Me – Book Now",
+    title: "Reliable Oz Taxi Service Near Me| Oz Taxi Near Me – Book Now",
     description:
       "Book your taxi online. Fast, safe and reliable taxi service across all USA states – 24/7. Call 407-793-8143.",
     images: ["/og-image.jpg"],
