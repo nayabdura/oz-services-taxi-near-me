@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `24/7 taxi ${name}`,
     ],
     alternates: {
-      canonical: `/locations/${resolvedParams.state}`,
+      canonical: `https://www.oztaxinearme.com/locations/${resolvedParams.state}`,
     },
     openGraph: {
       title,
@@ -58,7 +58,7 @@ export default async function LocationPage({ params }: Props) {
   }
 
   const { name } = stateObj;
-  const { heroTitle, heroSubtitle, p1, p2, faqs } = generateStateContent(name);
+  const { heroTitle, heroSubtitle, p1, p2, p3, p4, faqs } = generateStateContent(name);
 
   return (
     <>
@@ -154,6 +154,8 @@ export default async function LocationPage({ params }: Props) {
           <h2 className="text-3xl font-black mb-6">Your Trusted {name} Transportation Partner</h2>
           <p>{p1}</p>
           <p>{p2}</p>
+          <p>{p3}</p>
+          <p>{p4}</p>
           <h3 className="text-2xl font-bold mt-10 mb-4">Why Book Your {name} Taxi With Oz Services?</h3>
           <ul className="list-disc pl-6 space-y-2">
             <li>
