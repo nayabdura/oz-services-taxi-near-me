@@ -18,7 +18,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const stateObj = USA_STATES.find(s => s.slug === resolvedParams.state);
+  const requestedState = decodeURIComponent(resolvedParams.state).toLowerCase();
+  const stateObj = USA_STATES.find(s => s.slug.toLowerCase() === requestedState);
   if (!stateObj) return { title: "Location Not Found" };
 
   const { name } = stateObj;
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocationPage({ params }: Props) {
   const resolvedParams = await params;
-  const stateObj = USA_STATES.find(s => s.slug === resolvedParams.state);
+  const requestedState = decodeURIComponent(resolvedParams.state).toLowerCase();
+  const stateObj = USA_STATES.find(s => s.slug.toLowerCase() === requestedState);
 
   if (!stateObj) {
     notFound();
