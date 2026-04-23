@@ -15,8 +15,9 @@ export async function generateStaticParams() {
 type Props = { params: { city: string } };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { city: citySlug } = await params;
-  const cityObj = USA_CITIES.find((c) => c.slug === citySlug);
+  const { city: cityParam } = await params;
+  const requestedCity = decodeURIComponent(cityParam).toLowerCase();
+  const cityObj = USA_CITIES.find((c) => c.slug.toLowerCase() === requestedCity);
   if (!cityObj) return { title: "Location Not Found" };
 
   const { name, state, airport } = cityObj;
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CityTaxiPage({ params }: Props) {
-  const { city: citySlug } = await params;
-  const cityObj = USA_CITIES.find((c) => c.slug === citySlug);
+  const { city: cityParam } = await params;
+  const requestedCity = decodeURIComponent(cityParam).toLowerCase();
+  const cityObj = USA_CITIES.find((c) => c.slug.toLowerCase() === requestedCity);
   if (!cityObj) notFound();
 
   const { name, state, stateSlug, airport } = cityObj;
@@ -83,7 +85,7 @@ export default async function CityTaxiPage({ params }: Props) {
           { name: "Home", url: `${BASE}/` },
           { name: "Taxi Near Me", url: `${BASE}/taxi-near-me` },
           { name: state, url: `${BASE}/locations/${stateSlug}` },
-          { name: `Taxi in ${name}`, url: `${BASE}/taxi-in-${citySlug}` },
+          { name: `Taxi in ${name}`, url: `${BASE}/taxi-in-${requestedCity}` },
         ]}
       />
       <script
@@ -92,11 +94,11 @@ export default async function CityTaxiPage({ params }: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": ["LocalBusiness", "TaxiService"],
-            "@id": `${BASE}/taxi-in-${citySlug}#localbusiness`,
+            "@id": `${BASE}/taxi-in-${requestedCity}#localbusiness`,
             name: `Oz Services Taxi ${name}`,
             alternateName: "Oz Services",
             description: `Professional 24/7 taxi service in ${name}, ${state}. Airport transfers, city rides, and corporate travel with zero surge pricing.`,
-            url: `${BASE}/taxi-in-${citySlug}`,
+            url: `${BASE}/taxi-in-${requestedCity}`,
             telephone: "+1-407-793-8143",
             priceRange: "$8 - $20",
             openingHours: "Mo-Su 00:00-23:59",
