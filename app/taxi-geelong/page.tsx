@@ -11,6 +11,12 @@ import CTASection from "@/components/home/CTASection";
 export const metadata: Metadata = {
   title: "Reliable Taxi Service in Geelong | Oz Taxi Near Me – Book Now",
   description: "Need a taxi? Oz Taxi Near Me offers 24/7 airport transfers and local rides in Geelong. Call 407-793-8143 for fast pickup!",
+  alternates: { canonical: "/taxi-geelong" },
+  openGraph: {
+    url: "https://www.oztaxinearme.com/taxi-geelong",
+    title: "Reliable Taxi Service in Geelong | Oz Taxi Near Me",
+    description: "24/7 airport transfers and local rides in Geelong. No surge pricing. Call 407-793-8143.",
+  },
 };
 
 export default function TaxiGeelongPage() {

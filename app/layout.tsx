@@ -40,9 +40,7 @@ export const metadata: Metadata = {
     "online taxi booking USA",
     "24 hour taxi service usa",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  // ✅ NO global canonical — each page declares its own via alternates.canonical
   authors: [{ name: "Oz Services" }],
   creator: "Oz Services",
   publisher: "Oz Services",
@@ -56,7 +54,7 @@ export const metadata: Metadata = {
       "Oz Services – America's most reliable taxi near me. Airport transfers, city rides, corporate accounts. Serving all 50 USA states 24/7. No surge pricing. Call 407-793-8143.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://www.oztaxinearme.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Oz Services – Taxi Near Me | Nationwide USA Cab Service",
@@ -68,7 +66,7 @@ export const metadata: Metadata = {
     title: "Oz Services Taxi Near Me | 24/7 Cab Booking USA",
     description:
       "Book your taxi with Oz Services online. Fast, safe, and reliable cab service across all 50 USA states – 24/7. No surge pricing. Call 407-793-8143.",
-    images: ["/og-image.jpg"],
+    images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
   robots: {
     index: true,
