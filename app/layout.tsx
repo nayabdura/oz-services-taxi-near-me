@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
+import WebSiteSchema from "@/components/seo/WebSiteSchema";
 import StickyCallButton from "@/components/ui/StickyCallButton";
 import { Toaster } from "react-hot-toast";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <LocalBusinessSchema />
         <OrganizationSchema />
+        <WebSiteSchema />
       </head>
       <body>
         <Toaster
