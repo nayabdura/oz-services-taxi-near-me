@@ -10,6 +10,7 @@ import ServiceSchema from "@/components/seo/ServiceSchema";
 import StickyCallButton from "@/components/ui/StickyCallButton";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"),
@@ -120,6 +121,7 @@ export default function RootLayout({
         <FloatingButtons />
         <StickyCallButton />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
