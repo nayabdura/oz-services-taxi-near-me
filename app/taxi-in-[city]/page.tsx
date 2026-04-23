@@ -36,11 +36,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `Oz Services ${name}`,
       ...(airport ? [`airport taxi ${name}`, `${airport} airport taxi`] : []),
     ],
-    alternates: { canonical: `/taxi-in-${citySlug}` },
+    alternates: { canonical: `https://www.oztaxinearme.com/taxi-in-${cityObj.slug}` },
     openGraph: {
       title: `Taxi in ${name} | Oz Services — 24/7 Cab Service`,
       description: `Professional taxi service in ${name}, ${state}. No surge pricing. Airport transfers & local rides available 24/7.`,
-      url: `${BASE}/taxi-in-${citySlug}`,
+      url: `${BASE}/taxi-in-${cityObj.slug}`,
     },
   };
 }
