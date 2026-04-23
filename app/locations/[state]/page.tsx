@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FiMapPin, FiClock, FiStar, FiPhoneCall, FiChevronRight } from "react-icons/fi";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { generateStateContent } from "@/lib/utils/seo-spintax";
+
 // Pre-generate static paths for all 50 states for incredible SSG performance
 export async function generateStaticParams() {
   return USA_STATES.map((s) => ({ state: s.slug }));
@@ -20,10 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!stateObj) return { title: "Location Not Found" };
 
   const { name } = stateObj;
+  const { title, metaDescription } = generateStateContent(name);
 
   return {
-    title: `Taxi Service in ${name} | Book Local & Airport Cab 24/7 — Oz Services`,
-    description: `Looking for a reliable taxi in ${name}? Oz Services offers professional taxicab rides, seamless airport transfers, and corporate booking across ${name}. No surge pricing. Call 407-793-8143 or book online.`,
+    title,
+    description: metaDescription,
     keywords: [
       `taxi in ${name}`,
       `taxi near me ${name}`,
@@ -39,8 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/locations/${resolvedParams.state}`,
     },
     openGraph: {
-      title: `Taxi Service in ${name} | Oz Services — Available 24/7`,
-      description: `Need a ride in ${name}? Oz Services provides immediate, professional taxi services with no surge pricing across the entire state. Call 407-793-8143.`,
+      title,
+      description: metaDescription,
       url: `https://www.oztaxinearme.com/locations/${resolvedParams.state}`,
     },
   };
@@ -55,30 +58,7 @@ export default async function LocationPage({ params }: Props) {
   }
 
   const { name } = stateObj;
-
-  // Featured-snippet optimized FAQs specific to the state
-  const faqs = [
-    {
-      question: `How do I book a taxi in ${name} online?`,
-      answer: `Booking a taxi in ${name} with Oz Services is instant. Use our online booking form at oztaxinearme.com/booking, enter your pickup and drop-off locations, choose your vehicle type, and receive immediate SMS confirmation. No app download required.`,
-    },
-    {
-      question: `Do you provide airport taxi transfers in ${name}?`,
-      answer: `Yes. Oz Services specializes in 24/7 airport taxi transfers to and from all major airports in ${name}. Our dispatchers track your flight in real-time to ensure punctual pickups even on delayed arrivals.`,
-    },
-    {
-      question: `How much does a taxi cost in ${name}?`,
-      answer: `Taxi fares in ${name} with Oz Services start from $8 as a base fare. Final costs depend on distance and service type. We offer transparent, upfront pricing with zero surge fees. Use our booking widget for an instant quote.`,
-    },
-    {
-      question: `Does Oz Services charge surge pricing in ${name}?`,
-      answer: `Never. Oz Services operates a strict no-surge-pricing policy across all 50 states including ${name}. Whether it's rush hour, a major event, or bad weather, you always pay exactly the quoted rate.`,
-    },
-    {
-      question: `What types of vehicles are available for taxi service in ${name}?`,
-      answer: `Oz Services offers economy sedans, luxury SUVs, and corporate executive vehicles for taxi service in ${name}. All vehicles are clean, fully insured, and driven by vetted, licensed professionals.`,
-    },
-  ];
+  const { heroTitle, heroSubtitle, p1, p2, faqs } = generateStateContent(name);
 
   return (
     <>
@@ -117,10 +97,10 @@ export default async function LocationPage({ params }: Props) {
             <FiMapPin /> <span>Serving {name}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white font-heading mb-6 tracking-tight">
-            Reliable Taxi Service in <span className="text-blue-500">{name}</span>
+            {heroTitle}
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-            America's premier transportation network is ready to pick you up in {name}. Whether you need an airport transfer, city commuting, or corporate travel, we guarantee a safe and prompt ride 24/7.
+            {heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a 
@@ -172,16 +152,8 @@ export default async function LocationPage({ params }: Props) {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg prose-slate prose-headings:font-heading prose-headings:text-slate-900">
           <h2 className="text-3xl font-black mb-6">Your Trusted {name} Transportation Partner</h2>
-          <p>
-            Navigating ground transportation in {name} shouldn&apos;t be a hassle. At <strong>Oz Services</strong>, we&apos;ve optimized our operations to deliver quick, reliable, and comfortable taxi solutions that cater strictly to your schedule. Whether you are a tourist exploring local attractions, a business executive attending meetings, or a resident needing a quick local trip, our <strong>{name} taxicab services</strong> are tailored for you.
-          </p>
-          <p>
-            Unlike unpredictable rideshare apps, we provide transparent, upfront pricing with zero hidden surge fees. When you search for a{" "}
-            <Link href="/taxi-near-me" className="text-blue-600 font-semibold no-underline hover:underline">
-              taxi near me in {name}
-            </Link>
-            , our dispatch network immediately locates the nearest available premium vehicle to ensure wait times are kept to an absolute minimum.
-          </p>
+          <p>{p1}</p>
+          <p>{p2}</p>
           <h3 className="text-2xl font-bold mt-10 mb-4">Why Book Your {name} Taxi With Oz Services?</h3>
           <ul className="list-disc pl-6 space-y-2">
             <li>
