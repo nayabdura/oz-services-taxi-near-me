@@ -22,22 +22,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { name } = stateObj;
 
   return {
-    title: `Best Taxi Service in ${name} | Book Local & Airport Taxi 24/7`,
-    description: `Looking for a reliable taxi in ${name}? Oz Services offers top-rated nationwide taxicab rides, seamless airport transfers, and corporate booking in ${name}. Call 407-793-8143 or book online fast.`,
+    title: `Taxi Service in ${name} | Book Local & Airport Cab 24/7 — Oz Services`,
+    description: `Looking for a reliable taxi in ${name}? Oz Services offers professional taxicab rides, seamless airport transfers, and corporate booking across ${name}. No surge pricing. Call 407-793-8143 or book online.`,
     keywords: [
       `taxi in ${name}`,
+      `taxi near me ${name}`,
       `${name} taxi service`,
       `airport taxi ${name}`,
       `book cab ${name}`,
+      `Oz Services ${name}`,
       `best taxi company in ${name}`,
       `cheap taxi ${name}`,
-      `24/7 taxi ${name}`
+      `24/7 taxi ${name}`,
     ],
+    alternates: {
+      canonical: `/locations/${resolvedParams.state}`,
+    },
     openGraph: {
-      title: `Top-Rated Taxi Service in ${name} - 24/7 Availability`,
-      description: `Need a ride in ${name}? Oz Services provides immediate, professional taxi services across the state.`,
-      url: `https://ozservices.com/locations/${resolvedParams.state}`,
-    }
+      title: `Taxi Service in ${name} | Oz Services — Available 24/7`,
+      description: `Need a ride in ${name}? Oz Services provides immediate, professional taxi services with no surge pricing across the entire state. Call 407-793-8143.`,
+      url: `https://www.oztaxinearme.com/locations/${resolvedParams.state}`,
+    },
   };
 }
 
@@ -51,20 +56,28 @@ export default async function LocationPage({ params }: Props) {
 
   const { name } = stateObj;
 
-  // AI-Search Optimized FAQs specific to the state
+  // Featured-snippet optimized FAQs specific to the state
   const faqs = [
     {
       question: `How do I book a taxi in ${name} online?`,
-      answer: `You can instantly book a taxi in ${name} using our online booking form. Simply enter your pickup and drop-off locations, choose your vehicle type, and receive instant confirmation.`
+      answer: `Booking a taxi in ${name} with Oz Services is instant. Use our online booking form at oztaxinearme.com/booking, enter your pickup and drop-off locations, choose your vehicle type, and receive immediate SMS confirmation. No app download required.`,
     },
     {
       question: `Do you provide airport taxi transfers in ${name}?`,
-      answer: `Yes! Oz Services specializes in seamless, 24/7 airport taxi transfers to and from all major airports in ${name}. Our drivers track your flight to ensure punctual pickups.`
+      answer: `Yes. Oz Services specializes in 24/7 airport taxi transfers to and from all major airports in ${name}. Our dispatchers track your flight in real-time to ensure punctual pickups even on delayed arrivals.`,
     },
     {
       question: `How much does a taxi cost in ${name}?`,
-      answer: `Taxi fares in ${name} depend on the exact distance and service type. We offer transparent, flat-rate pricing with no hidden AI-surge fees. Contact our dispatcher for a precise quote.`
-    }
+      answer: `Taxi fares in ${name} with Oz Services start from $8 as a base fare. Final costs depend on distance and service type. We offer transparent, upfront pricing with zero surge fees. Use our booking widget for an instant quote.`,
+    },
+    {
+      question: `Does Oz Services charge surge pricing in ${name}?`,
+      answer: `Never. Oz Services operates a strict no-surge-pricing policy across all 50 states including ${name}. Whether it's rush hour, a major event, or bad weather, you always pay exactly the quoted rate.`,
+    },
+    {
+      question: `What types of vehicles are available for taxi service in ${name}?`,
+      answer: `Oz Services offers economy sedans, luxury SUVs, and corporate executive vehicles for taxi service in ${name}. All vehicles are clean, fully insured, and driven by vetted, licensed professionals.`,
+    },
   ];
 
   return (
@@ -160,21 +173,41 @@ export default async function LocationPage({ params }: Props) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg prose-slate prose-headings:font-heading prose-headings:text-slate-900">
           <h2 className="text-3xl font-black mb-6">Your Trusted {name} Transportation Partner</h2>
           <p>
-            Navigating ground transportation in {name} shouldn't be a hassle. At Oz Services, we've optimized our operations to deliver quick, reliable, and comfortable taxi solutions that cater strictly to your schedule. Whether you are a tourist exploring local attractions, a business executive attending meetings, or a resident needing a quick local trip, our <strong>{name} taxicab services</strong> are tailored for you.
+            Navigating ground transportation in {name} shouldn&apos;t be a hassle. At <strong>Oz Services</strong>, we&apos;ve optimized our operations to deliver quick, reliable, and comfortable taxi solutions that cater strictly to your schedule. Whether you are a tourist exploring local attractions, a business executive attending meetings, or a resident needing a quick local trip, our <strong>{name} taxicab services</strong> are tailored for you.
           </p>
           <p>
-            Unlike unpredictable rideshare apps, we provide transparent, upfront pricing with zero hidden surge fees. When you search for "best taxi near me in {name}", our dispatch network immediately locates the nearest available premium vehicle to ensure wait times are kept to an absolute minimum.
+            Unlike unpredictable rideshare apps, we provide transparent, upfront pricing with zero hidden surge fees. When you search for a{" "}
+            <Link href="/taxi-near-me" className="text-blue-600 font-semibold no-underline hover:underline">
+              taxi near me in {name}
+            </Link>
+            , our dispatch network immediately locates the nearest available premium vehicle to ensure wait times are kept to an absolute minimum.
           </p>
-          
-          <h3 className="text-2xl font-bold mt-10 mb-4">Why Book Your Next Ride With Us?</h3>
+          <h3 className="text-2xl font-bold mt-10 mb-4">Why Book Your {name} Taxi With Oz Services?</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Instant Online Booking:</strong> Reserve your taxi in seconds without making an account.</li>
-            <li><strong>Nationwide Fleet:</strong> Access to economy, luxury SUVs, and corporate sedans.</li>
-            <li><strong>Corporate Accounts:</strong> Simplified billing for {name} enterprise clients.</li>
-            <li><strong>Flight Tracking:</strong> We monitor your incoming flights to {name} airports, ensuring we are there exactly when you land.</li>
+            <li>
+              <Link href="/booking" className="font-bold text-slate-900 hover:text-blue-600 no-underline">Instant Online Booking:</Link>{" "}
+              Reserve your taxi in {name} in seconds — no account required.
+            </li>
+            <li>
+              <Link href="/fleet" className="font-bold text-slate-900 hover:text-blue-600 no-underline">Nationwide Fleet:</Link>{" "}
+              Access to economy sedans, luxury SUVs, and corporate vehicles.
+            </li>
+            <li>
+              <Link href="/services" className="font-bold text-slate-900 hover:text-blue-600 no-underline">Corporate Accounts:</Link>{" "}
+              Simplified billing for {name} enterprise clients with priority dispatch.
+            </li>
+            <li>
+              <Link href="/services" className="font-bold text-slate-900 hover:text-blue-600 no-underline">Flight Tracking:</Link>{" "}
+              We monitor your incoming flights to {name} airports, ensuring we are there exactly when you land.
+            </li>
+            <li>
+              <Link href="/pricing" className="font-bold text-slate-900 hover:text-blue-600 no-underline">Transparent Pricing:</Link>{" "}
+              View our rates — no surge pricing, no hidden fees, ever.
+            </li>
           </ul>
         </div>
       </section>
+
 
       {/* GEO AI FAQ Section */}
       <section className="py-20 bg-slate-50">

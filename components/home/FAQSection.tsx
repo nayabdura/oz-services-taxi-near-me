@@ -5,29 +5,29 @@ import FAQSchema from "@/components/seo/FAQSchema";
 
 const faqs = [
   {
-    q: "Are all your Florida taxi drivers fully vetted and licensed?",
-    a: "Yes — without exception. Every Oz Services driver holds a valid Florida commercial driving license, has passed a comprehensive federal background check, and is fully covered by commercial vehicle insurance. We run routine re-vetting every 12 months."
+    q: "How do I find a taxi near me with Oz Services?",
+    a: "Finding a taxi near you with Oz Services is simple. Use our online booking form on this page, enter your pickup location and destination, choose your vehicle, and receive instant confirmation. Alternatively, call our 24/7 dispatcher at 407-793-8143 for immediate dispatch to your exact location.",
   },
   {
-    q: "Do you provide airport transfers to MCO, MIA, and TPA?",
-    a: "Absolutely. We specialize in airport transfers to Orlando International (MCO), Miami International (MIA), and Tampa International (TPA), as well as Fort Lauderdale (FLL) and West Palm Beach (PBI). Our dispatchers monitor flight data in real-time to ensure zero delays on your arrival pickups."
+    q: "Does Oz Services charge surge pricing during peak hours or bad weather?",
+    a: "Never. Oz Services operates a strict no-surge-pricing policy nationwide. Whether it's rush hour, a major event, or a hurricane warning, you always pay the displayed quoted rate. Transparent pricing is our core promise to every passenger across all 50 USA states.",
   },
   {
-    q: "Do you charge surge pricing during busy periods or bad weather?",
-    a: "Never. Oz Services operates on a strict no-surge-pricing policy. Whether it's rush hour, a major theme park event, or a hurricane warning, you always pay the displayed metered rate or your pre-agreed fixed fare. This is our core promise to every passenger."
+    q: "Does Oz Services offer airport taxi transfers across the USA?",
+    a: "Yes — airport transfers are one of our most popular services. We provide seamless, punctual airport pickups and drop-offs at all major US airports including JFK, LAX, ORD, MIA, MCO, DFW, and many more. Our dispatchers monitor your flight in real-time to ensure zero delays.",
   },
   {
-    q: "How do I get an upfront fare estimate?",
-    a: "Use our booking widget on this page to enter your pickup and drop-off locations. You'll receive an instant fare estimate that reflects your exact route. Corporate clients can also contact us directly for fixed monthly rate negotiations."
+    q: "Can I book a taxi online with Oz Services?",
+    a: "Absolutely. Our online booking system is available 24/7 at oztaxinearme.com/booking. Simply enter your pickup address, drop-off location, and preferred time. No app download required. Instant confirmation sent by SMS or email.",
   },
   {
-    q: "Can I set up a corporate taxi account for my business?",
-    a: "Yes. Corporate accounts receive dedicated account management, consolidated monthly invoicing, priority dispatch access, and discounted high-volume route pricing. Contact our team to set up your business account within 24 hours."
+    q: "What areas does Oz Services cover in the USA?",
+    a: "Oz Services operates across all 50 US states. From New York and Los Angeles to Chicago, Houston, Miami, Dallas, Phoenix, and thousands of smaller cities in between. We have drivers strategically positioned across major metropolitan areas for fastest dispatch times.",
   },
   {
-    q: "What areas of Florida do you cover?",
-    a: "We operate across all major Florida cities including Orlando, Miami, Tampa, Fort Lauderdale, West Palm Beach, Kissimmee, St. Petersburg, Jacksonville, Clearwater, Daytona Beach, Boca Raton, and Tallahassee — with continuous expansion underway."
-  }
+    q: "Can my business set up a corporate taxi account with Oz Services?",
+    a: "Yes. Corporate accounts receive dedicated account management, consolidated monthly invoicing, priority dispatch, and discounted high-volume route pricing. Contact our team at 407-793-8143 to set up your Oz Services business account within 24 hours.",
+  },
 ];
 
 export default function FAQSection() {
@@ -35,7 +35,7 @@ export default function FAQSection() {
 
   return (
     <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
-      <FAQSchema faqs={faqs.map(f => ({ question: f.q, answer: f.a }))} />
+      <FAQSchema faqs={faqs.map((f) => ({ question: f.q, answer: f.a }))} />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -46,7 +46,8 @@ export default function FAQSection() {
             Common Questions
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
-            Everything you need to know before booking your Florida taxi.
+            Everything you need to know about booking a taxi near you with Oz
+            Services.
           </p>
         </div>
 
