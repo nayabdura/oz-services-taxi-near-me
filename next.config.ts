@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.unsplash.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "http", hostname: "localhost" },
+      { protocol: "https", hostname: "www.oztaxinearme.com" },
+      { protocol: "https", hostname: "oztaxinearme.com" },
     ],
     formats: ["image/avif", "image/webp"],
   },
