@@ -89,7 +89,7 @@ const itemListSchema = {
       position: ri * 10 + ai + 1,
       name: area.label,
       url: area.citySlug
-        ? `${BASE_URL}/taxi-in-${area.citySlug}`
+        ? `${BASE_URL}/locations/${area.stateSlug}/taxi-in-${area.citySlug}`
         : `${BASE_URL}/locations/${area.stateSlug}`,
     }))
   ),
@@ -156,7 +156,7 @@ export default function ServiceAreasPage() {
                         key={area.label}
                         href={
                           area.citySlug
-                            ? `/taxi-in-${area.citySlug}`
+                            ? `/locations/${area.stateSlug}/taxi-in-${area.citySlug}`
                             : `/locations/${area.stateSlug}`
                         }
                         className="bg-white border border-slate-200 rounded-xl p-4 text-center hover:border-blue-300 hover:bg-blue-50 transition-colors group"

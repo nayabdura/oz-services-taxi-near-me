@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // City-level pages (taxi-in-[city]) — mid-tier keyword targets
   const cityPages: MetadataRoute.Sitemap = USA_CITIES.map((city) => ({
-    url: `${baseUrl}/taxi-in-${city.slug}`,
+    url: `${baseUrl}/locations/${city.stateSlug}/taxi-in-${city.slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.88,
