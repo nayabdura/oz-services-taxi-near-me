@@ -60,6 +60,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdowns automatically when the route changes
+  useEffect(() => {
+    setLocationsOpen(false);
+    setIsOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (locationsRef.current && !locationsRef.current.contains(e.target as Node)) {
@@ -154,8 +160,7 @@ export default function Navbar() {
                     <div className="p-3 border-t border-slate-100">
                       <Link
                         href="/service-areas"
-                        onClick={() => setLocationsOpen(false)}
-                        className="text-xs text-blue-600 hover:underline font-bold"
+                        className="text-xs text-blue-600 hover:underline font-bold block w-full"
                       >
                         View all 50 states →
                       </Link>
