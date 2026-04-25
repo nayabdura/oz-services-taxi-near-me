@@ -23,9 +23,7 @@ export default function CTASection() {
         </h2>
 
         <p className="text-xl text-slate-300 font-medium leading-relaxed mb-10 max-w-2xl mx-auto">
-          Skip the app. Skip the surge pricing. Call or book online and have a
-          professional Oz Services driver dispatched to your exact location
-          within minutes — anywhere in the USA.
+          Call us or book online and a professional driver will be on the way to you within minutes. No app to download. No surge pricing. Just a reliable ride, anywhere in the USA.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,7 +31,7 @@ export default function CTASection() {
             href="/booking"
             className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-base px-9 py-4 rounded-xl transition-colors shadow-xl shadow-blue-600/30 active:scale-95"
           >
-            Book Online — It's Instant
+            Book Online — It is Instant
           </Link>
           <a
             href="tel:4077938143"
@@ -45,7 +43,7 @@ export default function CTASection() {
 
         {/* Trust points */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-10">
-          {["No surge pricing", "Zero hidden fees", "Confirmed in under 60 seconds", "Available 24/7"].map(
+          {["No surge pricing", "No hidden fees", "Confirmed in under 60 seconds", "Available 24 hours a day"].map(
             (item) => (
               <div
                 key={item}

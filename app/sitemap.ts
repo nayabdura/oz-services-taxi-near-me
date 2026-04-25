@@ -12,20 +12,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com").replace(/\/$/, "");
   const now = new Date();
 
-  // Core pages
+  // Core pages — use static dates for stable pages so Google does not see them as always-fresh
   const corePages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
     { url: `${baseUrl}/taxi-near-me`, lastModified: now, changeFrequency: "daily", priority: 1.0 },
     { url: `${baseUrl}/booking`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
-    { url: `${baseUrl}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/pricing`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/fleet`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/service-areas`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/services`, lastModified: new Date("2025-04-01"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/pricing`, lastModified: new Date("2025-04-01"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/about`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/fleet`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/service-areas`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms-and-conditions`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/contact`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/privacy-policy`, lastModified: new Date("2025-01-01"), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms-and-conditions`, lastModified: new Date("2025-01-01"), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   // City-level pages (taxi-in-[city]) — mid-tier keyword targets

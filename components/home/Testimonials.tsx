@@ -76,11 +76,10 @@ export default function Testimonials() {
             Passenger Reviews
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
-            Trusted by Thousands
+            What Our Passengers Say
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed font-medium">
-            Over 10,000 verified rides. Here's what our passengers
-            say about their Oz Services experience.
+            We have completed over 10,000 verified rides. These are real words from real people who booked with us and came back.
           </p>
         </div>
       </div>
@@ -133,7 +132,7 @@ export default function Testimonials() {
           <div className="text-4xl font-black text-slate-900 font-heading">4.9 / 5</div>
           <div className="sm:border-l sm:border-slate-200 sm:pl-6">
             <div className="text-slate-900 font-bold mb-1">Average Star Rating</div>
-            <div className="text-slate-500 text-sm font-medium">Based on thousands of verified passenger reviews across Google and our platform</div>
+            <div className="text-slate-500 text-sm font-medium">Based on thousands of verified passenger reviews across Google and our own platform.</div>
           </div>
         </div>
       </div>

@@ -7,30 +7,30 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 const BASE = "https://www.oztaxinearme.com";
 
 export const metadata: Metadata = {
-  title: "Taxi Near Me | Instant Cab Booking in the USA — Oz Services",
+  title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
   description:
-    "Searching for a taxi near me? Oz Services dispatches professional, licensed drivers instantly across all USA states. Zero surge pricing. Available 24/7. Book online or call 407-793-8143.",
+    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143.",
   alternates: { canonical: "/taxi-near-me" },
   keywords: [
     "taxi near me",
     "cab near me",
     "taxi service near me",
-    "24/7 taxi near me",
+    "24 hour taxi near me",
     "affordable taxi near me",
     "Oz Services taxi near me",
   ],
   openGraph: {
-    title: "Taxi Near Me | Instant Cab Booking in the USA — Oz Services",
-    description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24/7 across all 50 states.",
+    title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
+    description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24 hours a day across all 50 states.",
     url: `${BASE}/taxi-near-me`,
   },
 };
 
 const reasons = [
-  { title: "Drivers Stationed Locally", desc: "Our professional drivers are positioned within major city centers and airport hubs across the USA — giving Oz Services under-10-minute average pickup times." },
-  { title: "Zero Surge Pricing, Ever", desc: "Rush hour, a major event, or a storm warning — the meter rate never changes. You always pay exactly what Oz Services quoted." },
-  { title: "Transparent Fixed Routes", desc: "For airport runs and inter-city routes, we offer fixed pricing so you know the exact total before your trip begins." },
-  { title: "Immediate Human Dispatch", desc: "When you call or book online, a real Oz Services dispatcher confirms your vehicle, driver, and ETA instantly." },
+  { title: "Drivers Positioned Near You", desc: "Our drivers are stationed across major city centers and airport hubs throughout the USA. Most passengers see pickup times under 10 minutes." },
+  { title: "The Price Never Changes", desc: "Rush hour, a big event, or a storm rolling in — our meter rate does not move. You pay exactly what Oz Services quoted you when you booked." },
+  { title: "Fixed Rates on Key Routes", desc: "For airport runs and trips between cities, we offer fixed pricing. You know the exact total before your trip starts. No surprise charges at the end." },
+  { title: "A Real Person Handles Your Booking", desc: "When you call or book online, a live Oz Services dispatcher confirms your vehicle, your driver, and your arrival time right away." },
 ];
 
 const cities = [
@@ -51,23 +51,23 @@ const cities = [
 const faqs = [
   {
     question: "How do I find a taxi near me right now?",
-    answer: "Call Oz Services at 407-793-8143 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready for immediate dispatch 24/7.",
+    answer: "Call Oz Services at 407-793-8143 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready to be dispatched 24 hours a day.",
   },
   {
     question: "What is the best taxi service near me in the USA?",
-    answer: "Oz Services is rated 4.9/5 across 847+ reviews. We operate in all 50 states with no surge pricing, fully vetted licensed drivers, and real-time flight tracking for airport pickups.",
+    answer: "Oz Services is rated 4.9 out of 5 across 847 reviews. We operate across all 50 states with no surge pricing, fully vetted licensed drivers, and real-time flight tracking for every airport pickup.",
   },
   {
     question: "How much does a taxi near me cost?",
-    answer: "Oz Services fares start from $8 as a base fare. Final costs depend on distance and service type. We offer transparent upfront pricing with no hidden fees. Use our booking widget for an instant estimate.",
+    answer: "Oz Services fares start from $8 as a base fare. The final total depends on your distance and vehicle choice. We show you the full price before you confirm. No hidden charges.",
   },
   {
-    question: "Is there a 24/7 taxi near me available at night?",
-    answer: "Yes. Oz Services operates around the clock, 365 days a year. Whether you need a late-night pickup at 2 AM or an early morning airport run at 4 AM, we have drivers available across all US states.",
+    question: "Is there a taxi near me available at night?",
+    answer: "Yes. Oz Services operates around the clock every day of the year. Whether you need a late night pickup at 2 AM or an early morning airport run at 4 AM, we have drivers ready across the USA.",
   },
   {
     question: "Can I book a taxi near me online without calling?",
-    answer: "Absolutely. Book at oztaxinearme.com/booking — no app download required. Enter your pickup and drop-off, choose your vehicle, and receive instant confirmation by SMS or email.",
+    answer: "Yes. Book at oztaxinearme.com/booking without needing to download an app. Enter your pickup and drop-off locations, choose your vehicle, and you will receive instant confirmation by SMS or email.",
   },
 ];
 
@@ -110,10 +110,10 @@ export default function TaxiNearMePage() {
                   Oz Services — Immediate Dispatch
                 </p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
-                  Find a Taxi <span className="text-blue-500">Near You</span> in the USA — Right Now
+                  Find a Taxi <span className="text-blue-500">Near You</span> in the USA Right Now
                 </h1>
                 <p className="text-xl text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
-                  No app downloads. No unpredictable surge pricing. Oz Services dispatches a professional, licensed driver to your exact location across the USA within minutes — 24 hours a day, 7 days a week.
+                  No app to download. No unpredictable surge pricing. Oz Services dispatches a professional, licensed driver to your location across the USA within minutes. We are available 24 hours a day, 7 days a week.
                 </p>
                 <div className="flex flex-wrap gap-4 mb-8">
                   <a
@@ -151,7 +151,7 @@ export default function TaxiNearMePage() {
                 A Taxi Service You Can Actually Rely On
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed font-medium">
-                Rideshare apps made transportation convenient but unpredictable. Oz Services brings back the reliability of a professional taxi — with modern booking technology.
+                Rideshare apps made getting a ride easier but also a lot less predictable. Oz Services brings back what a taxi service is supposed to be — licensed drivers, flat rates, and a team that actually answers the phone.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -171,10 +171,10 @@ export default function TaxiNearMePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
-                Oz Services — Serving All 50 States
+                Oz Services Covers All 50 States
               </h2>
               <p className="text-slate-600 font-medium text-lg">
-                Whether it's an airport run or a late-night local trip, we have an Oz Services driver near you right now. Click your city for local details.
+                Whether you need an airport run or a late night local trip, there is an Oz Services driver near you right now. Click your city to see local details and coverage.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -201,13 +201,13 @@ export default function TaxiNearMePage() {
         <section className="py-20 bg-white border-b border-slate-100">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-black text-slate-900 font-heading mb-6">
-              Why Find a Taxi Near Me With Oz Services?
+              Why Search for a Taxi Near Me With Oz Services?
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-5">
-              When you search for a <strong>taxi near me</strong>, you need a service that is fast, transparent, and reliable — not an algorithm that spikes your fare during peak hours. <strong>Oz Services</strong> was built specifically to solve this problem for travelers and commuters across the United States.
+              When you search for a <strong>taxi near me</strong>, you need something fast, honest, and reliable. You do not need an app that triples your fare because it started raining. <strong>Oz Services</strong> was built to give passengers across the United States a better option.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed mb-8">
-              Unlike rideshare platforms, Oz Services operates with <strong>zero surge pricing</strong>. The fare you see when booking is the fare you pay. Our fully-licensed drivers are positioned near major city hubs, airports, and business districts — so when you need a <strong>cab near me</strong>, we can dispatch one within minutes.
+              We operate with <strong>zero surge pricing</strong>. The fare shown at booking is the fare you pay, every time. Our licensed drivers are positioned near city centers, airports, and business districts so when you need a <strong>cab near me</strong>, we can have someone with you quickly.
             </p>
             <ul className="space-y-3 mb-8">
               {[
@@ -239,10 +239,10 @@ export default function TaxiNearMePage() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
-                Taxi Near Me — Frequently Asked Questions
+                Taxi Near Me Common Questions
               </h2>
               <p className="text-slate-600 font-medium text-lg">
-                Common questions about finding and booking a taxi near you with Oz Services.
+                Answers to the questions we get asked most about booking a taxi near you with Oz Services.
               </p>
             </div>
             <div className="space-y-4">
@@ -259,10 +259,10 @@ export default function TaxiNearMePage() {
         {/* Bottom CTA */}
         <section className="py-20 bg-blue-600 text-center px-4">
           <h2 className="text-3xl md:text-5xl font-black text-white font-heading mb-6">
-            Need a Taxi Near You? Call Oz Services
+            Need a Taxi Near You? Call Oz Services Now
           </h2>
           <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-            Skip the surge pricing and the wait. Oz Services dispatches a professional, licensed driver to you within minutes — 24/7, across all 50 US states.
+            Forget the surge pricing and the long wait. Oz Services sends a professional, licensed driver to you within minutes. We are here 24 hours a day across all 50 US states.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a

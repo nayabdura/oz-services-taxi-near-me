@@ -47,9 +47,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-lg text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
-              Fast, reliable, and transparent taxi service operating 24/7
-              locally and regionally. Specializing in airport transfers, local city rides,
-              and corporate travel — with zero surge pricing.
+              We pick you up fast, get you there on time, and charge you exactly what we quoted. No surge pricing, no surprises. Oz Services runs 24 hours a day for airport transfers, city rides, and corporate travel across the USA.
             </p>
 
             {/* CTA Buttons */}
@@ -72,10 +70,10 @@ export default function HeroSection() {
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {[
-                "No surge pricing",
-                "24/7 available",
+                "No surge pricing ever",
+                "Available 24 hours a day",
                 "Flight tracking included",
-                "Vetted licensed drivers",
+                "Licensed and vetted drivers",
               ].map((item) => (
                 <div
                   key={item}

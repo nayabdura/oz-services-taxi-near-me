@@ -6,27 +6,27 @@ import FAQSchema from "@/components/seo/FAQSchema";
 const faqs = [
   {
     q: "How do I find a taxi near me with Oz Services?",
-    a: "Finding a taxi near you with Oz Services is simple. Use our online booking form on this page, enter your pickup location and destination, choose your vehicle, and receive instant confirmation. Alternatively, call our 24/7 dispatcher at 407-793-8143 for immediate dispatch to your exact location.",
+    a: "It is easy. Use the booking form on this page, type in where you are and where you need to go, pick your vehicle, and you will get a confirmation right away. If you would rather talk to someone, call 407-793-8143 and our dispatcher will handle everything for you.",
   },
   {
-    q: "Does Oz Services charge surge pricing during peak hours or bad weather?",
-    a: "Never. Oz Services operates a strict no-surge-pricing policy nationwide. Whether it's rush hour, a major event, or a hurricane warning, you always pay the displayed quoted rate. Transparent pricing is our core promise to every passenger across all 50 USA states.",
+    q: "Does Oz Services charge surge pricing during busy hours or bad weather?",
+    a: "No, never. The price we show you when you book is the price you pay. It does not matter if it is rush hour, a big event, or a storm outside. We do not change our rates based on demand. That is a promise we make to every passenger.",
   },
   {
-    q: "Does Oz Services offer airport taxi transfers across the USA?",
-    a: "Yes — airport transfers are one of our most popular services. We provide seamless, punctual airport pickups and drop-offs at all major US airports including JFK, LAX, ORD, MIA, MCO, DFW, and many more. Our dispatchers monitor your flight in real-time to ensure zero delays.",
+    q: "Does Oz Services do airport taxi transfers?",
+    a: "Yes, airport rides are one of our most booked services. We cover all major US airports including JFK, LAX, ORD, MIA, MCO, and DFW. Our team watches your flight in real time so if it is delayed, your driver waits. You will not be standing at the curb wondering where your ride is.",
   },
   {
     q: "Can I book a taxi online with Oz Services?",
-    a: "Absolutely. Our online booking system is available 24/7 at oztaxinearme.com/booking. Simply enter your pickup address, drop-off location, and preferred time. No app download required. Instant confirmation sent by SMS or email.",
+    a: "You can. Head to oztaxinearme.com/booking, enter your pickup address and drop-off location, and choose when you want to be picked up. No app to download. We send confirmation to your phone or email within seconds.",
   },
   {
-    q: "What areas does Oz Services cover in the USA?",
-    a: "Oz Services operates across all 50 US states. From New York and Los Angeles to Chicago, Houston, Miami, Dallas, Phoenix, and thousands of smaller cities in between. We have drivers strategically positioned across major metropolitan areas for fastest dispatch times.",
+    q: "What areas does Oz Services cover?",
+    a: "We operate across the USA from major cities like New York, Los Angeles, Chicago, Houston, and Miami to smaller towns in between. Our drivers are stationed across hundreds of locations so there is usually someone near you no matter where you are.",
   },
   {
-    q: "Can my business set up a corporate taxi account with Oz Services?",
-    a: "Yes. Corporate accounts receive dedicated account management, consolidated monthly invoicing, priority dispatch, and discounted high-volume route pricing. Contact our team at 407-793-8143 to set up your Oz Services business account within 24 hours.",
+    q: "Can my business set up a corporate taxi account?",
+    a: "Yes. Business accounts get monthly billing so there is no need to submit individual receipts, plus priority booking and a dedicated account manager. Call 407-793-8143 and we can get your account set up within one business day.",
   },
 ];
 

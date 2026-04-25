@@ -4,39 +4,39 @@ import Image from "next/image";
 import { FiShield, FiClock, FiTarget, FiUsers } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "About Oz Services | America's Most Trusted Taxi Company",
+  title: "About Oz Services | Trusted Taxi Company Across the USA",
   description:
-    "Learn about Oz Services — America's premier 24/7 nationwide taxi network. Discover our story, our mission, and our commitment to safe, transparent, and reliable transportation across all 50 states.",
+    "Oz Services is a licensed, 24/7 taxi company serving passengers across the USA. Learn about how we started, what we stand for, and why thousands of travelers book with us again and again.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Oz Services | America's Most Trusted Taxi Company",
+    title: "About Oz Services | Trusted Taxi Company Across the USA",
     description:
-      "America's premier 24/7 nationwide taxi network. Reliable airport transfers, local rides, and corporate travel across the USA.",
+      "A licensed 24/7 taxi company with vetted drivers, honest pricing, and service across the USA. Airport transfers, city rides, and corporate travel.",
   },
 };
 
 const values = [
   {
     icon: FiShield,
-    title: "Safety First, Always",
-    desc: "Every driver undergoes federal background checks, holds a valid commercial license, and is fully insured. Vehicles are inspected monthly. There are zero exceptions to our safety standards.",
+    title: "Safety Is Always the Priority",
+    desc: "Every driver in our network goes through a full federal background check, holds a valid commercial license, and carries complete insurance coverage. Our vehicles are inspected monthly. No exceptions.",
   },
   {
     icon: FiClock,
-    title: "Punctuality is Non-Negotiable",
-    desc: "We track live traffic, airport gates, and your route in real time. When we quote a pickup time, we honour it. Our on-time performance rate consistently exceeds 99%.",
+    title: "We Show Up On Time",
+    desc: "We track live traffic conditions, airport gates, and your exact route from the moment you book. When we give you a pickup time, we keep it. Our on-time rate is consistently above 99 percent.",
   },
   {
     icon: FiTarget,
-    title: "Complete Pricing Transparency",
-    desc: "No algorithms. No surge multipliers. No fine print. You see the full price before you book, and you pay exactly that amount — regardless of traffic, weather, or demand.",
+    title: "The Price We Quote Is the Price You Pay",
+    desc: "No algorithms deciding your fare at checkout. No surge multipliers buried in the fine print. You see the full price before you confirm your booking and that is exactly what you are charged.",
   },
   {
     icon: FiUsers,
-    title: "Real People Behind Every Ride",
-    desc: "We're a real nationwide taxi company — not a tech startup with contractor drivers. Every dispatch is handled by our in-house team who knows the roads intimately.",
+    title: "Real People Handling Every Ride",
+    desc: "We are not an app connecting strangers. We are a real taxi company with an in-house dispatch team, trained drivers, and direct accountability to every passenger we serve.",
   },
 ];
 
@@ -61,9 +61,7 @@ export default function AboutPage() {
             About Oz Services
           </h1>
           <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
-            Serving all of the USA. Built with one mission — to
-            give passengers a nationwide taxi service they can genuinely rely on, every
-            single time.
+            We built Oz Services because passengers deserved a taxi company they could actually depend on. Honest pricing. Drivers who show up. Service that works, every single time.
           </p>
         </div>
       </section>
@@ -74,28 +72,17 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-6 tracking-tight">
-                From a Small Fleet to America's Premier Taxi Network
+                From a Small Fleet to a Nationwide Taxi Network
               </h2>
               <div className="space-y-5 text-slate-600 font-medium leading-relaxed text-[15px]">
                 <p>
-                  Oz Services launched from a small regional fleet operating
-                  around major hotel corridors and international
-                  airports. The problem we kept hearing from travelers was
-                  consistent: rideshare apps were unpredictable — surge pricing,
-                  wrong vehicles, drivers who didn't know the airport terminals.
+                  Oz Services started with a small regional fleet running between hotel corridors and international airports. Everywhere we operated, we heard the same frustration from travelers. Rideshare apps were inconsistent. Prices spiked without warning. Drivers showed up in the wrong vehicles and had no idea which terminal to use.
                 </p>
                 <p>
-                  We built Oz Services to solve exactly that. Licensed, vetted
-                  professional drivers. Transparent flat rates. Dispatchers who
-                  monitor your flight and are stationed nearby before you land.
-                  It's the kind of service that used to be called standard — we
-                  just made it reliable again.
+                  We decided to do things differently. We hired licensed, fully vetted professional drivers. We set flat transparent rates that never change based on demand. We built a dispatch team that monitors your flight before you even land and positions a driver nearby so you are never left waiting.
                 </p>
                 <p>
-                  Today, our fleet of sedans, premium SUVs, and executive minivans
-                  serves tens of thousands of passengers annually across 50
-                  states, covering every major airport hub and every corner
-                  of the USA.
+                  Today our fleet of sedans, premium SUVs, and executive minivans serves tens of thousands of passengers every year across all 50 states. We cover every major airport hub and every city in between.
                 </p>
               </div>
               <div className="mt-8">
@@ -188,11 +175,10 @@ export default function AboutPage() {
       <section className="py-16 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-black text-white font-heading mb-4">
-            Ready to Ride with America's Best?
+            Ready to Book Your Ride?
           </h2>
           <p className="text-blue-100 font-medium text-lg mb-8 max-w-xl mx-auto">
-            Book your next ride in under 60 seconds. No apps, no surge pricing, no
-            surprises.
+            Book online in under 60 seconds or call us directly. No apps, no surge pricing, and no unpleasant surprises when you arrive.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -3,14 +3,14 @@ import Link from "next/link";
 import { FiCheck, FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Transparent Taxi Pricing | No Surge Pricing | Oz Services USA",
+  title: "Taxi Pricing | No Surge Fees, No Hidden Charges | Oz Services USA",
   description:
-    "View our competitive nationwide taxi fare rates. Economy, Premium, and Luxury tiers with upfront pricing, zero surge fees, and no hidden charges. Airport transfers, city rides, and corporate accounts across all USA states.",
+    "Oz Services publishes full taxi fare rates so you always know what you are paying. Economy, Premium, and Luxury options available. No surge pricing. No hidden fees. Airport transfers, city rides, and corporate travel across the USA.",
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: "Transparent Taxi Pricing | No Hidden Fees | Oz Services USA",
+    title: "Taxi Pricing | No Hidden Fees | Oz Services USA",
     description:
-      "Honest taxi fares nationwide. No surge pricing. No hidden fees. Guaranteed upfront pricing on every ride.",
+      "Straightforward taxi fares across the USA. No surge pricing. No hidden charges. You see the full price before you book.",
   },
 };
 
@@ -78,11 +78,11 @@ const plans = [
 ];
 
 const notes = [
-  "All prices shown in USD. Applicable state and local taxes may vary by location.",
-  "Airport authority surcharges are passed at exact cost — zero markup.",
-  "Toll road fees passed at exact cost. No markup on tolls.",
+  "All prices are shown in USD. State and local taxes may vary by location.",
+  "Airport surcharges are passed on at exact cost with no markup added.",
+  "Toll road fees are charged at exact cost. We do not add any markup on tolls.",
   "Corporate accounts receive custom volume discounts and monthly billing cycles.",
-  "Waiting time billed at $0.50/minute after an initial complimentary 5 minutes.",
+  "Waiting time is billed at $0.50 per minute after an initial complimentary 5 minutes.",
   "Holiday surcharges may apply on Thanksgiving, Christmas Eve, and New Year's Eve.",
 ];
 
@@ -99,9 +99,7 @@ export default function PricingPage() {
             Simple, Transparent <span className="text-blue-500">Pricing</span>
           </h1>
           <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
-            We publish our full fare structure publicly because we have nothing
-            to hide. No surge algorithms. No dynamic pricing. Just honest, fair
-            taxi rates — available nationwide across all USA states.
+            We publish our full fare schedule because we have nothing to hide. No surge algorithms. No dynamic pricing. Just honest, fair taxi rates available across all USA states.
           </p>
         </div>
       </section>

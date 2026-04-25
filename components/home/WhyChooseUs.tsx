@@ -5,23 +5,23 @@ import Image from "next/image";
 const benefits = [
   {
     icon: FiShield,
-    title: "Fully Vetted & Licensed Drivers",
-    desc: "Every driver undergoes federal background checks, holds a valid commercial license, and is fully insured. We never cut corners on your safety.",
+    title: "Fully Vetted and Licensed Drivers",
+    desc: "Before any driver joins our fleet, they go through a full federal background check, hold a valid commercial license, and carry complete insurance. Your safety is not something we compromise on.",
   },
   {
     icon: FiClock,
-    title: "Guaranteed On-Time Pickup",
-    desc: "We respect your schedule. Advanced dispatch algorithms ensure your driver is positioned nearby before you even request your ride.",
+    title: "We Show Up When We Say We Will",
+    desc: "Your time matters. We position drivers near you before you even hit book, so when your confirmation comes through, your ride is already on the way.",
   },
   {
     icon: FiDollarSign,
-    title: "100% Transparent Pricing",
-    desc: "No surge pricing, no hidden fees, no algorithm manipulation. The quoted price is always the exact final price you pay.",
+    title: "The Price You See Is the Price You Pay",
+    desc: "No algorithm spikes. No hidden airport fees snuck in at the end. No surge pricing because it started raining. The fare we quote is the fare you pay, full stop.",
   },
   {
     icon: FiMap,
-    title: "Extensive Local Coverage",
-    desc: "With our extensive network of professional drivers, we are always ready to get you where you need to go, whenever you need us.",
+    title: "We Cover Your Area",
+    desc: "Our drivers are spread across cities, suburbs, and airport corridors so there is always someone close by. Wherever you are heading, we can get you there.",
   },
 ];
 
@@ -39,9 +39,7 @@ export default function WhyChooseUs() {
               Built on Trust,<br />Driven by Excellence
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-medium mb-10">
-              We're not a rideshare algorithm. We're a real local taxi company with
-              real accountability, real drivers, and real service standards that have
-              earned the trust of over 10,000 passengers in your area and beyond.
+              We are not an app that matches you with a stranger and hopes for the best. We are a licensed taxi company with trained drivers, honest pricing, and a dispatch team that picks up the phone. Over 10,000 passengers have trusted us and kept coming back.
             </p>
 
             <div className="space-y-7">
@@ -103,11 +101,10 @@ export default function WhyChooseUs() {
               </div>
               <div>
                 <p className="text-white font-bold text-lg font-heading mb-1">
-                  Punctuality Guarantee
+                  Our Punctuality Promise
                 </p>
                 <p className="text-slate-400 font-medium text-sm leading-relaxed">
-                  If your driver is more than 10 minutes late, your next ride
-                  upgrade is completely free. That's our commitment to you.
+                  If your driver arrives more than 10 minutes late, your next ride upgrade is on us. We stand behind that because we rarely need to honor it.
                 </p>
               </div>
             </div>

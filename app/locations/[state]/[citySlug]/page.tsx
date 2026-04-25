@@ -28,21 +28,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Taxi in ${name}${airportText} | Oz Services — 24/7 Cab Booking`,
-    description: `Looking for a taxi in ${name}, ${state}? Oz Services offers professional 24/7 cab service in ${name} with no surge pricing. Airport transfers, city rides & corporate travel. Call 407-793-8143.`,
+    description: `Need a taxi in ${name}, ${state}? Oz Services provides professional cab service in ${name} around the clock with no surge pricing. Airport transfers, city rides and corporate travel. Call 407-793-8143.`,
     keywords: [
       `taxi in ${name}`,
       `${name} taxi near me`,
       `taxi service ${name}`,
       `cab in ${name}`,
       `affordable taxi ${name}`,
-      `24/7 taxi ${name}`,
+      `24 hour taxi ${name}`,
       `Oz Services ${name}`,
       ...(airport ? [`airport taxi ${name}`, `${airport} airport taxi`] : []),
     ],
     alternates: { canonical: `https://www.oztaxinearme.com/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}` },
     openGraph: {
       title: `Taxi in ${name} | Oz Services — 24/7 Cab Service`,
-      description: `Professional taxi service in ${name}, ${state}. No surge pricing. Airport transfers & local rides available 24/7.`,
+      description: `Professional taxi service in ${name}, ${state}. No surge pricing. Airport transfers and local rides available 24 hours a day.`,
       url: `${BASE}/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}`,
     },
   };
@@ -59,21 +59,21 @@ export default async function CityTaxiPage({ params }: Props) {
   const faqs = [
     {
       question: `How do I book a taxi in ${name}?`,
-      answer: `Booking a taxi in ${name} with Oz Services is fast and simple. Use our online booking form at oztaxinearme.com/booking, enter your ${name} pickup location and destination, select your vehicle, and receive instant SMS confirmation. You can also call 407-793-8143 for immediate dispatch.`,
+      answer: `Booking a taxi in ${name} with Oz Services takes about a minute. Go to oztaxinearme.com/booking, enter your pickup location in ${name} and your destination, choose your vehicle, and you will get a confirmation by SMS or email straight away. You can also call 407-793-8143 and a live dispatcher will handle everything for you.`,
     },
     {
-      question: `Is there a 24-hour taxi service available in ${name}?`,
-      answer: `Yes. Oz Services provides 24/7 taxi service in ${name}, ${state}. Our dispatch center never closes — whether you need a ride at midnight or an early morning airport transfer, we have licensed drivers available around the clock.`,
+      question: `Is there a 24 hour taxi service in ${name}?`,
+      answer: `Yes. Oz Services runs around the clock in ${name}, ${state}. Our dispatch center does not close. Whether you need a ride at midnight or an early airport run before dawn, we have licensed drivers ready to go.`,
     },
     {
-      question: `Does Oz Services charge surge pricing in ${name}?`,
-      answer: `Never. Oz Services operates a strict no-surge-pricing policy across all US cities including ${name}. You always pay the exact quoted fare — no price spikes during rush hour, events, or bad weather.`,
+      question: `Does Oz Services use surge pricing in ${name}?`,
+      answer: `No. Oz Services does not use surge pricing in ${name} or anywhere else we operate. The price we quote when you book is what you pay. It does not go up during rush hour, bad weather, or busy events.`,
     },
     ...(airport
       ? [
           {
-            question: `Do you offer airport taxi service from ${name} (${airport})?`,
-            answer: `Yes. Oz Services specializes in airport taxi transfers to and from ${name} (${airport}). Our drivers monitor your flight in real-time for punctual pickups. Book online or call 407-793-8143 for your ${airport} airport transfer.`,
+            question: `Do you offer airport transfers from ${name} (${airport})?`,
+            answer: `Yes. Airport transfers are one of our most booked services in ${name}. We monitor your flight so your driver knows exactly when to be there. Book online or call 407-793-8143 for your ${airport} airport transfer.`,
           },
         ]
       : []),
@@ -133,12 +133,12 @@ export default async function CityTaxiPage({ params }: Props) {
             <h1 className="text-4xl md:text-6xl font-black text-white font-heading mb-6 tracking-tight">
               Taxi in <span className="text-blue-500">{name}</span>
               <br className="hidden sm:block" />
-              <span className="text-3xl md:text-4xl"> Available 24/7 — No Surge Pricing</span>
+              <span className="text-3xl md:text-4xl">Available 24 Hours a Day. No Surge Pricing.</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
               Oz Services dispatches professional, licensed drivers in {name} within minutes.
-              {airport && ` Serving ${airport} airport and all ${name} area locations.`}{" "}
-              Book online or call for immediate dispatch.
+              {airport && ` We serve ${airport} airport and all ${name} area locations.`}{" "}
+              Book online or call us for an immediate dispatch.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -172,20 +172,20 @@ export default async function CityTaxiPage({ params }: Props) {
               {[
                 {
                   icon: <FiClock className="w-6 h-6" />,
-                  title: `Available 24/7 in ${name}`,
-                  desc: `Our dispatch center operates round-the-clock. Day or night, we have Oz Services drivers stationed across ${name} ready to assist.`,
+                  title: `Available Around the Clock in ${name}`,
+                  desc: `Our dispatch team works day and night. No matter the time, there are Oz Services drivers stationed across ${name} ready to pick you up.`,
                 },
                 {
                   icon: <FiStar className="w-6 h-6" />,
-                  title: "Top-Rated Drivers",
-                  desc: `Travel safely with our fully vetted, licensed, and insured professional drivers who know ${name} routes perfectly.`,
+                  title: "Highly Rated Drivers",
+                  desc: `Every driver we use in ${name} is fully vetted, licensed, and insured. They know the local roads and they show up on time.`,
                 },
                 {
                   icon: <FiMapPin className="w-6 h-6" />,
-                  title: airport ? `${airport} Airport Transfers` : "Local & Airport Transfers",
+                  title: airport ? `${airport} Airport Transfers` : "Local and Airport Transfers",
                   desc: airport
-                    ? `Reliable flight-tracked pickups and drop-offs at ${name} (${airport}). Always on time, no surge pricing.`
-                    : `From local suburban addresses to major transportation hubs, we provide complete ground transport across ${name}.`,
+                    ? `We track flights in real time for every pickup and drop-off at ${name} (${airport}). You will not pay more because of a delay.`
+                    : `From suburban streets to major transport hubs, we cover all ground transport needs across ${name}.`,
                 },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
@@ -207,12 +207,12 @@ export default async function CityTaxiPage({ params }: Props) {
               Professional Taxi Service in {name}, {state}
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-5">
-              When you need a <strong>taxi in {name}</strong>, Oz Services is the most reliable choice available. We operate with transparent, fixed pricing and zero surge fees — unlike rideshare apps that unpredictably raise rates during busy periods. Our drivers are fully licensed, background-checked, and positioned throughout {name} for the fastest possible dispatch times.
+              When you need a <strong>taxi in {name}</strong>, Oz Services is the most dependable option you will find. We run on transparent fixed pricing with no surge fees. Our drivers are fully licensed, background-checked, and positioned throughout {name} for fast dispatch times.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed mb-8">
-              Whether you need a quick local ride within {name}, an{" "}
+              Whether you need a quick ride within {name}, an{" "}
               {airport ? <><strong>{airport} airport taxi transfer</strong>, a corporate</> : "airport transfer, a corporate"}{" "}
-              ride, or a late-night pickup, Oz Services has you covered 24 hours a day, 365 days a year.
+              booking, or a late night pickup, Oz Services is available 24 hours a day, 365 days a year.
             </p>
             <ul className="space-y-3 mb-8">
               {[
@@ -237,11 +237,11 @@ export default async function CityTaxiPage({ params }: Props) {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-black text-slate-900 font-heading mb-4">
-                Taxi in {name} — FAQs
-              </h2>
-              <p className="text-slate-600 text-lg">
-                Common questions about Oz Services taxi in {name}, {state}.
-              </p>
+              Taxi in {name} Common Questions
+            </h2>
+            <p className="text-slate-600 text-lg">
+              Questions people ask us about Oz Services taxi in {name}, {state}.
+            </p>
             </div>
             <div className="space-y-4">
               {faqs.map((faq, i) => (
@@ -257,10 +257,10 @@ export default async function CityTaxiPage({ params }: Props) {
         {/* Bottom CTA */}
         <section className="py-20 bg-blue-600 text-center px-4">
           <h2 className="text-3xl md:text-5xl font-black text-white font-heading mb-6">
-            Book Your {name} Taxi Now
+            Book Your {name} Taxi Today
           </h2>
           <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-            Skip the surge pricing. Oz Services dispatches a licensed driver in {name} within minutes — 24/7.
+            No surge pricing. No waiting around. Oz Services dispatches a licensed driver in {name} within minutes, any time of day or night.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
