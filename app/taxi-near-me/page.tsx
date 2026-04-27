@@ -95,7 +95,6 @@ export default function TaxiNearMePage() {
             priceRange: "$8 - $20",
             openingHours: "Mo-Su 00:00-23:59",
             areaServed: { "@type": "Country", name: "US" },
-            aggregateRating: { "@type": "AggregateRating", ratingValue: 4.9, reviewCount: 847, bestRating: 5 },
           }),
         }}
       />

@@ -111,12 +111,6 @@ export default async function CityTaxiPage({ params }: Props) {
               name: name,
               containedInPlace: { "@type": "State", name: state },
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: 4.9,
-              reviewCount: 847,
-              bestRating: 5,
-            },
           }),
         }}
       />

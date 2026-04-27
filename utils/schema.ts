@@ -26,7 +26,6 @@ export const localBusinessSchema = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Corporate Taxi", description: "Executive corporate taxi service" } },
     ],
   },
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "2400", bestRating: "5" },
 };
 
 export const taxiServiceSchema = {
