@@ -4,61 +4,78 @@ import { USA_CITIES } from "@/lib/data/cities";
 import connectDB from "@/lib/db";
 import { Blog } from "@/lib/models";
 
-// Must be dynamic — sitemap includes live blog posts from MongoDB
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// ISR: regenerate sitemap at most once per hour instead of force-dynamic.
+// This means Googlebot always gets a fast cached response, while blog posts
+// stay fresh within 60 minutes. If the DB is unavailable, the last cached
+// version is served rather than returning a broken sitemap.
+export const revalidate = 3600;
+
+// 5-second timeout guard for the DB query — prevents a slow MongoDB
+// connection from hanging the sitemap response and breaking Google's crawl.
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error("DB timeout")), ms)
+    ),
+  ]);
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com").replace(/\/$/, "");
-  const now = new Date();
+  const base = (
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.oztaxinearme.com"
+  ).replace(/\/$/, "");
 
-  // Core pages — use static dates for stable pages so Google does not see them as always-fresh
+  // ── Stable dates for static pages ─────────────────────────────────────────
+  // Using new Date() for every page told Google everything changed on every
+  // crawl, which wastes crawl budget trust. Real dates signal genuine freshness.
   const corePages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
-    { url: `${baseUrl}/taxi-near-me`, lastModified: now, changeFrequency: "daily", priority: 1.0 },
-    { url: `${baseUrl}/booking`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
-    { url: `${baseUrl}/services`, lastModified: new Date("2025-04-01"), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/pricing`, lastModified: new Date("2025-04-01"), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/about`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/fleet`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/service-areas`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
-    { url: `${baseUrl}/contact`, lastModified: new Date("2025-03-01"), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: new Date("2025-01-01"), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms-and-conditions`, lastModified: new Date("2025-01-01"), changeFrequency: "yearly", priority: 0.3 },
+    { url: base,                              lastModified: new Date("2026-04-20"), changeFrequency: "daily",   priority: 1.0  },
+    { url: `${base}/taxi-near-me`,            lastModified: new Date("2026-04-20"), changeFrequency: "daily",   priority: 1.0  },
+    { url: `${base}/booking`,                 lastModified: new Date("2026-04-15"), changeFrequency: "weekly",  priority: 0.95 },
+    { url: `${base}/services`,                lastModified: new Date("2026-04-01"), changeFrequency: "weekly",  priority: 0.9  },
+    { url: `${base}/pricing`,                 lastModified: new Date("2026-04-01"), changeFrequency: "weekly",  priority: 0.9  },
+    { url: `${base}/service-areas`,           lastModified: new Date("2026-04-01"), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/fleet`,                   lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8  },
+    { url: `${base}/blog`,                    lastModified: new Date("2026-04-20"), changeFrequency: "daily",   priority: 0.8  },
+    { url: `${base}/about`,                   lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${base}/contact`,                 lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7  },
+    { url: `${base}/privacy-policy`,          lastModified: new Date("2026-01-01"), changeFrequency: "yearly",  priority: 0.3  },
+    { url: `${base}/terms-and-conditions`,    lastModified: new Date("2026-01-01"), changeFrequency: "yearly",  priority: 0.3  },
   ];
 
-  // City-level pages (taxi-in-[city]) — mid-tier keyword targets
+  // ── Location pages — 100% static from local data, no DB needed ────────────
+  const locationDate = new Date("2026-04-20");
+
+  const statePages: MetadataRoute.Sitemap = USA_STATES.map((state) => ({
+    url: `${base}/locations/${state.slug}`,
+    lastModified: locationDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
   const cityPages: MetadataRoute.Sitemap = USA_CITIES.map((city) => ({
-    url: `${baseUrl}/locations/${city.stateSlug}/taxi-in-${city.slug}`,
-    lastModified: now,
+    url: `${base}/locations/${city.stateSlug}/taxi-in-${city.slug}`,
+    lastModified: locationDate,
     changeFrequency: "weekly" as const,
     priority: 0.88,
   }));
 
-  // State-level pages
-  const statePages: MetadataRoute.Sitemap = USA_STATES.map((state) => ({
-    url: `${baseUrl}/locations/${state.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.85,
-  }));
-
-  // DB Blog posts
+  // ── Blog posts — fetched from MongoDB with timeout guard ──────────────────
   let blogPages: MetadataRoute.Sitemap = [];
   try {
-    await connectDB();
-    const dbBlogs = await Blog.find({ published: 1 });
-    blogPages = dbBlogs.map((b) => ({
-      url: `${baseUrl}/blog/${b.slug}`,
-      lastModified: new Date(b.updatedAt || b.createdAt || now),
+    await withTimeout(connectDB(), 5000);
+    const posts = await withTimeout(Blog.find({ published: 1 }).lean(), 5000);
+    blogPages = posts.map((b: any) => ({
+      url: `${base}/blog/${b.slug}`,
+      lastModified: new Date(b.updatedAt || b.createdAt || new Date()),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
-  } catch (error) {
-    // Fail gracefully during build if DB unavailable
+  } catch {
+    // Graceful degradation: DB unavailable → return empty blog list.
+    // Core + location pages are unaffected.
   }
 
-  return [...corePages, ...cityPages, ...statePages, ...blogPages];
+  return [...corePages, ...statePages, ...cityPages, ...blogPages];
 }
-

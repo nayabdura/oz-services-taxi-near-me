@@ -4,5 +4,13 @@
       "path": "/api/cron/booking-reminders",
       "schedule": "0 13 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "header", "key": "x-forwarded-proto", "value": "http" }],
+      "destination": "https://www.oztaxinearme.com/$1",
+      "permanent": true
+    }
   ]
 }
