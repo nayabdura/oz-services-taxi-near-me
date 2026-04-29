@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Oz Services Taxi",
     title: "Oz Services | Taxi Near Me – Book a Cab 24/7 Across the USA",
     description:
-      "Oz Services – America's most reliable taxi near me. Airport transfers, city rides, corporate accounts. Serving all 50 USA states 24/7. No surge pricing. Call 407-793-8143.",
+      "Oz Services – America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving in all USA states 24/7. No surge pricing. Call 407-793-8143.",
     images: [
       {
         url: "https://www.oztaxinearme.com/og-image.jpg",
