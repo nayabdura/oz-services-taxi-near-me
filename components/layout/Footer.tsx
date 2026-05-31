@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden border border-slate-800 relative bg-white">
-                <Image src="/logo.png" alt="Oz Services Logo" fill className="object-cover" />
+                <Image src="/logo.png" alt="Oz Services Logo" width={48} height={48} className="object-cover" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-black text-slate-900 text-2xl leading-none tracking-tight font-heading">
@@ -67,8 +67,12 @@ export default function Footer() {
               America&apos;s premier nationwide taxi service network. Fast, reliable, and affordable rides available 24/7 across all USA states. We specialize in seamless airport transfers, safe local transportation, and unmatched corporate travel solutions.
             </p>
             <div className="flex gap-4">
-              {[FiFacebook, FiTwitter, FiInstagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-slate-200 hover:bg-blue-600 hover:text-white text-slate-600 flex items-center justify-center transition-all">
+              {[
+                { Icon: FiFacebook, label: "Facebook" },
+                { Icon: FiTwitter, label: "Twitter" },
+                { Icon: FiInstagram, label: "Instagram" }
+              ].map(({ Icon, label }, i) => (
+                <a key={i} href="#" aria-label={`Visit our ${label} page`} className="w-10 h-10 rounded-full bg-slate-200 hover:bg-blue-600 hover:text-white text-slate-600 flex items-center justify-center transition-all">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}

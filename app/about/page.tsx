@@ -8,12 +8,31 @@ export const metadata: Metadata = {
   description:
     "Oz Services is a licensed, 24/7 taxi company serving passengers across the USA. Learn about how we started, what we stand for, and why thousands of travelers book with us again and again.",
   alternates: {
-    canonical: "/about",
+    canonical: "https://www.oztaxinearme.com/about",
   },
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.oztaxinearme.com/about",
+    siteName: "Oz Services Taxi",
     title: "About Oz Services | Trusted Taxi Company Across the USA",
     description:
       "A licensed 24/7 taxi company with vetted drivers, honest pricing, and service across the USA. Airport transfers, city rides, and corporate travel.",
+    images: [
+      {
+        url: "https://www.oztaxinearme.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Oz Services Taxi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Oz Services | Trusted Taxi Company Across the USA",
+    description:
+      "A licensed 24/7 taxi company with vetted drivers, honest pricing, and service across the USA. Airport transfers, city rides, and corporate travel.",
+    images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
 

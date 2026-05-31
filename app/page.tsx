@@ -21,20 +21,24 @@ export const metadata: Metadata = {
     ],
   },
 };
+import dynamic from "next/dynamic";
 import ServicesOverview from "@/components/home/ServicesOverview";
-import StatsSection from "@/components/home/StatsSection";
-import WhyChooseUs from "@/components/home/WhyChooseUs";
-import FleetShowcase from "@/components/home/FleetShowcase";
-import ServiceAreasSection from "@/components/home/ServiceAreasSection";
-import Testimonials from "@/components/home/Testimonials";
-import PricingPreview from "@/components/home/PricingPreview";
-import FAQSection from "@/components/home/FAQSection";
-import BlogPreview from "@/components/home/BlogPreview";
-import CTASection from "@/components/home/CTASection";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+
+const WhyChooseUs = dynamic(() => import("@/components/home/WhyChooseUs"));
+const FleetShowcase = dynamic(() => import("@/components/home/FleetShowcase"));
+const StatsSection = dynamic(() => import("@/components/home/StatsSection"));
+const ServiceAreasSection = dynamic(() => import("@/components/home/ServiceAreasSection"));
+const Testimonials = dynamic(() => import("@/components/home/Testimonials"));
+const PricingPreview = dynamic(() => import("@/components/home/PricingPreview"));
+const FAQSection = dynamic(() => import("@/components/home/FAQSection"));
+const BlogPreview = dynamic(() => import("@/components/home/BlogPreview"));
+const CTASection = dynamic(() => import("@/components/home/CTASection"));
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <LocalBusinessSchema />
       <HeroSection />
       <ServicesOverview />
       <WhyChooseUs />

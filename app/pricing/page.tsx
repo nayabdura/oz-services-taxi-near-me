@@ -6,11 +6,30 @@ export const metadata: Metadata = {
   title: "Taxi Pricing | No Surge Fees, No Hidden Charges | Oz Services USA",
   description:
     "Oz Services publishes full taxi fare rates so you always know what you are paying. Economy, Premium, and Luxury options available. No surge pricing. No hidden fees. Airport transfers, city rides, and corporate travel across the USA.",
-  alternates: { canonical: "/pricing" },
+  alternates: { canonical: "https://www.oztaxinearme.com/pricing" },
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.oztaxinearme.com/pricing",
+    siteName: "Oz Services Taxi",
     title: "Taxi Pricing | No Hidden Fees | Oz Services USA",
     description:
       "Straightforward taxi fares across the USA. No surge pricing. No hidden charges. You see the full price before you book.",
+    images: [
+      {
+        url: "https://www.oztaxinearme.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Taxi Pricing - Oz Services Taxi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Taxi Pricing | No Hidden Fees | Oz Services USA",
+    description:
+      "Straightforward taxi fares across the USA. No surge pricing. No hidden charges. You see the full price before you book.",
+    images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
 

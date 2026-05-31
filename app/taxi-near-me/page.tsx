@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
   description:
     "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143.",
-  alternates: { canonical: "/taxi-near-me" },
+  alternates: { canonical: "https://www.oztaxinearme.com/taxi-near-me" },
   keywords: [
     "taxi near me",
     "cab near me",
@@ -20,9 +20,26 @@ export const metadata: Metadata = {
     "Oz Services taxi near me",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.oztaxinearme.com/taxi-near-me",
+    siteName: "Oz Services Taxi",
     title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
     description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24 hours a day across all 50 states.",
-    url: `${BASE}/taxi-near-me`,
+    images: [
+      {
+        url: "https://www.oztaxinearme.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Taxi Near Me - Oz Services Taxi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
+    description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24 hours a day across all 50 states.",
+    images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
 

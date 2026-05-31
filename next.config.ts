@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { USA_CITIES } from "./lib/data/cities";
 
 const nextConfig: NextConfig = {
   images: {
@@ -16,26 +17,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["framer-motion", "react-icons"],
   },
   async redirects() {
-    return [
-      // ── Legacy flat city URLs → correct nested location URLs (301 permanent) ──
-      // These old URLs are recorded in Google's index as 404s after the URL migration.
-      // 301 tells Google to permanently update its records to the new canonical URLs.
-      {
-        source: "/taxi-in-richmond",
-        destination: "/locations/virginia/taxi-in-richmond",
-        permanent: true,
-      },
-      {
-        source: "/taxi-in-oklahoma-city",
-        destination: "/locations/oklahoma/taxi-in-oklahoma-city",
-        permanent: true,
-      },
-      {
-        source: "/taxi-in-honolulu",
-        destination: "/locations/hawaii/taxi-in-honolulu",
-        permanent: true,
-      },
-    ];
+    return USA_CITIES.map((city) => ({
+      source: `/taxi-in-${city.slug}`,
+      destination: `/locations/${city.stateSlug}/taxi-in-${city.slug}`,
+      permanent: true,
+    }));
   },
   async headers() {
     return [
@@ -47,6 +33,10 @@ const nextConfig: NextConfig = {
           { key: "X-XSS-Protection", value: "1; mode=block" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
+          {
+            key: "Content-Security-Policy",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' blob: data: https://*.googleusercontent.com https://*.unsplash.com https://res.cloudinary.com https://www.oztaxinearme.com https://oztaxinearme.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.vercel-analytics.com https://*.google-analytics.com https://vitals.vercel-insights.com; frame-src 'self'; object-src 'none';",
+          },
         ],
       },
     ];

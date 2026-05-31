@@ -74,6 +74,7 @@ export default function ServicesOverview() {
               </p>
               <Link
                 href={srv.link}
+                aria-label={`Learn more about ${srv.title}`}
                 className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-sm group-hover:gap-2.5 transition-all"
               >
                 Learn more <span>→</span>

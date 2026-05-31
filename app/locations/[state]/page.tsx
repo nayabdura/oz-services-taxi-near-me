@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { USA_STATES } from "@/lib/data/states";
+import { USA_CITIES } from "@/lib/data/cities";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FiMapPin, FiClock, FiStar, FiPhoneCall, FiChevronRight } from "react-icons/fi";
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { name } = stateObj;
   const { title, metaDescription } = generateStateContent(name);
+  const canonicalUrl = `https://www.oztaxinearme.com/locations/${stateObj.slug}`;
 
   return {
     title,
@@ -40,12 +42,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `24/7 taxi ${name}`,
     ],
     alternates: {
-      canonical: `https://www.oztaxinearme.com/locations/${resolvedParams.state}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: canonicalUrl,
+      siteName: "Oz Services Taxi",
       title,
       description: metaDescription,
-      url: `https://www.oztaxinearme.com/locations/${resolvedParams.state}`,
+      images: [
+        {
+          url: "https://www.oztaxinearme.com/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: `Oz Services Taxi - Professional Cab Service in ${name}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: metaDescription,
+      images: ["https://www.oztaxinearme.com/og-image.jpg"],
     },
   };
 }
@@ -129,21 +148,21 @@ export default async function LocationPage({ params }: Props) {
               <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-6">
                 <FiClock className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Available 24/7 in {name}</h3>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">Available 24/7 in {name}</h2>
               <p className="text-slate-600">Our dispatch center operates round-the-clock. Day or night, rain or shine, we have drivers stationed across {name} ready to assist.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-6">
                 <FiStar className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Top-Rated Drivers</h3>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">Top-Rated Drivers</h2>
               <p className="text-slate-600">Travel safely with our fully vetted, licensed, and insured professional drivers who know the local routes of {name} perfectly.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-6">
                 <FiMapPin className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Airport & Local Transfers</h3>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">Airport & Local Transfers</h2>
               <p className="text-slate-600">From major international airports to local suburban addresses, we provide comprehensive ground transportation across the entire state.</p>
             </div>
           </div>
@@ -184,6 +203,36 @@ export default async function LocationPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Cities We Serve Dynamic Directory Section to fix GSC Orphan URLs */}
+      {(() => {
+        const stateCities = USA_CITIES.filter(
+          (c) => c.stateSlug.toLowerCase() === stateObj.slug.toLowerCase()
+        );
+        if (stateCities.length === 0) return null;
+        return (
+          <section className="py-20 bg-white border-t border-slate-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <h2 className="text-3xl font-black text-slate-900 font-heading mb-4">Cities We Serve in {name}</h2>
+                <p className="text-slate-600">Select a city below to view local cab rates, airport pickup services, and fast 24/7 booking forms.</p>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {stateCities.map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/locations/${stateObj.slug}/taxi-in-${city.slug}`}
+                    className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                  >
+                    <div className="text-slate-800 font-bold text-sm group-hover:text-blue-700 transition-colors">
+                      Taxi in {city.name}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* GEO AI FAQ Section */}
       <section className="py-20 bg-slate-50">

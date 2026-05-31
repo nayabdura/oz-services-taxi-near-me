@@ -28,12 +28,13 @@ export default function BookingWidget() {
       <form onSubmit={handleBook} className="p-6 space-y-5">
         {/* Pickup */}
         <div>
-          <label className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+          <label htmlFor="pickup-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
             Pickup Location
           </label>
           <div className="relative">
             <FiMapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-600 w-4 h-4 pointer-events-none" />
             <input
+              id="pickup-input"
               type="text"
               required
               value={pickup}
@@ -46,12 +47,13 @@ export default function BookingWidget() {
 
         {/* Dropoff */}
         <div>
-          <label className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+          <label htmlFor="dropoff-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
             Drop-off Destination
           </label>
           <div className="relative">
             <FiMapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
             <input
+              id="dropoff-input"
               type="text"
               required
               value={dropoff}
@@ -65,12 +67,13 @@ export default function BookingWidget() {
         {/* Date and Time Row */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+            <label htmlFor="date-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
               Date
             </label>
             <div className="relative">
               <FiCalendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
               <input
+                id="date-input"
                 type="date"
                 required
                 value={date}
@@ -81,12 +84,13 @@ export default function BookingWidget() {
             </div>
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+            <label htmlFor="time-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
               Time
             </label>
             <div className="relative">
               <FiClock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
               <input
+                id="time-input"
                 type="time"
                 className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-3 py-3 font-medium focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 transition-all"
               />

@@ -25,10 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { name, state, airport } = cityObj;
   const airportText = airport ? ` | ${airport} Airport Transfers` : "";
+  const title = `Taxi in ${name}${airportText} | Oz Services — 24/7 Cab Booking`;
+  const description = `Need a taxi in ${name}, ${state}? Oz Services provides professional cab service in ${name} around the clock with no surge pricing. Airport transfers, city rides and corporate travel. Call 407-793-8143.`;
+  const canonicalUrl = `https://www.oztaxinearme.com/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}`;
 
   return {
-    title: `Taxi in ${name}${airportText} | Oz Services — 24/7 Cab Booking`,
-    description: `Need a taxi in ${name}, ${state}? Oz Services provides professional cab service in ${name} around the clock with no surge pricing. Airport transfers, city rides and corporate travel. Call 407-793-8143.`,
+    title,
+    description,
     keywords: [
       `taxi in ${name}`,
       `${name} taxi near me`,
@@ -39,11 +42,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `Oz Services ${name}`,
       ...(airport ? [`airport taxi ${name}`, `${airport} airport taxi`] : []),
     ],
-    alternates: { canonical: `https://www.oztaxinearme.com/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}` },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `Taxi in ${name} | Oz Services — 24/7 Cab Service`,
-      description: `Professional taxi service in ${name}, ${state}. No surge pricing. Airport transfers and local rides available 24 hours a day.`,
-      url: `${BASE}/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}`,
+      type: "website",
+      locale: "en_US",
+      url: canonicalUrl,
+      siteName: "Oz Services Taxi",
+      title,
+      description,
+      images: [
+        {
+          url: "https://www.oztaxinearme.com/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: `Oz Services Taxi - Cab Services in ${name}, ${state}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://www.oztaxinearme.com/og-image.jpg"],
     },
   };
 }
@@ -186,7 +206,7 @@ export default async function CityTaxiPage({ params }: Props) {
                   <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-5">
                     {icon}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
+                  <h2 className="text-xl font-bold text-slate-900 mb-3">{title}</h2>
                   <p className="text-slate-600 text-[15px] leading-relaxed">{desc}</p>
                 </div>
               ))}

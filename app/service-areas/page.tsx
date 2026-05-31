@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiMapPin, FiPhone } from "react-icons/fi";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { USA_STATES } from "@/lib/data/states";
 
 const BASE = "https://www.oztaxinearme.com";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
   description:
     "Oz Services provides professional taxi service across all 50 US states. From New York to Los Angeles, Chicago to Miami — find your city and book a cab online or call 407-793-8143.",
-  alternates: { canonical: "/service-areas" },
+  alternates: { canonical: "https://www.oztaxinearme.com/service-areas" },
   keywords: [
     "taxi service USA",
     "Oz Services service areas",
@@ -17,6 +18,28 @@ export const metadata: Metadata = {
     "nationwide taxi USA",
     "taxi in USA",
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.oztaxinearme.com/service-areas",
+    siteName: "Oz Services Taxi",
+    title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
+    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143.",
+    images: [
+      {
+        url: "https://www.oztaxinearme.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Oz Services Taxi - Nationwide USA Service Areas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
+    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143.",
+    images: ["https://www.oztaxinearme.com/og-image.jpg"],
+  },
 };
 
 const BASE_URL = "https://www.oztaxinearme.com";
@@ -187,6 +210,24 @@ export default function ServiceAreasPage() {
                 <a href="tel:4077938143" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-colors">
                   <FiPhone /> Call 407-793-8143
                 </a>
+              </div>
+            </div>
+
+            {/* Browse All States Grid to completely resolve GSC state-level Orphan URLs */}
+            <div className="mt-20 border-t border-slate-200 pt-16">
+              <h2 className="text-slate-900 font-black text-2xl font-heading mb-8 text-center">Browse Taxi Services by State</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                {USA_STATES.map((state) => (
+                  <Link
+                    key={state.slug}
+                    href={`/locations/${state.slug}`}
+                    className="bg-white border border-slate-200 rounded-xl px-4 py-3 text-center hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                  >
+                    <span className="text-slate-700 font-bold text-sm group-hover:text-blue-700 transition-colors">
+                      Taxi in {state.name}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
 
