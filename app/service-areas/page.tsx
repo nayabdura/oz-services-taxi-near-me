@@ -9,7 +9,7 @@ const BASE = "https://www.oztaxinearme.com";
 export const metadata: Metadata = {
   title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
   description:
-    "Oz Services provides professional taxi service across all 50 US states. From New York to Los Angeles, Chicago to Miami — find your city and book a cab online or call 407-793-8143.",
+    "Oz Services provides professional taxi service across all 50 US states. From New York to Los Angeles, Chicago to Miami — find your city and book a cab online or call 407-793-8143 or (407) 967-603.",
   alternates: { canonical: "https://www.oztaxinearme.com/service-areas" },
   keywords: [
     "taxi service USA",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "https://www.oztaxinearme.com/service-areas",
     siteName: "Oz Services Taxi",
     title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
-    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143.",
+    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143 or (407) 967-603.",
     images: [
       {
         url: "https://www.oztaxinearme.com/og-image.jpg",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
-    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143.",
+    description: "Oz Services provides professional taxi service across all 50 US states. Book a cab online or call 407-793-8143 or (407) 967-603.",
     images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
@@ -146,11 +146,14 @@ export default function ServiceAreasPage() {
               From coast to coast, Oz Services has professional drivers ready to pick you up anywhere in the United States — 24/7, with zero surge pricing. Click any city for local details.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/booking" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors">
+              <Link href="/booking" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-xl transition-colors text-sm whitespace-nowrap">
                 Book Your Taxi
               </Link>
-              <a href="tel:4077938143" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-7 py-3.5 rounded-xl border border-white/20 transition-colors">
+              <a href="tel:4077938143" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-5 py-3 rounded-xl border border-white/20 transition-colors text-sm whitespace-nowrap">
                 <FiPhone className="w-4 h-4" /> Call 407-793-8143
+              </a>
+              <a href="tel:407967603" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-5 py-3 rounded-xl border border-white/20 transition-colors text-sm whitespace-nowrap">
+                <FiPhone className="w-4 h-4" /> Call (407) 967-603
               </a>
             </div>
           </div>
@@ -204,11 +207,14 @@ export default function ServiceAreasPage() {
                 Oz Services covers all 50 states! Contact our dispatcher to confirm availability in your specific location anywhere in the USA.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors">
+                <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap">
                   Contact Us
                 </Link>
-                <a href="tel:4077938143" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-colors">
+                <a href="tel:4077938143" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-5 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap">
                   <FiPhone /> Call 407-793-8143
+                </a>
+                <a href="tel:407967603" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold px-5 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap">
+                  <FiPhone /> Call (407) 967-603
                 </a>
               </div>
             </div>

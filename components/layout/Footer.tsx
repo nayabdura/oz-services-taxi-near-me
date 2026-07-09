@@ -6,6 +6,8 @@ import { FiPhone, FiMail, FiMapPin, FiFacebook, FiTwitter, FiInstagram, FiArrowR
 
 const PHONE = "407-793-8143";
 const PHONE_TEL = "4077938143";
+const PHONE_2 = "(407) 967-603";
+const PHONE_2_TEL = "407967603";
 
 const footerLinks = {
   company: [
@@ -128,15 +130,16 @@ export default function Footer() {
               <h4 className="text-slate-900 font-bold mb-6 text-sm uppercase tracking-widest">Get in Touch</h4>
               <ul className="space-y-5">
                 <li>
-                  <a href={`tel:${PHONE_TEL}`} className="flex items-start gap-4 text-slate-600 hover:text-blue-600 transition-colors group">
+                  <div className="flex items-start gap-4 text-slate-600 group">
                     <div className="mt-1 shrink-0">
                       <FiPhone className="w-5 h-5 text-blue-600" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Call 24/7 Dispatch</span>
-                      <span className="text-sm font-bold text-slate-900">{PHONE}</span>
+                      <a href={`tel:${PHONE_TEL}`} className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">{PHONE}</a>
+                      <a href={`tel:${PHONE_2_TEL}`} className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">{PHONE_2}</a>
                     </div>
-                  </a>
+                  </div>
                 </li>
                 <li>
                   <a href="mailto:Ozaseel1978@gmail.com" className="flex items-start gap-4 text-slate-600 hover:text-blue-600 transition-colors group">
@@ -178,13 +181,19 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row w-full md:w-auto gap-4">
             <a
               href={`tel:${PHONE_TEL}`}
-              className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-500 transition-all text-center shadow-lg shadow-blue-600/20"
+              className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-6 py-4 rounded-xl hover:bg-blue-500 transition-all text-center shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
             >
               <FiPhone className="w-5 h-5" /> Call {PHONE}
             </a>
+            <a
+              href={`tel:${PHONE_2_TEL}`}
+              className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-6 py-4 rounded-xl hover:bg-blue-500 transition-all text-center shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
+            >
+              <FiPhone className="w-5 h-5" /> Call {PHONE_2}
+            </a>
             <Link
               href="/booking"
-              className="flex items-center justify-center gap-2 bg-slate-800 text-white font-bold px-8 py-4 rounded-xl hover:bg-slate-700 transition-all text-center"
+              className="flex items-center justify-center gap-2 bg-slate-800 text-white font-bold px-6 py-4 rounded-xl hover:bg-slate-700 transition-all text-center text-sm whitespace-nowrap"
             >
               Book Online Now <FiArrowRight className="w-5 h-5" />
             </Link>

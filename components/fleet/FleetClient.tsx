@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiPhoneCall, FiCalendar, FiCheckCircle } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,6 +17,7 @@ interface FleetCar {
 export default function FleetClient() {
   const [fleet, setFleet] = useState<FleetCar[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeCallId, setActiveCallId] = useState<number | null>(null);
 
   useEffect(() => {
     fetchFleet();
@@ -145,14 +146,51 @@ export default function FleetClient() {
                   </p>
 
                   {/* Actions */}
-                  <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-6 border-t border-slate-100">
-                    <a 
-                      href="tel:4077938143"
+                  <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-6 border-t border-slate-100 relative">
+                    <AnimatePresence>
+                      {activeCallId === car.id && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-slate-200 rounded-xl p-2 z-20 flex flex-col gap-1 shadow-2xl"
+                        >
+                          <a
+                            href="tel:4077938143"
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors border border-transparent"
+                          >
+                            <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
+                            Call 407-793-8143
+                          </a>
+                          <a
+                            href="tel:407967603"
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors border border-transparent"
+                          >
+                            <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
+                            Call (407) 967-603
+                          </a>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveCallId(null);
+                            }}
+                            className="text-[10px] text-slate-400 hover:text-slate-600 mt-1 border-t border-slate-100 pt-1"
+                          >
+                            Cancel
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCallId(activeCallId === car.id ? null : car.id);
+                      }}
                       className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl transition-colors text-sm"
                     >
                       <FiPhoneCall className="w-4 h-4" />
                       <span>Call Now</span>
-                    </a>
+                    </button>
                     <Link
                       href="/booking"
                       className="flex-1 flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-3.5 px-4 rounded-xl transition-colors border border-slate-200 text-sm"
@@ -175,13 +213,22 @@ export default function FleetClient() {
         </div>
         <h2 className="text-3xl font-bold text-slate-900 mb-4">Need a specific vehicle?</h2>
         <p className="text-slate-600 mb-8">Call our dispatcher directly and we'll ensure you get the exact ride you want anywhere in the USA.</p>
-        <a 
-          href="tel:4077938143"
-          className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-        >
-          <FiPhoneCall className="w-5 h-5" />
-          <span>Call Dispatch: 407-793-8143</span>
-        </a>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="tel:4077938143"
+            className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-sm whitespace-nowrap"
+          >
+            <FiPhoneCall className="w-5 h-5" />
+            <span>Call Dispatch: 407-793-8143</span>
+          </a>
+          <a 
+            href="tel:407967603"
+            className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-sm whitespace-nowrap"
+          >
+            <FiPhoneCall className="w-5 h-5" />
+            <span>Call Dispatch: (407) 967-603</span>
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { FiUsers, FiStar, FiArrowRight, FiPhoneCall } from "react-icons/fi";
@@ -68,6 +69,7 @@ const vehicles = [
 ];
 
 export default function FleetShowcase() {
+  const [activeCallId, setActiveCallId] = useState<number | null>(null);
   return (
     <section className="py-24 bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -156,13 +158,50 @@ export default function FleetShowcase() {
               {/* Card body */}
               <div className="bg-slate-900 border border-slate-800 p-5 rounded-b-2xl">
                 <p className="text-slate-400 text-sm leading-relaxed mb-5">{car.description}</p>
-                <div className="flex gap-3">
-                  <a
-                    href="tel:4077938143"
+                <div className="flex gap-3 relative">
+                  <AnimatePresence>
+                    {activeCallId === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute bottom-full left-0 right-0 mb-2 bg-slate-900 border border-slate-800 rounded-xl p-2 z-20 flex flex-col gap-1 shadow-2xl"
+                      >
+                        <a
+                          href="tel:4077938143"
+                          className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors border border-transparent hover:border-slate-700"
+                        >
+                          <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
+                          Call 407-793-8143
+                        </a>
+                        <a
+                          href="tel:407967603"
+                          className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors border border-transparent hover:border-slate-700"
+                        >
+                          <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
+                          Call (407) 967-603
+                        </a>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveCallId(null);
+                          }}
+                          className="text-[10px] text-slate-500 hover:text-slate-300 mt-1 border-t border-slate-800 pt-1"
+                        >
+                          Cancel
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveCallId(activeCallId === index ? null : index);
+                    }}
                     className="flex-1 flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py-2.5 rounded-xl transition-colors border border-slate-700"
                   >
                     <FiPhoneCall className="w-4 h-4" /> Call Now
-                  </a>
+                  </button>
                   <Link
                     href="/booking"
                     className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold py-2.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20"

@@ -26,18 +26,24 @@ export default function CTASection() {
           Call us or book online and a professional driver will be on the way to you within minutes. No app to download. No surge pricing. Just a reliable ride, anywhere in the USA.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap items-center">
           <Link
             href="/booking"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-base px-9 py-4 rounded-xl transition-colors shadow-xl shadow-blue-600/30 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-7 py-4 rounded-xl transition-colors shadow-xl shadow-blue-600/30 active:scale-95 whitespace-nowrap"
           >
             Book Online — It is Instant
           </Link>
           <a
             href="tel:4077938143"
-            className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold text-base px-9 py-4 rounded-xl border border-white/20 transition-colors backdrop-blur-sm active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold text-sm px-7 py-4 rounded-xl border border-white/20 transition-colors backdrop-blur-sm active:scale-95 whitespace-nowrap"
           >
             📞 Call 407-793-8143
+          </a>
+          <a
+            href="tel:407967603"
+            className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold text-sm px-7 py-4 rounded-xl border border-white/20 transition-colors backdrop-blur-sm active:scale-95 whitespace-nowrap"
+          >
+            📞 Call (407) 967-603
           </a>
         </div>
 

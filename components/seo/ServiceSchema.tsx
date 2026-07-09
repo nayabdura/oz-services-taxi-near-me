@@ -8,7 +8,7 @@ export default function ServiceSchema() {
     description:
       "Professional 24/7 taxi and ground transportation services across all 50 US states. Includes airport transfers, corporate travel, local city rides, late-night pickups, and long-distance routes.",
     url: "https://www.oztaxinearme.com",
-    telephone: "+1-407-793-8143",
+    telephone: ["+1-407-793-8143", "+1-407-967-603"],
     priceRange: "$8 - $20 base fare",
     currenciesAccepted: "USD",
     paymentAccepted: "Cash, Credit Card",
@@ -22,7 +22,7 @@ export default function ServiceSchema() {
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: "https://www.oztaxinearme.com/booking",
-      servicePhone: "+1-407-793-8143",
+      servicePhone: ["+1-407-793-8143", "+1-407-967-603"],
       availableLanguage: "en",
     },
     hasOfferCatalog: {

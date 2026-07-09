@@ -133,12 +133,20 @@ export default function ServicesPage() {
             </h2>
             <p className="text-blue-100 font-medium">Call our dispatchers and we'll match you with the right vehicle immediately.</p>
           </div>
-          <a
-            href="tel:4077938143"
-            className="inline-flex items-center gap-2 bg-white text-blue-600 font-bold px-7 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap flex-shrink-0 text-sm active:scale-95"
-          >
-            📞 Call 407-793-8143
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+            <a
+              href="tel:4077938143"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap text-sm active:scale-95"
+            >
+              📞 Call 407-793-8143
+            </a>
+            <a
+              href="tel:407967603"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap text-sm active:scale-95"
+            >
+              📞 Call (407) 967-603
+            </a>
+          </div>
         </div>
       </section>
     </div>

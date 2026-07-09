@@ -9,7 +9,7 @@ const BASE = "https://www.oztaxinearme.com";
 export const metadata: Metadata = {
   title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
   description:
-    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143.",
+    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143 or (407) 967-603.",
   alternates: { canonical: "https://www.oztaxinearme.com/taxi-near-me" },
   keywords: [
     "taxi near me",
@@ -68,7 +68,7 @@ const cities = [
 const faqs = [
   {
     question: "How do I find a taxi near me right now?",
-    answer: "Call Oz Services at 407-793-8143 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready to be dispatched 24 hours a day.",
+    answer: "Call Oz Services at 407-793-8143 or (407) 967-603 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready to be dispatched 24 hours a day.",
   },
   {
     question: "What is the best taxi service near me in the USA?",
@@ -108,7 +108,7 @@ export default function TaxiNearMePage() {
             name: "Oz Services – Taxi Near Me",
             alternateName: "Oz Services",
             url: `${BASE}/taxi-near-me`,
-            telephone: "+1-407-793-8143",
+            telephone: ["+1-407-793-8143", "+1-407-967-603"],
             priceRange: "$8 - $20",
             openingHours: "Mo-Su 00:00-23:59",
             areaServed: { "@type": "Country", name: "US" },
@@ -134,9 +134,15 @@ export default function TaxiNearMePage() {
                 <div className="flex flex-wrap gap-4 mb-8">
                   <a
                     href="tel:4077938143"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-sm active:scale-95"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-xs whitespace-nowrap active:scale-95"
                   >
-                    📞 Call Oz Services: 407-793-8143
+                    📞 Call 407-793-8143
+                  </a>
+                  <a
+                    href="tel:407967603"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-xs whitespace-nowrap active:scale-95"
+                  >
+                    📞 Call (407) 967-603
                   </a>
                   <Link
                     href="/booking"
@@ -245,6 +251,8 @@ export default function TaxiNearMePage() {
               <Link href="/booking" className="text-blue-600 font-semibold hover:underline">Book your Oz Services taxi online</Link>{" "}
               or call{" "}
               <a href="tel:4077938143" className="text-blue-600 font-semibold hover:underline">407-793-8143</a>{" "}
+              or{" "}
+              <a href="tel:407967603" className="text-blue-600 font-semibold hover:underline">(407) 967-603</a>{" "}
               to speak with a live dispatcher right now.
             </p>
           </div>
@@ -283,9 +291,15 @@ export default function TaxiNearMePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-10 py-5 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-lg hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
             >
               📞 Call 407-793-8143
+            </a>
+            <a
+              href="tel:407967603"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
+            >
+              📞 Call (407) 967-603
             </a>
             <Link
               href="/booking"

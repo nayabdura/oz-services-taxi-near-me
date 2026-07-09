@@ -30,7 +30,7 @@ export default function OrganizationSchema() {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-407-793-8143",
+      telephone: ["+1-407-793-8143", "+1-407-967-603"],
       contactType: "customer service",
       areaServed: "US",
       availableLanguage: "en",

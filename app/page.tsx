@@ -4,7 +4,7 @@ import HeroSection from "@/components/home/HeroSection";
 export const metadata: Metadata = {
   title: "Oz Services | Taxi Near Me — Book a Cab 24/7 Across the USA",
   description:
-    "Oz Services is a trusted 24/7 taxi company serving passengers across the USA. Book a ride for airport transfers, city trips, corporate travel, or a late night pickup. No surge pricing. Call 407-793-8143 or book online.",
+    "Oz Services is a trusted 24/7 taxi company serving passengers across the USA. Book a ride for airport transfers, city trips, corporate travel, or a late night pickup. No surge pricing. Call 407-793-8143 or (407) 967-603 or book online.",
   alternates: { canonical: "/" },
   openGraph: {
     url: "https://www.oztaxinearme.com/",

@@ -202,15 +202,21 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors text-sm active:scale-95"
+              className="inline-flex items-center justify-center bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors text-sm active:scale-95 whitespace-nowrap"
             >
               Book a Taxi Now
             </Link>
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center text-white font-bold px-8 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm"
+              className="inline-flex items-center justify-center text-white font-bold px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm whitespace-nowrap"
             >
               📞 Call 407-793-8143
+            </a>
+            <a
+              href="tel:407967603"
+              className="inline-flex items-center justify-center text-white font-bold px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm whitespace-nowrap"
+            >
+              📞 Call (407) 967-603
             </a>
           </div>
         </div>

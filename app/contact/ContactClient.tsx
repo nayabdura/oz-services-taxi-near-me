@@ -43,31 +43,49 @@ export default function ContactClient() {
       <section className="section bg-gray-50 border-t border-gray-200">
         <div className="container">
           <div className="grid lg:grid-cols-3 gap-10">
-            {/* Contact Info */}
             <div className="space-y-5">
               {[
-                { icon: FiPhone, title: "Phone", value: "+1 407 793 8143", href: "tel:+14077938143", sub: "Available 24/7" },
+                { 
+                  icon: FiPhone, 
+                  title: "Phone", 
+                  phones: [
+                    { label: "+1 407 793 8143", href: "tel:+14077938143" },
+                    { label: "(407) 967-603", href: "tel:+1407967603" }
+                  ], 
+                  sub: "Available 24/7" 
+                },
                 { icon: FiMail, title: "Email", value: "Ozaseel1978@gmail.com", href: "mailto:Ozaseel1978@gmail.com", sub: "Reply within 4 hours" },
                 { icon: FiMapPin, title: "Location", value: "Nationwide USA", href: "#", sub: "Serving all states" },
                 { icon: FiClock, title: "Hours", value: "Open 24/7", href: "#", sub: "Every day of the year" },
               ].map((item) => (
-                <motion.a
+                <motion.div
                   key={item.title}
-                  href={item.href}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="glass-card bg-white p-6 flex items-center gap-5 hover:border-blue-500 transition-all block group shadow-sm hover:shadow-md"
+                  className="glass-card bg-white p-6 flex items-center gap-5 hover:border-blue-500 transition-all group shadow-sm hover:shadow-md border border-gray-100 rounded-xl"
                 >
                   <div className="w-14 h-14 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 transition-colors">
                     <item.icon className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">{item.title}</div>
-                    <div className="text-gray-900 font-bold text-base">{item.value}</div>
+                    {item.phones ? (
+                      <div className="flex flex-col gap-0.5">
+                        {item.phones.map((phone) => (
+                          <a key={phone.href} href={phone.href} className="text-gray-900 font-bold text-base hover:text-blue-600 transition-colors block">
+                            {phone.label}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <a href={item.href} className="text-gray-900 font-bold text-base hover:text-blue-600 transition-colors block">
+                        {item.value}
+                      </a>
+                    )}
                     <div className="text-gray-500 text-sm mt-0.5">{item.sub}</div>
                   </div>
-                </motion.a>
+                </motion.div>
               ))}
             </div>
 

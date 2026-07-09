@@ -100,7 +100,7 @@ export default async function LocationPage({ params }: Props) {
             name: `Oz Services Taxi ${name}`,
             description: `Reliable and professional 24/7 taxi services across ${name}. Airport transfers, corporate travel, and local dispatch.`,
             url: `https://www.oztaxinearme.com/locations/${stateObj.slug}`,
-            telephone: "407-793-8143",
+            telephone: ["407-793-8143", "(407) 967-603"],
             image: "https://www.oztaxinearme.com/og-image.jpg",
             areaServed: {
               "@type": "State",
@@ -126,9 +126,15 @@ export default async function LocationPage({ params }: Props) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a 
               href="tel:4077938143"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-lg"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base whitespace-nowrap"
             >
-              <FiPhoneCall className="w-5 h-5" /> Call Dispatch
+              <FiPhoneCall className="w-5 h-5" /> Call 407-793-8143
+            </a>
+            <a 
+              href="tel:407967603"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base whitespace-nowrap"
+            >
+              <FiPhoneCall className="w-5 h-5" /> Call (407) 967-603
             </a>
             <Link 
               href="/booking"

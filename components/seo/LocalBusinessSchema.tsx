@@ -16,7 +16,7 @@ export default function LocalBusinessSchema() {
       url: "https://www.oztaxinearme.com/logo.png",
     },
     url: "https://www.oztaxinearme.com",
-    telephone: "+1-407-793-8143",
+    telephone: ["+1-407-793-8143", "+1-407-967-603"],
     email: "Ozaseel1978@gmail.com",
     priceRange: "$8 - $20 base fare",
     currenciesAccepted: "USD",
