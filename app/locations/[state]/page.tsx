@@ -259,15 +259,29 @@ export default async function LocationPage({ params }: Props) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 bg-blue-600 text-center px-4">
-        <h2 className="text-3xl md:text-5xl font-black text-white font-heading mb-6">Ready to ride in {name}?</h2>
-        <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">Skip the lines and unpredictable fares. Book your professional {name} taxi right now.</p>
-        <Link 
-          href="/booking"
-          className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-10 py-5 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-lg hover:scale-105"
-        >
-          Book Your Taxi Instantly
-        </Link>
+      <section className="py-20 bg-slate-900 text-center px-4 text-white">
+        <h2 className="text-3xl md:text-5xl font-black font-heading mb-6 text-white">Ready to ride in {name}?</h2>
+        <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Skip the lines and unpredictable fares. Book your professional {name} taxi right now.</p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="tel:4077938143"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl text-base whitespace-nowrap"
+          >
+            <FiPhoneCall className="w-5 h-5" /> Call 407-793-8143
+          </a>
+          <a
+            href="tel:407967603"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl text-base whitespace-nowrap"
+          >
+            <FiPhoneCall className="w-5 h-5" /> Call (407) 967-603
+          </a>
+          <Link 
+            href="/booking"
+            className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 font-bold px-8 py-4 rounded-xl hover:bg-slate-100 transition-all text-base"
+          >
+            Book Online Instantly <FiChevronRight className="w-5 h-5" />
+          </Link>
+        </div>
       </section>
     </>
   );

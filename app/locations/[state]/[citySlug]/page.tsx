@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { USA_CITIES } from "@/lib/data/cities";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import { FiPhoneCall, FiMapPin, FiStar, FiClock } from "react-icons/fi";
+import { FiPhoneCall, FiMapPin, FiStar, FiClock, FiCheck } from "react-icons/fi";
 
 const BASE = "https://www.oztaxinearme.com";
 
@@ -242,7 +242,7 @@ export default async function CityTaxiPage({ params }: Props) {
                 { label: `${state} Taxi Service`, href: `/locations/${stateSlug}`, desc: `View all Oz Services coverage areas across ${state}.` },
               ].map(({ label, href, desc }) => (
                 <li key={label} className="flex gap-3 items-start">
-                  <span className="mt-1 w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs flex-shrink-0">✓</span>
+                  <FiCheck className="w-5 h-5 text-blue-600 shrink-0 mt-1" />
                   <span className="text-slate-700">
                     <Link href={href} className="font-bold text-slate-900 hover:text-blue-600">{label}:</Link>{" "}{desc}
                   </span>
@@ -275,29 +275,29 @@ export default async function CityTaxiPage({ params }: Props) {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-20 bg-blue-600 text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-black text-white font-heading mb-6">
+        <section className="py-20 bg-slate-900 text-center px-4 text-white">
+          <h2 className="text-3xl md:text-5xl font-black font-heading mb-6 text-white">
             Book Your {name} Taxi Today
           </h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
             No surge pricing. No waiting around. Oz Services dispatches a licensed driver in {name} within minutes, any time of day or night.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl text-md whitespace-nowrap"
             >
-              📞 Call 407-793-8143
+              <FiPhoneCall className="w-5 h-5" /> Call 407-793-8143
             </a>
             <a
               href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl text-md whitespace-nowrap"
             >
-              📞 Call (407) 967-603
+              <FiPhoneCall className="w-5 h-5" /> Call (407) 967-603
             </a>
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center gap-2 bg-blue-700 text-white font-bold px-10 py-5 rounded-xl hover:bg-blue-800 transition-all text-lg border border-blue-500"
+              className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 font-bold px-8 py-4 rounded-xl hover:bg-slate-100 transition-all text-md"
             >
               Book Online →
             </Link>
