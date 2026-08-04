@@ -265,13 +265,54 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <div ref={locationsRef} className="relative">
+              <div className="relative">
                 <button
                   onClick={() => setLocationsOpen(!locationsOpen)}
-                  className="flex items-center gap-0.5 px-2 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors whitespace-nowrap"
+                  className={`flex items-center gap-0.5 px-2 py-1.5 rounded-md text-xs font-semibold transition-colors whitespace-nowrap ${
+                    pathname.startsWith("/locations")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                  }`}
                 >
-                  More <FiChevronDown className="w-3 h-3" />
+                  Locations <FiChevronDown className={`w-3 h-3 transition-transform ${locationsOpen ? "rotate-180" : ""}`} />
                 </button>
+                <AnimatePresence>
+                  {locationsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full right-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50"
+                    >
+                      <div className="p-3 border-b border-slate-100">
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Popular States &amp; Cities</p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-px bg-slate-100 p-px max-h-60 overflow-y-auto">
+                        {topStates.map((state) => (
+                          <Link
+                            key={state.slug}
+                            href={`/locations/${state.slug}`}
+                            onClick={() => setLocationsOpen(false)}
+                            className="bg-white px-3 py-2 text-xs text-slate-700 hover:text-blue-600 hover:bg-blue-50 font-medium flex items-center gap-1.5 transition-colors"
+                          >
+                            <FiMapPin className="w-3 h-3 text-blue-500 shrink-0" />
+                            {state.name}
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="p-3 border-t border-slate-100 bg-slate-50">
+                        <Link
+                          href="/service-areas"
+                          onClick={() => setLocationsOpen(false)}
+                          className="text-xs text-blue-600 hover:underline font-bold block w-full text-center"
+                        >
+                          View all 50 states &amp; cities →
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>
