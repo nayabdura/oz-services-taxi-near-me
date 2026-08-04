@@ -42,6 +42,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/contact`,                 lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7  },
     { url: `${base}/privacy-policy`,          lastModified: new Date("2026-01-01"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${base}/terms-and-conditions`,    lastModified: new Date("2026-01-01"), changeFrequency: "yearly",  priority: 0.3  },
+    { url: `${base}/taxi-melbourne`,          lastModified: new Date("2026-04-20"), changeFrequency: "monthly", priority: 0.8  },
+    { url: `${base}/taxi-geelong`,            lastModified: new Date("2026-04-20"), changeFrequency: "monthly", priority: 0.8  },
+    { url: `${base}/taxi-ballarat`,           lastModified: new Date("2026-04-20"), changeFrequency: "monthly", priority: 0.8  },
   ];
 
   // ── Location pages — 100% static from local data, no DB needed ────────────
