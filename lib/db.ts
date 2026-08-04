@@ -49,7 +49,7 @@ async function connectDB() {
 async function initSchema() {
   try {
     // ─── Seed Admin User ────────────────────────────────────────────────────────
-    const adminEmail = (process.env.ADMIN_EMAIL || 'Ozaseel1978@gmail.com').trim();
+    const adminEmail = (process.env.ADMIN_EMAIL || 'oztaxinearme@gmail.com').trim();
     const adminPassword = (process.env.ADMIN_PASSWORD || 'oz12345678').trim();
     const adminName = (process.env.ADMIN_NAME || 'Oz Services Admin').trim();
 

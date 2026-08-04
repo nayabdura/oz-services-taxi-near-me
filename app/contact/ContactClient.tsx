@@ -54,7 +54,7 @@ export default function ContactClient() {
                   ], 
                   sub: "Available 24/7" 
                 },
-                { icon: FiMail, title: "Email", value: "Ozaseel1978@gmail.com", href: "mailto:Ozaseel1978@gmail.com", sub: "Reply within 4 hours" },
+                { icon: FiMail, title: "Email", value: "oztaxinearme@gmail.com", href: "mailto:oztaxinearme@gmail.com", sub: "Reply within 4 hours" },
                 { icon: FiMapPin, title: "Location", value: "Nationwide USA", href: "#", sub: "Serving all states" },
                 { icon: FiClock, title: "Hours", value: "Open 24/7", href: "#", sub: "Every day of the year" },
               ].map((item) => (

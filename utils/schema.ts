@@ -7,7 +7,7 @@ export const localBusinessSchema = {
   description: "America's most trusted taxi service. Professional, reliable, and affordable taxi rides 24/7.",
   url: "https://www.oztaxinearme.com",
   telephone: ["+14077938143", "+1407967603"],
-  email: "Ozaseel1978@gmail.com",
+  email: "oztaxinearme@gmail.com",
   priceRange: "$$",
   currenciesAccepted: "USD",
   paymentAccepted: "Cash, Credit Card, Debit Card",
