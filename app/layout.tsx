@@ -97,6 +97,7 @@ export const metadata: Metadata = {
 };
 
 import GoogleTagManager from "@/components/seo/GoogleTagManager";
+import EntityGeoSchema from "@/components/seo/EntityGeoSchema";
 
 export default function RootLayout({
   children,
@@ -116,6 +117,7 @@ export default function RootLayout({
         <OrganizationSchema />
         <WebSiteSchema />
         <ServiceSchema />
+        <EntityGeoSchema />
       </head>
       <body>
         <Toaster

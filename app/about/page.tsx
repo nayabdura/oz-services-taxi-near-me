@@ -187,6 +187,31 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+
+          {/* EEAT Licensing & Credentials Grid */}
+          <div className="mt-16 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900 font-heading mb-3">EEAT Trust &amp; Safety Compliance</h3>
+            <p className="text-slate-600 text-xs mb-6 max-w-2xl">
+              Oz Services operates under strict Department of Transportation (DOT) compliance standards, commercial passenger insurance policies, and 2026 USA ground transport regulations:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <span className="text-blue-600 font-bold uppercase tracking-wider block mb-1">Commercial License</span>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">Fully Licensed Chauffeurs</h4>
+                <p className="text-slate-600 leading-relaxed">Every driver in our network holds active commercial passenger endorsements and undergoes annual background checks.</p>
+              </div>
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <span className="text-blue-600 font-bold uppercase tracking-wider block mb-1">Insurance &amp; Safety</span>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">$1M Commercial Liability</h4>
+                <p className="text-slate-600 leading-relaxed">Passengers are fully covered under comprehensive commercial liability insurance for total peace of mind on every journey.</p>
+              </div>
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <span className="text-blue-600 font-bold uppercase tracking-wider block mb-1">AEO &amp; Flight Tracking</span>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">Real-Time Flight Sync</h4>
+                <p className="text-slate-600 leading-relaxed">Our dispatch engine integrates live FAA flight data to adjust pickup times automatically for delayed or early arrivals.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
