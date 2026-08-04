@@ -228,6 +228,26 @@ export default function PricingPage() {
               ))}
             </div>
           </div>
+
+          {/* Internal Linking Cluster */}
+          <div className="mt-12 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900 font-heading mb-3">Explore Transportation Options</h3>
+            <p className="text-slate-600 text-xs mb-6 font-normal">Connect with our core services and travel advice:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-semibold">
+              <Link href="/taxi-near-me" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors text-slate-800 hover:text-blue-600">
+                • Taxi Near Me Dispatch →
+              </Link>
+              <Link href="/services" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors text-slate-800 hover:text-blue-600">
+                • Airport Taxi Services →
+              </Link>
+              <Link href="/fleet" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors text-slate-800 hover:text-blue-600">
+                • Executive Vehicle Fleet →
+              </Link>
+              <Link href="/booking" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors text-slate-800 hover:text-blue-600">
+                • Book a Taxi Online →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

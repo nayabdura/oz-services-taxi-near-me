@@ -222,6 +222,38 @@ export default async function BlogPostPage({ params }: Props) {
               </a>
             </div>
           </div>
+
+          {/* Internal Linking Topical Cluster */}
+          <div className="mt-8 p-6 bg-slate-900 text-white rounded-2xl">
+            <h4 className="font-bold text-base mb-2 text-white font-heading">Explore Related Taxi Services</h4>
+            <p className="text-slate-300 text-xs mb-4">Need reliable ground transportation? Discover our nationwide cab services and transparent fare options:</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <li>
+                <Link href="/taxi-near-me" className="text-blue-400 font-bold hover:underline">
+                  • Local Taxi Near Me
+                </Link>{" "}
+                — 24/7 fast city dispatch
+              </li>
+              <li>
+                <Link href="/services" className="text-blue-400 font-bold hover:underline">
+                  • Airport Taxi Transfer
+                </Link>{" "}
+                — Real-time flight tracking
+              </li>
+              <li>
+                <Link href="/pricing" className="text-blue-400 font-bold hover:underline">
+                  • Flat Rate Taxi Fares
+                </Link>{" "}
+                — Zero surge pricing guarantee
+              </li>
+              <li>
+                <Link href="/booking" className="text-blue-400 font-bold hover:underline">
+                  • Book a Taxi Online
+                </Link>{" "}
+                — Instant SMS/email confirmation
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 

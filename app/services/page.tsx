@@ -123,6 +123,33 @@ export default function ServicesPage() {
               );
             })}
           </div>
+
+          {/* Helpful Blog Guides & Articles Cluster */}
+          <div className="mt-16 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <h3 className="text-xl font-bold text-slate-900 font-heading">Helpful Travel Guides & Taxi Insights</h3>
+                <p className="text-slate-600 text-xs mt-1">Read expert advice from our logistics team before booking your ride:</p>
+              </div>
+              <Link href="/blog" className="text-blue-600 font-bold text-xs hover:underline shrink-0">
+                View All Articles →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Link href="/blog/secrets-stress-free-airport-taxi-transfers-usa" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors group">
+                <span className="text-blue-600 text-xs font-bold uppercase tracking-wider block mb-1">Airport Travel</span>
+                <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">Airport Taxi Transfer Tips</h4>
+              </Link>
+              <Link href="/blog/corporate-taxi-executive-travel-guide-usa" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors group">
+                <span className="text-blue-600 text-xs font-bold uppercase tracking-wider block mb-1">Corporate</span>
+                <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">Corporate Taxi Executive Travel Guide</h4>
+              </Link>
+              <Link href="/blog/taxi-vs-rideshare-flat-rate-guide-usa" className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500 transition-colors group">
+                <span className="text-blue-600 text-xs font-bold uppercase tracking-wider block mb-1">Pricing Guide</span>
+                <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">Flat Rate Taxi vs Rideshare Surge</h4>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
