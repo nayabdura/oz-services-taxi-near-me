@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from "react-leaflet";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import { GeoLocationConfig } from "@/lib/data/locations-geo";
-import { FiNavigation, FiPhone, FiExternalLink, FiMaximize2, FiCompass, FiCalendar } from "react-icons/fi";
+import { FiNavigation, FiPhone, FiExternalLink, FiCompass, FiCalendar } from "react-icons/fi";
 
-// SVG Taxi Marker Icon (Clean Vector Cab)
-const createTaxiSvgIcon = (cityName: string) => {
+// Safe DivIcon Generators (Client-Only Execution)
+const getTaxiSvgIcon = (cityName: string) => {
+  if (typeof window === "undefined" || !L.divIcon) return undefined;
   return L.divIcon({
     className: "custom-leaflet-marker",
     html: `
@@ -19,15 +19,13 @@ const createTaxiSvgIcon = (cityName: string) => {
         border-radius: 20px;
         font-weight: 800;
         font-size: 12px;
-        font-family: var(--font-sans, system-ui, sans-serif);
-        box-shadow: 0 8px 20px rgba(15,23,42,0.3);
+        font-family: system-ui, -apple-system, sans-serif;
+        box-shadow: 0 8px 20px rgba(15,23,42,0.35);
         display: flex;
         align-items: center;
         gap: 6px;
         border: 2px solid #2563eb;
         white-space: nowrap;
-        transform: scale(1);
-        transition: transform 0.2s ease;
       ">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
@@ -44,8 +42,8 @@ const createTaxiSvgIcon = (cityName: string) => {
   });
 };
 
-// SVG Airport Marker Icon
-const createAirportSvgIcon = (code: string) => {
+const getAirportSvgIcon = (code: string) => {
+  if (typeof window === "undefined" || !L.divIcon) return undefined;
   return L.divIcon({
     className: "custom-leaflet-marker",
     html: `
@@ -56,7 +54,7 @@ const createAirportSvgIcon = (code: string) => {
         border-radius: 18px;
         font-weight: 800;
         font-size: 11px;
-        font-family: var(--font-sans, system-ui, sans-serif);
+        font-family: system-ui, -apple-system, sans-serif;
         box-shadow: 0 6px 16px rgba(2,132,199,0.4);
         display: flex;
         align-items: center;
@@ -75,16 +73,23 @@ const createAirportSvgIcon = (code: string) => {
   });
 };
 
+// Calculate Lat/Lng Bounds from radius meters without calling Leaflet instance methods at top level
+function getRadiusBounds(lat: number, lng: number, radiusMeters: number): L.LatLngBoundsExpression {
+  const latDelta = radiusMeters / 111000;
+  const lngDelta = radiusMeters / (111000 * Math.cos((lat * Math.PI) / 180));
+  return [
+    [lat - latDelta, lng - lngDelta],
+    [lat + latDelta, lng + lngDelta],
+  ];
+}
+
 // Helper component for smooth animated flyToBounds & re-centering
 function MapRecenterAndBounds({ lat, lng, serviceRadiusMeters }: { lat: number; lng: number; serviceRadiusMeters: number }) {
   const map = useMap();
 
   useEffect(() => {
-    // Calculate bounding box based on service circle radius
-    const circle = L.circle([lat, lng], { radius: serviceRadiusMeters });
-    const bounds = circle.getBounds();
-    
-    // Smooth animated fly to bounds
+    if (!map) return;
+    const bounds = getRadiusBounds(lat, lng, serviceRadiusMeters);
     map.flyToBounds(bounds, {
       padding: [40, 40],
       duration: 1.4,
@@ -100,14 +105,16 @@ function CustomMapControls({ lat, lng, serviceRadiusMeters }: { lat: number; lng
   const map = useMap();
 
   const handleResetView = () => {
-    const circle = L.circle([lat, lng], { radius: serviceRadiusMeters });
-    map.flyToBounds(circle.getBounds(), { padding: [40, 40], duration: 1.2 });
+    if (!map) return;
+    const bounds = getRadiusBounds(lat, lng, serviceRadiusMeters);
+    map.flyToBounds(bounds, { padding: [40, 40], duration: 1.2 });
   };
 
   return (
     <div className="leaflet-top leaflet-right" style={{ marginTop: "12px", marginRight: "12px", zIndex: 1000 }}>
       <div className="flex flex-col gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-xl shadow-lg border border-slate-200/80">
         <button
+          type="button"
           onClick={handleResetView}
           title="Fit Service Area Bounds"
           className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center hover:bg-blue-600 transition-colors shadow-sm cursor-pointer"
@@ -120,14 +127,31 @@ function CustomMapControls({ lat, lng, serviceRadiusMeters }: { lat: number; lng
 }
 
 export default function LeafletMapClient({ location }: { location: GeoLocationConfig }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { name, state, lat, lng, serviceRadiusMeters, airport } = location;
+
+  const taxiIcon = useMemo(() => (mounted ? getTaxiSvgIcon(name) : undefined), [mounted, name]);
+  const airportIcon = useMemo(() => (mounted && airport ? getAirportSvgIcon(airport.code) : undefined), [mounted, airport]);
+
+  if (!mounted || typeof window === "undefined") {
+    return (
+      <div className="w-full h-full min-h-[360px] bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center text-white">
+        <span className="text-xs text-slate-400 font-semibold animate-pulse">Initializing OpenStreetMap Dispatch Engine...</span>
+      </div>
+    );
+  }
 
   const googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 
   return (
     <div className="w-full h-full relative rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 bg-slate-900 flex flex-col">
       
-      {/* Premium Header Strip */}
+      {/* Header Strip */}
       <div className="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between z-10 border-b border-slate-800">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse shrink-0 shadow-sm shadow-blue-500/50" />
@@ -159,14 +183,14 @@ export default function LeafletMapClient({ location }: { location: GeoLocationCo
           <MapRecenterAndBounds lat={lat} lng={lng} serviceRadiusMeters={serviceRadiusMeters} />
           <CustomMapControls lat={lat} lng={lng} serviceRadiusMeters={serviceRadiusMeters} />
 
-          {/* Premium CartoDB Voyager Tile Layer (100% Free, Modern Enterprise Style) */}
+          {/* Premium CartoDB Voyager Tile Layer */}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             maxZoom={19}
           />
 
-          {/* Service Area Coverage Radius Circle */}
+          {/* Service Area Circle */}
           <Circle
             center={[lat, lng]}
             radius={serviceRadiusMeters}
@@ -179,40 +203,42 @@ export default function LeafletMapClient({ location }: { location: GeoLocationCo
             }}
           />
 
-          {/* Primary City Taxi SVG Marker */}
-          <Marker position={[lat, lng]} icon={createTaxiSvgIcon(name)}>
-            <Popup className="custom-leaflet-popup">
-              <div className="p-3 text-slate-900 font-sans max-w-[240px]">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
-                    24/7 Active Zone
-                  </span>
+          {/* Primary City Taxi Marker */}
+          {taxiIcon && (
+            <Marker position={[lat, lng]} icon={taxiIcon}>
+              <Popup className="custom-leaflet-popup">
+                <div className="p-3 text-slate-900 font-sans max-w-[240px]">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
+                      24/7 Active Zone
+                    </span>
+                  </div>
+                  <h4 className="font-black text-base text-slate-900 mb-1 font-heading">Oz Services Taxi {name}</h4>
+                  <p className="text-slate-600 text-xs mb-3 leading-relaxed">
+                    Licensed taxi drivers stationed across {name}, {state} with zero surge pricing.
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 border-t border-slate-200 pt-2.5">
+                    <a
+                      href="tel:4077938143"
+                      className="inline-flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 rounded-lg transition-colors"
+                    >
+                      <FiPhone className="w-3.5 h-3.5" /> Call
+                    </a>
+                    <a
+                      href="/booking"
+                      className="inline-flex items-center justify-center gap-1 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-2 rounded-lg transition-colors"
+                    >
+                      <FiCalendar className="w-3.5 h-3.5" /> Book
+                    </a>
+                  </div>
                 </div>
-                <h4 className="font-black text-base text-slate-900 mb-1 font-heading">Oz Services Taxi {name}</h4>
-                <p className="text-slate-600 text-xs mb-3 leading-relaxed">
-                  Licensed taxi drivers stationed across {name}, {state} with zero surge pricing.
-                </p>
-                <div className="grid grid-cols-2 gap-2 border-t border-slate-200 pt-2.5">
-                  <a
-                    href="tel:4077938143"
-                    className="inline-flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 rounded-lg transition-colors"
-                  >
-                    <FiPhone className="w-3.5 h-3.5" /> Call
-                  </a>
-                  <a
-                    href="/booking"
-                    className="inline-flex items-center justify-center gap-1 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-2 rounded-lg transition-colors"
-                  >
-                    <FiCalendar className="w-3.5 h-3.5" /> Book
-                  </a>
-                </div>
-              </div>
-            </Popup>
-          </Marker>
+              </Popup>
+            </Marker>
+          )}
 
           {/* Airport SVG Marker (If applicable) */}
-          {airport && (
-            <Marker position={[airport.lat, airport.lng]} icon={createAirportSvgIcon(airport.code)}>
+          {airport && airportIcon && (
+            <Marker position={[airport.lat, airport.lng]} icon={airportIcon}>
               <Popup className="custom-leaflet-popup">
                 <div className="p-3 text-slate-900 font-sans max-w-[240px]">
                   <span className="bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider block mb-1.5">
