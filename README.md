@@ -3,7 +3,7 @@
 A professional full-stack taxi booking platform for **Oz Services**, Florida's premier 24/7 taxi network. Built with Next.js 16, SQLite, Resend email, and Tailwind CSS v4.
 
 ## 🔗 Live Site
-[ozservices.com](https://ozservices.com)
+[ozaxinearme.com](https://ozaxinearme.com)
 
 ## 🚀 Features
 - **Online Booking System** with multi-step form and instant email confirmation
