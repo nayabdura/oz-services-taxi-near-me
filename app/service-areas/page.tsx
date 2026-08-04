@@ -4,6 +4,8 @@ import { FiMapPin, FiPhone } from "react-icons/fi";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { USA_STATES } from "@/lib/data/states";
 
+import ServiceAreasMapSection from "@/components/home/ServiceAreasMapSection";
+
 const BASE = "https://www.oztaxinearme.com";
 
 export const metadata: Metadata = {
@@ -158,6 +160,9 @@ export default function ServiceAreasPage() {
             </div>
           </div>
         </section>
+
+        {/* Interactive Map Section */}
+        <ServiceAreasMapSection />
 
         {/* Region Grid */}
         <section className="py-20 bg-slate-50 border-t border-slate-200">

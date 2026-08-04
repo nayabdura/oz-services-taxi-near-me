@@ -33,6 +33,7 @@ const Testimonials = dynamic(() => import("@/components/home/Testimonials"));
 const PricingPreview = dynamic(() => import("@/components/home/PricingPreview"));
 const FAQSection = dynamic(() => import("@/components/home/FAQSection"));
 const BlogPreview = dynamic(() => import("@/components/home/BlogPreview"));
+const ServiceAreasMapSection = dynamic(() => import("@/components/home/ServiceAreasMapSection"));
 const CTASection = dynamic(() => import("@/components/home/CTASection"));
 
 export default function HomePage() {
@@ -45,6 +46,7 @@ export default function HomePage() {
       <FleetShowcase />
       <StatsSection />
       <ServiceAreasSection />
+      <ServiceAreasMapSection />
       <Testimonials />
       <PricingPreview />
       <FAQSection />
