@@ -17,18 +17,15 @@ export default function BookingWidget() {
   };
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
-      {/* Widget Header */}
-      <div className="bg-slate-900 px-6 py-5">
-        <h2 className="text-white text-xl font-bold font-heading">Get Instant Quote</h2>
-        <p className="text-slate-400 text-sm mt-1 font-medium">Real-time availability — No hidden fees</p>
+    <div className="w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <div className="bg-slate-900 px-6 py-5 border-b border-slate-800">
+        <h2 className="text-white text-lg font-bold font-heading">Get Instant Fare Quote</h2>
+        <p className="text-slate-400 text-xs mt-0.5 font-medium">Real-time dispatch — Guaranteed flat rates</p>
       </div>
 
-      {/* Form Body */}
-      <form onSubmit={handleBook} className="p-6 space-y-5">
-        {/* Pickup */}
+      <form onSubmit={handleBook} className="p-6 space-y-4">
         <div>
-          <label htmlFor="pickup-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+          <label htmlFor="pickup-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
             Pickup Location
           </label>
           <div className="relative">
@@ -39,16 +36,15 @@ export default function BookingWidget() {
               required
               value={pickup}
               onChange={(e) => setPickup(e.target.value)}
-              placeholder="Hotel, Airport, or Address"
-              className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-3 font-medium placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 transition-all"
+              placeholder="Address, Airport, or Hotel"
+              className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-3 font-medium placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
             />
           </div>
         </div>
 
-        {/* Dropoff */}
         <div>
-          <label htmlFor="dropoff-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
-            Drop-off Destination
+          <label htmlFor="dropoff-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+            Destination
           </label>
           <div className="relative">
             <FiMapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
@@ -58,16 +54,15 @@ export default function BookingWidget() {
               required
               value={dropoff}
               onChange={(e) => setDropoff(e.target.value)}
-              placeholder="Enter destination"
-              className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-3 font-medium placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 transition-all"
+              placeholder="Destination Address or Airport"
+              className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-3 font-medium placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
             />
           </div>
         </div>
 
-        {/* Date and Time Row */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="date-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+            <label htmlFor="date-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Date
             </label>
             <div className="relative">
@@ -79,12 +74,12 @@ export default function BookingWidget() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date().toISOString().split("T")[0]}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-3 py-3 font-medium focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-3 py-3 font-medium focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
               />
             </div>
           </div>
           <div>
-            <label htmlFor="time-input" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
+            <label htmlFor="time-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Time
             </label>
             <div className="relative">
@@ -92,29 +87,22 @@ export default function BookingWidget() {
               <input
                 id="time-input"
                 type="time"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-3 py-3 font-medium focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl pl-10 pr-3 py-3 font-medium focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
               />
             </div>
           </div>
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-md shadow-blue-600/20 active:scale-95"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-md shadow-blue-600/20 active:scale-95 mt-2"
         >
-          Check Availability <FiArrowRight className="w-4 h-4" />
+          Check Availability & Rates <FiArrowRight className="w-4 h-4" />
         </button>
       </form>
 
-      {/* Trust Strip */}
-      <div className="border-t border-slate-100 px-6 py-4 flex items-center justify-center gap-6">
-        <div className="flex items-center gap-1.5 text-slate-500 text-xs font-semibold">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          Drivers Available Now
-        </div>
-        <div className="text-slate-300 text-sm">|</div>
-        <div className="text-slate-500 text-xs font-semibold">Instant Confirmation</div>
+      <div className="border-t border-slate-100 bg-slate-50/50 px-6 py-3 text-center text-xs font-medium text-slate-500">
+        Dispatch Active 24 Hours a Day • Instant Email Confirmation
       </div>
     </div>
   );

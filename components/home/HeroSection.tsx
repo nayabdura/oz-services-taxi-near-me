@@ -1,99 +1,79 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FiPhone } from "react-icons/fi";
+import { FiPhone, FiArrowRight } from "react-icons/fi";
 import BookingWidget from "./BookingWidget";
 
 export default function HeroSection() {
   return (
     <section className="relative bg-slate-950 pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
-      {/* Background Image */}
       <Image
         src="/images/hero_luxury.png"
-        alt="Sleek black luxury Mercedes sedan parked on a runway next to a modern private jet with chauffeur"
+        alt="Oz Services luxury executive taxi fleet"
         fill
-        className="object-cover opacity-40 mix-blend-luminosity"
+        className="object-cover opacity-30 mix-blend-luminosity"
         sizes="100vw"
         priority
       />
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-        }}
-      />
-      {/* Bottom gradient fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-900 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Copy */}
           <div className="flex flex-col">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-blue-600/15 border border-blue-500/25 rounded-full px-4 py-2 w-fit mb-8">
-              <span className="flex gap-0.5 text-yellow-400 text-xs leading-none">
-                {"★★★★★"}
-              </span>
-              <span className="text-blue-400 text-xs font-bold tracking-widest uppercase">
-                Oz Taxi Near Me
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 w-fit mb-6">
+              <span className="text-blue-400 text-xs font-semibold uppercase tracking-wider">
+                Oz Services Taxi Network
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading leading-[1.05] tracking-tight mb-6">
-              Professional{" "}
-              <span className="text-blue-500">Taxi Near Me</span>
+              Professional <span className="text-blue-500">Taxi Near Me</span>
               <br className="hidden sm:block" /> Available 24/7
             </h1>
 
-            <p className="text-lg text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
-              We pick you up fast, get you there on time, and charge you exactly what we quoted. No surge pricing, no surprises. Oz Services runs 24 hours a day for airport transfers, city rides, and corporate travel across the USA.
+            <p className="text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-lg">
+              Reliable pickups, guaranteed on-time arrivals, and transparent flat-rate pricing. No surge pricing or hidden fees across all 50 US states.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mb-10 flex-wrap">
               <a
                 href="tel:4077938143"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/25 active:scale-95 text-sm whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
               >
                 <FiPhone className="w-4 h-4" />
                 Call 407-793-8143
               </a>
               <a
                 href="tel:407967603"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/25 active:scale-95 text-sm whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
               >
                 <FiPhone className="w-4 h-4" />
                 Call (407) 967-603
               </a>
               <Link
                 href="/booking"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-colors text-sm backdrop-blur-sm whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition-all text-sm whitespace-nowrap"
               >
-                Book Online
+                Book Online <FiArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800/80 max-w-md">
               {[
-                "No surge pricing ever",
-                "Available 24 hours a day",
-                "Flight tracking included",
-                "Licensed and vetted drivers",
+                "No Surge Pricing Ever",
+                "Licensed & Vetted Drivers",
+                "24/7 Dispatch Team",
+                "Flight Tracking Included",
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-2 text-slate-400 text-sm font-medium"
+                  className="text-slate-400 text-xs font-semibold flex items-center gap-2"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
                   {item}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Booking Widget */}
           <div className="w-full lg:w-auto">
             <BookingWidget />
           </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FiArrowRight, FiPhoneCall } from "react-icons/fi";
+import { FiArrowRight, FiPhoneCall, FiMapPin } from "react-icons/fi";
 
 const areas = [
   { name: "New York", state: "NY", airport: "JFK" },
@@ -24,63 +24,59 @@ export default function ServiceAreasSection() {
   return (
     <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <div className="max-w-xl">
             <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">
-              Extensive Coverage
+              Nationwide Coverage
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-4">
-              Serving Your Area
+              USA Service Areas
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed font-medium">
-              Our professional driver network spans across all major local regions.
-              Major city centers, airports, and suburban areas — all covered.
+            <p className="text-slate-600 text-lg leading-relaxed font-normal">
+              Serving major airport corridors, business districts, and suburban regions across America.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0 flex-wrap">
             <a
               href="tel:4077938143"
-              className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-xl transition-all text-xs shadow-lg shadow-blue-600/20"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-xl transition-colors text-xs shadow-md shadow-blue-600/20"
             >
               <FiPhoneCall className="w-4 h-4" /> Call 407-793-8143
             </a>
             <a
               href="tel:407967603"
-              className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-xl transition-all text-xs shadow-lg shadow-blue-600/20"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-xl transition-colors text-xs shadow-md shadow-blue-600/20"
             >
               <FiPhoneCall className="w-4 h-4" /> Call (407) 967-603
             </a>
             <Link
               href="/service-areas"
-              className="inline-flex items-center gap-2 whitespace-nowrap text-slate-900 font-bold border-2 border-slate-900 px-4 py-3 rounded-xl hover:bg-slate-900 hover:text-white transition-all text-xs"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-slate-900 font-bold border-2 border-slate-900 px-4 py-3 rounded-xl hover:bg-slate-900 hover:text-white transition-colors text-xs"
             >
               All Service Areas <FiArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
 
-        {/* Areas Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {areas.map((area) => (
             <div
               key={area.name}
-              className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 hover:bg-blue-50 hover:border-blue-200 transition-colors group"
+              className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 hover:bg-slate-100/80 transition-colors group"
             >
               <div>
-                <span className="font-bold text-slate-800 group-hover:text-blue-700 text-sm transition-colors">
+                <span className="font-bold text-slate-900 text-sm">
                   {area.name}
                 </span>
-                <span className="block text-slate-400 text-xs font-semibold mt-0.5">
+                <span className="block text-slate-500 text-xs font-medium mt-0.5">
                   {area.airport ? `Airport: ${area.airport}` : area.state}
                 </span>
               </div>
-              <span className="text-slate-400 group-hover:text-blue-500 text-sm transition-colors">📍</span>
+              <FiMapPin className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" />
             </div>
           ))}
-          {/* All USA catch-all */}
-          <div className="col-span-2 sm:col-span-3 md:col-span-4 flex items-center justify-center bg-blue-600 text-white rounded-xl px-4 py-3.5 font-bold text-sm">
-            + Extensive Coverage — Call Us to Book Your Ride Anywhere
+          <div className="col-span-2 sm:col-span-3 md:col-span-4 flex items-center justify-center bg-slate-900 text-white rounded-xl px-4 py-3.5 font-bold text-sm">
+            Nationwide Coverage — Call Dispatch to Book Rides Anywhere in the US
           </div>
         </div>
       </div>

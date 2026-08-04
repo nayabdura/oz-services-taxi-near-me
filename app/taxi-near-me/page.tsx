@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { FiPhone, FiCheck, FiArrowRight } from "react-icons/fi";
 import BookingWidget from "@/components/home/BookingWidget";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -118,42 +119,42 @@ export default function TaxiNearMePage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero */}
-        <section className="bg-slate-900 pt-28 pb-32">
+        <section className="bg-slate-900 pt-28 pb-24 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div className="pt-4">
-                <p className="text-yellow-400 font-bold tracking-widest uppercase text-xs mb-4">
-                  Oz Services — Immediate Dispatch
+                <p className="text-blue-400 font-bold tracking-wider uppercase text-xs mb-3">
+                  Oz Services Immediate Dispatch
                 </p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
-                  Find a Taxi <span className="text-blue-500">Near You</span> in the USA Right Now
+                  Find a Taxi <span className="text-blue-500">Near You</span> in the USA
                 </h1>
-                <p className="text-xl text-slate-300 font-medium leading-relaxed mb-8 max-w-lg">
-                  No app to download. No unpredictable surge pricing. Oz Services dispatches a professional, licensed driver to your location across the USA within minutes. We are available 24 hours a day, 7 days a week.
+                <p className="text-slate-300 text-lg font-normal leading-relaxed mb-8 max-w-lg">
+                  No app to download. No unpredictable surge pricing. Oz Services dispatches a professional driver to your location across the USA within minutes.
                 </p>
-                <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex flex-wrap gap-3 mb-8">
                   <a
                     href="tel:4077938143"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-xs whitespace-nowrap active:scale-95"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3.5 rounded-xl transition-colors text-xs whitespace-nowrap"
                   >
-                    📞 Call 407-793-8143
+                    <FiPhone className="w-4 h-4" /> Call 407-793-8143
                   </a>
                   <a
                     href="tel:407967603"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-xl transition-colors shadow-lg shadow-blue-600/25 text-xs whitespace-nowrap active:scale-95"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3.5 rounded-xl transition-colors text-xs whitespace-nowrap"
                   >
-                    📞 Call (407) 967-603
+                    <FiPhone className="w-4 h-4" /> Call (407) 967-603
                   </a>
                   <Link
                     href="/booking"
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-7 py-3.5 rounded-xl border border-white/20 transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-3.5 rounded-xl border border-slate-700 transition-colors text-xs"
                   >
-                    Book Online Now →
+                    Book Online Now <FiArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  {["⭐ 4.9/5 Rating", "✓ No Surge Pricing", "✓ All 50 States", "✓ 24/7 Available"].map((item) => (
-                    <span key={item} className="text-xs font-semibold text-slate-300 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                <div className="flex flex-wrap gap-2">
+                  {["4.9/5 Rating", "No Surge Pricing", "All 50 US States", "Available 24/7"].map((item) => (
+                    <span key={item} className="text-xs font-semibold text-slate-300 bg-slate-800 px-3 py-1.5 rounded-md border border-slate-700">
                       {item}
                     </span>
                   ))}
@@ -165,23 +166,25 @@ export default function TaxiNearMePage() {
         </section>
 
         {/* Why Oz Services */}
-        <section className="py-20 lg:py-28 border-b border-slate-100">
+        <section className="py-20 border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center mb-14">
-              <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">Why Book Oz Services</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
-                A Taxi Service You Can Actually Rely On
+              <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">Service Standards</p>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
+                Reliable Ground Transportation
               </h2>
-              <p className="text-slate-600 text-lg leading-relaxed font-medium">
-                Rideshare apps made getting a ride easier but also a lot less predictable. Oz Services brings back what a taxi service is supposed to be — licensed drivers, flat rates, and a team that actually answers the phone.
+              <p className="text-slate-600 text-lg leading-relaxed font-normal">
+                Licensed drivers, upfront flat rates, and dedicated 24/7 human dispatch support.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {reasons.map(({ title, desc }) => (
-                <div key={title} className="bg-slate-50 border border-slate-200 rounded-2xl p-7 hover:border-blue-200 hover:shadow-lg transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-sm mb-5">✓</div>
-                  <h3 className="text-xl font-bold text-slate-900 font-heading mb-3">{title}</h3>
-                  <p className="text-slate-600 font-medium leading-relaxed text-[15px]">{desc}</p>
+                <div key={title} className="bg-slate-50 border border-slate-200 rounded-2xl p-7">
+                  <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm mb-4">
+                    <FiCheck className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 font-heading mb-2">{title}</h3>
+                  <p className="text-slate-600 font-normal leading-relaxed text-sm">{desc}</p>
                 </div>
               ))}
             </div>
@@ -189,14 +192,14 @@ export default function TaxiNearMePage() {
         </section>
 
         {/* Coverage — linked city cards */}
-        <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
+        <section className="py-20 bg-slate-50 border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
-                Oz Services Covers All 50 States
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-3">
+                Serving All 50 US States
               </h2>
-              <p className="text-slate-600 font-medium text-lg">
-                Whether you need an airport run or a late night local trip, there is an Oz Services driver near you right now. Click your city to see local details and coverage.
+              <p className="text-slate-600 font-normal text-base">
+                Click your city to view localized service details and airport coverage.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -204,16 +207,16 @@ export default function TaxiNearMePage() {
                 <Link
                   key={name + slug}
                   href={`/locations/${slug}`}
-                  className="bg-white border border-slate-200 rounded-xl px-4 py-4 hover:border-blue-300 hover:bg-blue-50 transition-colors group"
+                  className="bg-white border border-slate-200 rounded-xl px-4 py-3.5 hover:border-blue-500 transition-colors group"
                 >
-                  <div className="font-bold text-slate-900 group-hover:text-blue-700 text-sm transition-colors">{name}</div>
-                  <div className="text-slate-400 text-xs font-medium mt-1">{note}</div>
+                  <div className="font-bold text-slate-900 text-sm group-hover:text-blue-600">{name}</div>
+                  <div className="text-slate-500 text-xs font-normal mt-0.5">{note}</div>
                 </Link>
               ))}
             </div>
             <div className="text-center mt-8">
-              <Link href="/service-areas" className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:text-blue-700 underline-offset-2 hover:underline">
-                View all Oz Services service areas across the USA →
+              <Link href="/service-areas" className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
+                View all Oz Services service areas <FiArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -225,55 +228,43 @@ export default function TaxiNearMePage() {
             <h2 className="text-3xl font-black text-slate-900 font-heading mb-6">
               Why Search for a Taxi Near Me With Oz Services?
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-5">
-              When you search for a <strong>taxi near me</strong>, you need something fast, honest, and reliable. You do not need an app that triples your fare because it started raining. <strong>Oz Services</strong> was built to give passengers across the United States a better option.
+            <p className="text-slate-600 text-base leading-relaxed mb-4">
+              When searching for a <strong>taxi near me</strong>, passengers need prompt response times, honest rates, and licensed drivers. <strong>Oz Services</strong> provides nationwide transportation without surge pricing.
             </p>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
-              We operate with <strong>zero surge pricing</strong>. The fare shown at booking is the fare you pay, every time. Our licensed drivers are positioned near city centers, airports, and business districts so when you need a <strong>cab near me</strong>, we can have someone with you quickly.
+            <p className="text-slate-600 text-base leading-relaxed mb-8">
+              The fare quoted at booking is guaranteed. Our drivers are positioned near major airport hubs and metropolitan business centers across the US.
             </p>
             <ul className="space-y-3 mb-8">
               {[
                 { label: "Airport Taxi Transfers", desc: "To and from all major US airports with real-time flight tracking.", href: "/services" },
-                { label: "24/7 Local City Rides", desc: "Need a taxi at 3 AM? Our dispatch never sleeps.", href: "/booking" },
-                { label: "Corporate Taxi Accounts", desc: "Dedicated billing and priority dispatch for business clients.", href: "/services" },
-                { label: "Long-Distance Routes", desc: "Fixed-rate rides between cities with no surprise fees.", href: "/pricing" },
+                { label: "24/7 Local City Rides", desc: "Round-the-clock dispatch availability for day or late-night trips.", href: "/booking" },
+                { label: "Corporate Taxi Accounts", desc: "Consolidated billing and priority dispatch for business clients.", href: "/services" },
+                { label: "Long-Distance Routes", desc: "Fixed-rate regional rides between cities.", href: "/pricing" },
               ].map(({ label, desc, href }) => (
-                <li key={label} className="flex gap-3 items-start">
-                  <span className="mt-1 w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs flex-shrink-0">✓</span>
+                <li key={label} className="flex gap-3 items-start text-sm">
+                  <FiCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <span className="text-slate-700">
                     <Link href={href} className="font-bold text-slate-900 hover:text-blue-600">{label}:</Link>{" "}{desc}
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="text-slate-600 text-lg">
-              Ready to book?{" "}
-              <Link href="/booking" className="text-blue-600 font-semibold hover:underline">Book your Oz Services taxi online</Link>{" "}
-              or call{" "}
-              <a href="tel:4077938143" className="text-blue-600 font-semibold hover:underline">407-793-8143</a>{" "}
-              or{" "}
-              <a href="tel:407967603" className="text-blue-600 font-semibold hover:underline">(407) 967-603</a>{" "}
-              to speak with a live dispatcher right now.
-            </p>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 lg:py-28 bg-slate-50">
+        <section className="py-20 bg-slate-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
-                Taxi Near Me Common Questions
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-3">
+                Frequently Asked Questions
               </h2>
-              <p className="text-slate-600 font-medium text-lg">
-                Answers to the questions we get asked most about booking a taxi near you with Oz Services.
-              </p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-blue-200 transition-colors">
-                  <h3 className="text-[15px] font-bold text-slate-900 mb-3">{faq.question}</h3>
-                  <p className="text-slate-600 font-medium leading-relaxed text-[15px]">{faq.answer}</p>
+                <div key={i} className="bg-white border border-slate-200 rounded-xl p-6">
+                  <h3 className="text-sm font-bold text-slate-900 mb-2">{faq.question}</h3>
+                  <p className="text-slate-600 font-normal leading-relaxed text-xs sm:text-sm">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -281,31 +272,31 @@ export default function TaxiNearMePage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-20 bg-blue-600 text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-black text-white font-heading mb-6">
-            Need a Taxi Near You? Call Oz Services Now
+        <section className="py-16 bg-slate-900 text-center px-4 text-white">
+          <h2 className="text-3xl md:text-4xl font-black font-heading mb-4">
+            Need a Taxi Near You? Call Dispatch Now
           </h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-            Forget the surge pricing and the long wait. Oz Services sends a professional, licensed driver to you within minutes. We are here 24 hours a day across all 50 US states.
+          <p className="text-slate-300 text-base mb-8 max-w-xl mx-auto font-normal">
+            Licensed drivers, upfront flat rates, and instant 24/7 dispatch across the USA.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap"
             >
-              📞 Call 407-793-8143
+              <FiPhone className="w-4 h-4" /> Call 407-793-8143
             </a>
             <a
               href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-slate-50 transition-all shadow-xl text-md hover:scale-105 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap"
             >
-              📞 Call (407) 967-603
+              <FiPhone className="w-4 h-4" /> Call (407) 967-603
             </a>
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center gap-2 bg-blue-700 text-white font-bold px-10 py-5 rounded-xl hover:bg-blue-800 transition-all text-lg border border-blue-500"
+              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition-colors text-sm"
             >
-              Book Online Now →
+              Book Online Now <FiArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </section>

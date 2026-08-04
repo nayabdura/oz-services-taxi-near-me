@@ -2,15 +2,12 @@ import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FiArrowLeft, FiCalendar, FiClock, FiUser, FiShare2, FiCheckCircle } from "react-icons/fi";
+import { FiArrowLeft, FiCalendar, FiClock, FiUser, FiEye, FiShare2, FiCheckCircle } from "react-icons/fi";
 import connectDB from "@/lib/db";
 import { Blog } from "@/lib/models";
 
-// Force dynamic because we are reading from DB
 export const dynamic = "force-dynamic";
 
-// Processes HTML content: adds rel="nofollow noopener noreferrer" to external links
-// Internal links (starting with /) remain untouched (do-follow)
 function processContent(html: string): string {
   return html.replace(
     /<a\s([^>]*href=["'])(https?:\/\/(?!(?:www\.)?oztaxinearme\.com)[^"']+)(["'][^>]*)>/gi,
@@ -65,17 +62,14 @@ export default async function BlogPostPage({ params }: Props) {
   const resolvedParams = await params;
   await connectDB();
   
-  // Increment view count
   await Blog.updateOne({ slug: resolvedParams.slug }, { $inc: { views: 1 } });
 
-  // Fetch post
   const post = await Blog.findOne({ slug: resolvedParams.slug, published: 1 }).lean() as any;
 
   if (!post) {
     notFound();
   }
 
-  // Fetch related posts (same category, excluding current)
   const relatedPosts = await Blog.find({ 
     category: post.category, 
     _id: { $ne: post._id }, 
@@ -85,7 +79,6 @@ export default async function BlogPostPage({ params }: Props) {
   const canonicalUrl = `https://www.oztaxinearme.com/blog/${post.slug}`;
   const publishDate = new Date(post.createdAt || post.created_at || Date.now());
 
-  // Dynamic BlogPosting Schema for Google Rich Snippets & Fast Indexing
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -118,41 +111,34 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="pt-20 bg-slate-50 min-h-screen">
-      {/* Article JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* Blog Hero Banner */}
-      <section className="bg-slate-900 py-16 lg:py-24 relative overflow-hidden text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="bg-slate-900 py-16 lg:py-20 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold text-sm mb-8 transition-colors bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60"
+            className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-medium text-xs mb-6 transition-colors bg-slate-800 px-3.5 py-1.5 rounded-lg border border-slate-700"
           >
-            <FiArrowLeft className="w-4 h-4 text-blue-400" /> Back to all articles
+            <FiArrowLeft className="w-3.5 h-3.5 text-blue-400" /> Back to all articles
           </Link>
 
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="bg-blue-600 text-white text-xs font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-lg shadow-md">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="bg-blue-600 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-md">
               {post.category}
-            </span>
-            <span className="text-slate-400 text-xs font-semibold">
-              Verified Guide
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-heading leading-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-heading leading-tight mb-6">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-slate-300 text-sm font-medium pt-6 border-t border-slate-800">
+          <div className="flex flex-wrap items-center gap-6 text-slate-300 text-xs font-medium pt-6 border-t border-slate-800">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">
-                <FiUser className="w-3.5 h-3.5" />
-              </div>
+              <FiUser className="w-4 h-4 text-blue-400" />
               <span>{post.author || "Oz Services Team"}</span>
             </div>
             <div className="flex items-center gap-2">
@@ -167,8 +153,9 @@ export default async function BlogPostPage({ params }: Props) {
               <FiClock className="w-4 h-4 text-blue-400" />
               {post.read_time || 6} min read
             </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span>👁️</span> {post.views || 1} views
+            <div className="flex items-center gap-1.5 text-slate-400">
+              <FiEye className="w-4 h-4 text-blue-400" />
+              <span>{post.views || 1} Views</span>
             </div>
           </div>
         </div>
@@ -176,8 +163,8 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Featured Image */}
       {post.image_url && post.image_url !== "/images/blog-placeholder.jpg" && (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-          <div className="aspect-[21/9] w-full rounded-3xl overflow-hidden shadow-2xl relative bg-slate-200 border-4 border-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+          <div className="aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-lg relative bg-slate-200 border-2 border-white">
             <Image
               src={post.image_url}
               alt={post.title}
@@ -190,41 +177,36 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* Main Article Body */}
-      <section className="py-16">
+      <section className="py-14">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Key Takeaways Box */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-100 shadow-sm mb-10 flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
-              <FiCheckCircle className="w-6 h-6" />
-            </div>
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-8 flex gap-4 items-start">
+            <FiCheckCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-slate-900 font-bold text-lg mb-2">Guide Overview</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h3 className="text-slate-900 font-bold text-sm mb-1">Article Overview</h3>
+              <p className="text-slate-600 text-xs leading-relaxed">
                 {post.excerpt}
               </p>
             </div>
           </div>
 
-          {/* HTML Content */}
           <div
-            className="prose prose-lg prose-slate max-w-none prose-headings:font-heading prose-headings:font-black prose-headings:text-slate-900 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-blue-600 hover:prose-a:text-blue-700 prose-a:font-semibold prose-strong:text-slate-900 prose-li:text-slate-700 prose-img:rounded-2xl prose-img:shadow-lg"
+            className="prose prose-slate max-w-none prose-headings:font-heading prose-headings:font-bold prose-headings:text-slate-900 prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-blue-600 hover:prose-a:text-blue-700 prose-strong:text-slate-900 prose-img:rounded-xl"
             dangerouslySetInnerHTML={{ __html: processContent(post.content) }}
           />
 
-          {/* Share Section */}
-          <div className="mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border">
+          <div className="mt-14 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-5 rounded-xl border">
             <div>
-              <p className="font-bold text-slate-900 mb-1 flex items-center gap-2">
-                <FiShare2 className="text-blue-600" /> Share this travel guide
+              <p className="font-bold text-slate-900 text-sm mb-0.5 flex items-center gap-2">
+                <FiShare2 className="text-blue-600 w-4 h-4" /> Share this travel guide
               </p>
               <p className="text-slate-500 text-xs">Help others find reliable 24/7 taxi information.</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <a
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all font-bold text-sm shadow-sm"
+                className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-colors font-bold text-xs"
                 aria-label="Share on X (Twitter)"
               >
                 𝕏
@@ -233,7 +215,7 @@ export default async function BlogPostPage({ params }: Props) {
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all font-bold text-sm shadow-sm"
+                className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-colors font-bold text-xs"
                 aria-label="Share on Facebook"
               >
                 f
@@ -245,17 +227,17 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="py-16 bg-white border-t border-slate-200">
+        <section className="py-14 bg-white border-t border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading mb-8">
-              Related Articles in <span className="text-blue-600">{post.category}</span>
+            <h2 className="text-xl font-bold text-slate-900 font-heading mb-6">
+              Related Articles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((related) => (
                 <Link
                   key={related.slug || related._id}
                   href={`/blog/${related.slug}`}
-                  className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                  className="bg-slate-50 rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors group flex flex-col justify-between"
                 >
                   <div>
                     <div className="aspect-video w-full bg-slate-200 relative overflow-hidden">
@@ -264,17 +246,17 @@ export default async function BlogPostPage({ params }: Props) {
                           src={related.image_url}
                           alt={related.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-4xl bg-blue-50">📰</div>
+                        <div className="w-full h-full flex items-center justify-center text-xs text-slate-400 font-bold bg-slate-100">No Image</div>
                       )}
                     </div>
-                    <div className="p-6">
-                      <p className="text-slate-500 text-xs font-semibold mb-2 flex items-center gap-1">
+                    <div className="p-5">
+                      <p className="text-slate-500 text-xs font-medium mb-2 flex items-center gap-1">
                         <FiCalendar className="text-blue-600" /> {new Date(related.createdAt || related.created_at || Date.now()).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                       </p>
-                      <h3 className="text-slate-900 font-bold font-heading text-base group-hover:text-blue-600 transition-colors line-clamp-2">
+                      <h3 className="text-slate-900 font-bold font-heading text-sm group-hover:text-blue-600 transition-colors line-clamp-2">
                         {related.title}
                       </h3>
                     </div>
@@ -287,24 +269,24 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* Bottom Booking CTA */}
-      <section className="py-16 bg-slate-900 text-white relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-black font-heading mb-4 text-white">
-            Need a Reliable Taxi Near You Right Now?
+      <section className="py-14 bg-slate-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading mb-3 text-white">
+            Need a Reliable Taxi Near You?
           </h2>
-          <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
-            Book online in under 60 seconds with transparent flat rates and zero surge fees. 24/7 nationwide dispatch.
+          <p className="text-slate-300 text-sm mb-6 max-w-xl mx-auto">
+            Book online in under 60 seconds with transparent flat rates and zero surge fees.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/booking"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all shadow-xl shadow-blue-600/30 active:scale-95"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors shadow-md"
             >
-              Book Your Ride Online
+              Book Ride Online
             </Link>
             <a
-              href="tel:+14077938143"
-              className="bg-slate-800 hover:bg-slate-700 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all border border-slate-700"
+              href="tel:4077938143"
+              className="bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3 rounded-xl border border-slate-700 transition-colors"
             >
               Call 407-793-8143
             </a>

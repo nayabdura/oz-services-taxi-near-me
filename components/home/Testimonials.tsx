@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { FiStar } from "react-icons/fi";
 import axios from "axios";
 
 export default function Testimonials() {
@@ -25,114 +26,78 @@ export default function Testimonials() {
 
   if (loading) {
     return (
-      <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200 min-h-[500px] flex items-center justify-center">
-        <div className="text-slate-500 font-medium">Loading passenger reviews...</div>
+      <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200 min-h-[400px] flex items-center justify-center">
+        <div className="text-slate-500 font-medium text-sm">Loading passenger reviews...</div>
       </section>
     );
   }
 
   if (reviews.length === 0) return null;
 
-  // Duplicate for infinite scroll to work smoothly
-  const duplicatedReviews = [...reviews, ...reviews];
-
   const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
     const stars = [];
-    
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={`f-${i}`} className="text-yellow-400 text-lg leading-none">★</span>);
-    }
-    if (hasHalfStar) {
-      stars.push(<span key="h" className="text-yellow-400 text-lg leading-none opacity-80">★</span>);
-    }
-    const emptyStars = 5 - stars.length;
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<span key={`e-${i}`} className="text-slate-200 text-lg leading-none">★</span>);
+    const count = Math.min(5, Math.max(1, Math.round(rating || 5)));
+    for (let i = 0; i < count; i++) {
+      stars.push(<FiStar key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />);
     }
     return stars;
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200 overflow-hidden relative">
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 50s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}} />
-
+    <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">
-            Passenger Reviews
+            Passenger Testimonials
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
-            What Our Passengers Say
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-4">
+            Passenger Feedback
           </h2>
-          <p className="text-slate-600 text-lg leading-relaxed font-medium">
-            We have completed over 10,000 verified rides. These are real words from real people who booked with us and came back.
+          <p className="text-slate-600 text-lg leading-relaxed font-normal">
+            Real reviews from business travelers, tourists, and families who rely on Oz Services.
           </p>
         </div>
-      </div>
 
-      {/* Marquee Carousel */}
-      <div className="relative w-full group overflow-hidden">
-        {/* Gradient fades for smooth edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        
-        <div className="flex gap-6 px-4 w-max animate-marquee">
-          {duplicatedReviews.map((review, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {reviews.slice(0, 3).map((review, i) => (
             <div
-              key={`${review._id || i}-${i}`}
-              className="bg-white border border-slate-200 rounded-2xl p-7 flex flex-col w-[320px] sm:w-[400px] flex-shrink-0 hover:shadow-xl hover:border-blue-200 transition-all duration-300"
+              key={review._id || i}
+              className="bg-white border border-slate-200 rounded-2xl p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {renderStars(review.rating || 5)}
+              <div>
+                <div className="flex gap-1 mb-4">
+                  {renderStars(review.rating || 5)}
+                </div>
+
+                <p className="text-slate-700 leading-relaxed font-normal mb-6 text-sm">
+                  &ldquo;{review.message || review.text}&rdquo;
+                </p>
               </div>
 
-              {/* Badge */}
-              <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-md w-fit mb-5">
-                {review.service || "Verified Passenger"}
-              </span>
-
-              {/* Review Text */}
-              <p className="text-slate-700 leading-relaxed italic flex-grow mb-7 text-[15px]">
-                "{review.message || review.text}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-5 border-t border-slate-100 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-black text-base font-heading flex-shrink-0">
-                  {(review.name || "A").charAt(0).toUpperCase()}
-                </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                 <div>
                   <div className="font-bold text-slate-900 text-sm">{review.name}</div>
-                  <div className="text-slate-500 text-xs font-medium">{review.location || "USA"}</div>
+                  <div className="text-slate-500 text-xs font-normal">{review.location || "USA"}</div>
                 </div>
+                <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+                  {review.service || "Verified Customer"}
+                </span>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        {/* Bottom Trust Bar */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-center gap-6 text-center sm:text-left shadow-sm">
-          <div className="text-4xl font-black text-slate-900 font-heading">4.9 / 5</div>
-          <div className="sm:border-l sm:border-slate-200 sm:pl-6">
-            <div className="text-slate-900 font-bold mb-1">Average Star Rating</div>
-            <div className="text-slate-500 text-sm font-medium">Based on thousands of verified passenger reviews across Google and our own platform.</div>
+        <div className="mt-12 bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+          <div className="flex items-center gap-4">
+            <div className="text-3xl font-black text-slate-900 font-heading">4.9 / 5</div>
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <FiStar key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
+              ))}
+            </div>
+          </div>
+          <div className="text-slate-600 text-sm font-normal text-center sm:text-right">
+            Based on thousands of verified customer rides across the United States.
           </div>
         </div>
       </div>

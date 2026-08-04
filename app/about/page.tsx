@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { FiShield, FiClock, FiTarget, FiUsers } from "react-icons/fi";
+import { FiShield, FiClock, FiTarget, FiUsers, FiPhone, FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "About Oz Services | Trusted Taxi Company Across the USA",
+  title: "About Oz Services | 24/7 Nationwide USA Taxi Company",
   description:
-    "Oz Services is a licensed, 24/7 taxi company serving passengers across the USA. Learn about how we started, what we stand for, and why thousands of travelers book with us again and again.",
+    "Oz Services is a licensed nationwide taxi company serving passengers across all 50 US states. Learn about our drivers, flat-rate pricing, and 24/7 dispatch network.",
   alternates: {
     canonical: "https://www.oztaxinearme.com/about",
   },
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.oztaxinearme.com/about",
     siteName: "Oz Services Taxi",
-    title: "About Oz Services | Trusted Taxi Company Across the USA",
+    title: "About Oz Services | 24/7 Nationwide USA Taxi Company",
     description:
-      "A licensed 24/7 taxi company with vetted drivers, honest pricing, and service across the USA. Airport transfers, city rides, and corporate travel.",
+      "A licensed 24/7 taxi company serving passengers across all 50 US states. Professional drivers, flat-rate pricing, 24/7 live dispatch.",
     images: [
       {
         url: "https://www.oztaxinearme.com/og-image.jpg",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Oz Services | Trusted Taxi Company Across the USA",
+    title: "About Oz Services | 24/7 Nationwide USA Taxi Company",
     description:
-      "A licensed 24/7 taxi company with vetted drivers, honest pricing, and service across the USA. Airport transfers, city rides, and corporate travel.",
+      "A licensed 24/7 taxi company serving passengers across all 50 US states.",
     images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
@@ -39,48 +39,48 @@ export const metadata: Metadata = {
 const values = [
   {
     icon: FiShield,
-    title: "Safety Is Always the Priority",
-    desc: "Every driver in our network goes through a full federal background check, holds a valid commercial license, and carries complete insurance coverage. Our vehicles are inspected monthly. No exceptions.",
+    title: "Safety Is Always First",
+    desc: "Every driver in our fleet undergoes full background checks, holds commercial licensing, and carries full commercial passenger insurance.",
   },
   {
     icon: FiClock,
-    title: "We Show Up On Time",
-    desc: "We track live traffic conditions, airport gates, and your exact route from the moment you book. When we give you a pickup time, we keep it. Our on-time rate is consistently above 99 percent.",
+    title: "On-Time Arrival Guarantee",
+    desc: "We track live traffic conditions and flight arrivals so your vehicle is positioned and ready before your scheduled pickup time.",
   },
   {
     icon: FiTarget,
-    title: "The Price We Quote Is the Price You Pay",
-    desc: "No algorithms deciding your fare at checkout. No surge multipliers buried in the fine print. You see the full price before you confirm your booking and that is exactly what you are charged.",
+    title: "Transparent Flat Rates",
+    desc: "No demand algorithms or surge multipliers. The fare quoted at booking is the exact price you pay.",
   },
   {
     icon: FiUsers,
-    title: "Real People Handling Every Ride",
-    desc: "We are not an app connecting strangers. We are a real taxi company with an in-house dispatch team, trained drivers, and direct accountability to every passenger we serve.",
+    title: "24/7 Human Dispatch Support",
+    desc: "We are an established taxi company with a live 24/7 human dispatch center ready to handle bookings and questions around the clock.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-20">
       {/* Page Hero */}
-      <section className="relative bg-slate-950 pt-28 pb-20 overflow-hidden">
+      <section className="relative bg-slate-900 py-20 lg:py-28 text-white">
         <Image
-          src="/images/about_hero.png"
-          alt="Modern high-tech taxi dispatch center map representing nationwide USA coverage"
+          src="/images/about_hero_luxury.png"
+          alt="Oz Services executive taxi company background"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-30 mix-blend-luminosity"
+          className="object-cover opacity-25 mix-blend-luminosity"
         />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-blue-500 font-bold tracking-widest uppercase text-xs mb-4">
-            Our Story
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          <p className="text-blue-400 font-bold tracking-widest uppercase text-xs mb-3">
+            Company Overview
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-heading mb-6 tracking-tight">
             About Oz Services
           </h1>
-          <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
-            We built Oz Services because passengers deserved a taxi company they could actually depend on. Honest pricing. Drivers who show up. Service that works, every single time.
+          <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto font-normal leading-relaxed">
+            Building America&apos;s most reliable nationwide taxi service through vetted drivers, transparent flat rates, and dedicated 24/7 passenger dispatch.
           </p>
         </div>
       </section>
@@ -90,35 +90,35 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-6 tracking-tight">
-                From a Small Fleet to a Nationwide Taxi Network
+              <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">Our Mission</p>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-6">
+                Redefining Ground Transportation Across America
               </h2>
-              <div className="space-y-5 text-slate-600 font-medium leading-relaxed text-[15px]">
+              <div className="space-y-4 text-slate-600 font-normal leading-relaxed text-base">
                 <p>
-                  Oz Services started with a small regional fleet running between hotel corridors and international airports. Everywhere we operated, we heard the same frustration from travelers. Rideshare apps were inconsistent. Prices spiked without warning. Drivers showed up in the wrong vehicles and had no idea which terminal to use.
+                  Oz Services was founded to fix the core issues of modern ground travel: unpredictable surge pricing, unvetted gig drivers, and automated customer service that leaves passengers stranded.
                 </p>
                 <p>
-                  We decided to do things differently. We hired licensed, fully vetted professional drivers. We set flat transparent rates that never change based on demand. We built a dispatch team that monitors your flight before you even land and positions a driver nearby so you are never left waiting.
+                  We built our nationwide taxi network around three core principles: <strong>passenger safety</strong>, <strong>honest flat-rate pricing</strong>, and <strong>24/7 live human dispatch support</strong>.
                 </p>
                 <p>
-                  Today our fleet of sedans, premium SUVs, and executive minivans serves tens of thousands of passengers every year across all 50 states. We cover every major airport hub and every city in between.
+                  Today, our network serves passengers across all 50 US states — covering major international airports, metropolitan business centers, and suburban communities.
                 </p>
               </div>
               <div className="mt-8">
                 <Link
                   href="/booking"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-blue-700 transition-colors shadow-md shadow-blue-600/20 text-sm active:scale-95"
+                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm shadow-md"
                 >
-                  Book a Ride Today →
+                  Book a Ride Now <FiArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
-            {/* Image side */}
-            <div className="relative w-full h-80 lg:h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 order-first lg:order-last">
+            <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden shadow-md border border-slate-200">
               <Image
                 src="/images/why_choose_us_luxury.png"
-                alt="Professional chauffeur providing excellent customer taxi service"
+                alt="Professional chauffeur with Oz Services passenger"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -126,24 +126,25 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-20">
-            {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Stats */}
+          <div className="mt-16 pt-12 border-t border-slate-100">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { value: "10+", label: "Years Operating", sub: "Nationwide coverage" },
-                { value: "10K+", label: "Rides Completed", sub: "Verified passenger trips" },
-                { value: "50+", label: "States Covered", sub: "Nationwide network" },
-                { value: "4.9★", label: "Star Rating", sub: "From 847+ reviews" },
-              ].map(({ value, label, sub }) => (
+                { value: "10+", label: "Years Operating" },
+                { value: "10,000+", label: "Completed Trips" },
+                { value: "50", label: "US States Covered" },
+                { value: "4.9 / 5", label: "Average Rating" },
+              ].map(({ value, label }) => (
                 <div
                   key={label}
-                  className="bg-slate-50 border border-slate-200 rounded-2xl p-7 text-center hover:border-blue-200 hover:bg-blue-50 transition-colors"
+                  className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center"
                 >
-                  <div className="text-4xl font-black text-blue-600 font-heading mb-2 tracking-tight">
+                  <div className="text-3xl font-black text-slate-900 font-heading mb-1">
                     {value}
                   </div>
-                  <div className="font-bold text-slate-900 text-sm mb-1">{label}</div>
-                  <div className="text-slate-500 text-xs font-medium">{sub}</div>
+                  <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">
+                    {label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -156,14 +157,13 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">
-              Our Values
+              Core Principles
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-5">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 font-heading mb-4">
               What We Stand For
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed font-medium">
-              Four principles that shape every decision, every dispatch, and every
-              ride at Oz Services.
+            <p className="text-slate-600 text-lg leading-relaxed font-normal">
+              Four fundamental standards guiding every ride with Oz Services.
             </p>
           </div>
 
@@ -171,16 +171,16 @@ export default function AboutPage() {
             {values.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="bg-white border border-slate-200 rounded-2xl p-8 flex gap-5 hover:shadow-lg hover:border-blue-100 transition-all"
+                className="bg-white border border-slate-200 rounded-2xl p-7 flex items-start gap-5 shadow-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 font-heading mb-3">
+                  <h3 className="font-bold text-slate-900 text-lg font-heading mb-2">
                     {title}
                   </h3>
-                  <p className="text-slate-600 font-medium leading-relaxed text-[15px]">
+                  <p className="text-slate-600 font-normal leading-relaxed text-sm">
                     {desc}
                   </p>
                 </div>
@@ -191,32 +191,32 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-blue-600">
+      <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-white font-heading mb-4">
+          <h2 className="text-3xl font-black font-heading mb-4 text-white">
             Ready to Book Your Ride?
           </h2>
-          <p className="text-blue-100 font-medium text-lg mb-8 max-w-xl mx-auto">
-            Book online in under 60 seconds or call us directly. No apps, no surge pricing, and no unpleasant surprises when you arrive.
+          <p className="text-slate-300 text-base mb-8 max-w-xl mx-auto">
+            Book online in under 60 seconds or call our 24/7 dispatch center.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors text-sm active:scale-95 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-colors shadow-md"
             >
-              Book a Taxi Now
+              Book a Taxi Now <FiArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center text-white font-bold px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-700 transition-colors"
             >
-              📞 Call 407-793-8143
+              <FiPhone className="w-4 h-4 text-blue-400" /> Call 407-793-8143
             </a>
             <a
               href="tel:407967603"
-              className="inline-flex items-center justify-center text-white font-bold px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/10 transition-colors text-sm whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-700 transition-colors"
             >
-              📞 Call (407) 967-603
+              <FiPhone className="w-4 h-4 text-blue-400" /> Call (407) 967-603
             </a>
           </div>
         </div>
