@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FiMapPin, FiNavigation, FiPhone, FiExternalLink, FiArrowRight } from "react-icons/fi";
+import OpenStreetMapContainer from "@/components/maps/OpenStreetMapContainer";
+import { getLocationGeoData } from "@/lib/data/locations-geo";
 
 type CityArea = {
   name: string;
@@ -57,13 +59,7 @@ export default function ServiceAreasMapSection() {
     ? serviceCities 
     : serviceCities.filter(c => c.region === activeRegion);
 
-  const getMapEmbedUrl = () => {
-    return `https://maps.google.com/maps?q=${encodeURIComponent(selectedCity.name + ", " + selectedCity.state + " Oz Services Taxi")}&t=&z=11&ie=UTF8&iwloc=&output=embed`;
-  };
-
-  const getDirectionsUrl = () => {
-    return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedCity.name + ", " + selectedCity.state + " Oz Services Taxi")}`;
-  };
+  const selectedLocationGeo = getLocationGeoData(selectedCity.stateSlug, selectedCity.citySlug);
 
   return (
     <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
@@ -73,13 +69,13 @@ export default function ServiceAreasMapSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
             <FiMapPin className="w-3.5 h-3.5" />
-            <span>Interactive Service Map</span>
+            <span>OpenStreetMap Interactive Coverage</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-4 tracking-tight">
             Nationwide Service Areas &amp; Airport Coverage
           </h2>
           <p className="text-slate-600 text-base sm:text-lg font-normal leading-relaxed">
-            Oz Services dispatches licensed drivers across all major metropolitan regions and airport corridors in the United States. Select a region or city below to view local service bounds.
+            Oz Services dispatches licensed drivers across all major metropolitan regions and airport corridors in the United States. Powered by 100% open-source OpenStreetMap.
           </p>
         </div>
 
@@ -109,49 +105,9 @@ export default function ServiceAreasMapSection() {
         {/* Map + Cities Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Map Column */}
-          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col">
-            <div className="bg-slate-900 p-4 text-white flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <FiMapPin className="w-4 h-4 text-blue-400" />
-                <span className="font-bold text-sm font-heading">
-                  Active Coverage: {selectedCity.name}, {selectedCity.state}
-                </span>
-              </div>
-              {selectedCity.airport && (
-                <span className="text-[11px] font-bold bg-blue-600 px-2.5 py-1 rounded-md text-white">
-                  Airport: {selectedCity.airport}
-                </span>
-              )}
-            </div>
-
-            {/* Lazy Loaded Map iFrame */}
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-slate-100">
-              <iframe
-                title={`Oz Services Taxi Service Area Map for ${selectedCity.name}, ${selectedCity.state}`}
-                src={getMapEmbedUrl()}
-                className="w-full h-full border-0"
-                loading="lazy"
-                aria-label={`Interactive Google Map showing taxi coverage in ${selectedCity.name}`}
-              />
-            </div>
-
-            {/* Map Action Toolbar */}
-            <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="text-slate-600 text-xs font-medium">
-                Showing coverage bounds &amp; airport corridors for <strong className="text-slate-900">{selectedCity.name}</strong>.
-              </div>
-              <a
-                href={getDirectionsUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors shrink-0"
-              >
-                <FiNavigation className="w-3.5 h-3.5 text-blue-400" />
-                <span>Get Directions on Google Maps</span>
-                <FiExternalLink className="w-3 h-3 text-slate-400" />
-              </a>
-            </div>
+          {/* Leaflet Map Column */}
+          <div className="lg:col-span-7 h-[460px]">
+            <OpenStreetMapContainer location={selectedLocationGeo} />
           </div>
 
           {/* Cities Directory Grid Column */}

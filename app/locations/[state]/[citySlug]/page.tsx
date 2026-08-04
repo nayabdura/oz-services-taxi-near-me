@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { USA_CITIES } from "@/lib/data/cities";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { getLocationGeoData } from "@/lib/data/locations-geo";
+import OpenStreetMapContainer from "@/components/maps/OpenStreetMapContainer";
 import { FiPhoneCall, FiMapPin, FiStar, FiClock, FiCheck } from "react-icons/fi";
 
 const BASE = "https://www.oztaxinearme.com";
@@ -238,6 +240,31 @@ export default async function CityTaxiPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* OpenStreetMap Interactive Service Area Map */}
+        {(() => {
+          const locationGeo = getLocationGeoData(stateSlug, requestedCity);
+          return (
+            <section className="py-16 bg-white border-b border-slate-200">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center max-w-2xl mx-auto mb-10">
+                  <span className="text-blue-600 font-bold text-xs uppercase tracking-wider block mb-2">
+                    OpenStreetMap Interactive Coverage
+                  </span>
+                  <h2 className="text-3xl font-black text-slate-900 font-heading mb-3">
+                    Taxi Coverage &amp; Airport Bounds for {name}, {state}
+                  </h2>
+                  <p className="text-slate-600 text-sm">
+                    View Oz Services dispatch bounds, primary taxi zones, and airport pickup coordinates in {name}.
+                  </p>
+                </div>
+                <div className="h-[420px] w-full">
+                  <OpenStreetMapContainer location={locationGeo} />
+                </div>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Semantic SEO Content */}
         <section className="py-20 bg-white">

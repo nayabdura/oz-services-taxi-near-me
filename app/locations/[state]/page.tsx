@@ -7,6 +7,8 @@ import { FiMapPin, FiClock, FiStar, FiPhoneCall, FiChevronRight } from "react-ic
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { generateStateContent } from "@/lib/utils/seo-spintax";
+import { getLocationGeoData } from "@/lib/data/locations-geo";
+import OpenStreetMapContainer from "@/components/maps/OpenStreetMapContainer";
 
 // Pre-generate static paths for all 50 states for incredible SSG performance
 export async function generateStaticParams() {
@@ -208,6 +210,31 @@ export default async function LocationPage({ params }: Props) {
           </ul>
         </div>
       </section>
+
+      {/* OpenStreetMap Interactive State Coverage */}
+      {(() => {
+        const stateGeo = getLocationGeoData(stateObj.slug);
+        return (
+          <section className="py-16 bg-slate-50 border-t border-slate-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="text-blue-600 font-bold text-xs uppercase tracking-wider block mb-2">
+                  OpenStreetMap State Coverage
+                </span>
+                <h2 className="text-3xl font-black text-slate-900 font-heading mb-3">
+                  Taxi Dispatch Bounds for {name}
+                </h2>
+                <p className="text-slate-600 text-sm">
+                  View statewide Oz Services coverage, regional corridors, and 24/7 driver dispatch bounds across {name}.
+                </p>
+              </div>
+              <div className="h-[420px] w-full">
+                <OpenStreetMapContainer location={stateGeo} />
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Cities We Serve Dynamic Directory Section to fix GSC Orphan URLs */}
       {(() => {
