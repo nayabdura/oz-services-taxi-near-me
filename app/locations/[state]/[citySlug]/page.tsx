@@ -123,14 +123,33 @@ export default async function CityTaxiPage({ params }: Props) {
             description: `Professional 24/7 taxi service in ${name}, ${state}. Airport transfers, city rides, and corporate travel with zero surge pricing.`,
             url: `${BASE}/locations/${stateSlug}/taxi-in-${requestedCity}`,
             telephone: ["+1-407-793-8143", "+1-407-967-603"],
-            priceRange: "$8 - $20",
+            email: "oztaxinearme@gmail.com",
+            priceRange: "$8 - $20 base fare",
+            currenciesAccepted: "USD",
+            paymentAccepted: "Cash, Credit Card, Corporate Account",
             openingHours: "Mo-Su 00:00-23:59",
             image: `${BASE}/og-image.jpg`,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: name,
+              addressRegion: state,
+              addressCountry: "US",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 37.0902,
+              longitude: -95.7129,
+            },
+            hasMap: `https://maps.google.com/?q=Oz+Services+Taxi+${encodeURIComponent(name)}+${encodeURIComponent(state)}`,
             areaServed: {
               "@type": "City",
               name: name,
               containedInPlace: { "@type": "State", name: state },
             },
+            makesOffer: [
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: `Taxi Service in ${name}`, description: `24/7 taxi service in ${name}, ${state}` } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: `Airport Taxi Transfer ${name}`, description: `Airport pickups and dropoffs serving ${name}` } },
+            ],
           }),
         }}
       />
@@ -251,6 +270,54 @@ export default async function CityTaxiPage({ params }: Props) {
             </ul>
           </div>
         </section>
+
+        {/* Nearby Cities & Service Corridors */}
+        {(() => {
+          const nearby = USA_CITIES.filter(
+            (c) => c.stateSlug.toLowerCase() === stateSlug.toLowerCase() && c.slug.toLowerCase() !== requestedCity
+          ).slice(0, 6);
+          if (nearby.length === 0) return null;
+          return (
+            <section className="py-16 bg-slate-50 border-t border-slate-200">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 font-heading">
+                      Nearby Taxi Service Areas in {state}
+                    </h3>
+                    <p className="text-slate-600 text-sm mt-1">
+                      Oz Services drivers are stationed across surrounding cities for fast regional dispatch:
+                    </p>
+                  </div>
+                  <Link
+                    href={`/locations/${stateSlug}`}
+                    className="text-blue-600 font-bold text-sm hover:underline shrink-0"
+                  >
+                    View All {state} Locations →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                  {nearby.map((city) => (
+                    <Link
+                      key={city.slug}
+                      href={`/locations/${stateSlug}/taxi-in-${city.slug}`}
+                      className="bg-white border border-slate-200 rounded-xl p-3.5 text-center hover:border-blue-500 hover:bg-blue-50 transition-colors group"
+                    >
+                      <span className="font-bold text-slate-900 group-hover:text-blue-600 text-xs transition-colors block">
+                        Taxi in {city.name}
+                      </span>
+                      {city.airport && (
+                        <span className="text-[10px] text-slate-500 font-semibold block mt-0.5">
+                          {city.airport} Airport
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* FAQ Section */}
         <section className="py-20 bg-slate-50">
