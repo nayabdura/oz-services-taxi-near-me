@@ -1,40 +1,46 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Oz Services Taxi",
-  description: "Read Oz Services Terms & Conditions for using our nationwide taxi booking services. Understand your rights and obligations.",
-  alternates: { canonical: "/terms-and-conditions" },
+  description: "Read Oz Services Terms & Conditions for nationwide taxi booking, flat-rate policies, passenger guidelines, and cancellation rules.",
+  alternates: { canonical: "https://www.oztaxinearme.com/terms-and-conditions" },
 };
 
 export default function TermsPage() {
   return (
-    <div className="pt-20 bg-white">
-      <section className="hero-bg section-sm">
-        <div className="container max-w-3xl mx-auto text-center">
-          <span className="badge mb-4">📋 Legal</span>
-          <h1 className="section-title text-4xl text-gray-900 mb-4">Terms &amp; Conditions</h1>
-          <p className="text-gray-600">Last updated: April 15, 2025</p>
+    <div className="pt-20 bg-white min-h-screen">
+      <section className="bg-slate-900 py-16 text-white">
+        <div className="max-w-3xl mx-auto text-center px-4">
+          <p className="text-blue-400 font-bold tracking-wider uppercase text-xs mb-2">Legal Terms</p>
+          <h1 className="text-3xl sm:text-4xl font-black font-heading text-white mb-3">Terms &amp; Conditions</h1>
+          <p className="text-slate-400 text-xs font-medium">Last updated: 2026</p>
         </div>
       </section>
 
-      <section className="section bg-gray-50 border-t border-gray-200">
-        <div className="container max-w-4xl mx-auto">
-          <div className="glass-card bg-white p-8 lg:p-12 space-y-10 border-gray-100 shadow-md">
+      <section className="py-16 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white p-8 lg:p-12 space-y-8 border border-slate-200 rounded-2xl shadow-sm">
             {[
-              { title: "1. Acceptance of Terms", body: "By using Oz Services or our taxi booking services, you agree to be bound by these Terms and Conditions. If you do not agree, please do not use our services." },
-              { title: "2. Booking and Confirmation", body: "All taxi bookings are subject to driver availability in your pickup area. A booking is only confirmed upon receipt of a confirmation SMS or email from Oz Services. We reserve the right to cancel any booking at our discretion with appropriate notice." },
-              { title: "3. Pricing and Payment", body: "All fares are displayed in USD and include taxes. Additional charges may apply for tolls, airport surcharges, and waiting time. Payment is accepted via cash, credit/debit card, or approved account facilities." },
-              { title: "4. Cancellation Policy", body: "Cancellations made more than 1 hour before scheduled pickup time are free of charge. Cancellations within 1 hour of pickup may incur a cancellation fee of up to the minimum fare. No-shows will be charged the full minimum fare." },
-              { title: "5. Passenger Conduct", body: "Passengers are expected to behave respectfully toward our drivers and vehicles. Oz Services reserves the right to refuse service to passengers who are intoxicated, abusive, or who damage our vehicles. Damage to vehicles will result in a cleaning or repair fee." },
-              { title: "6. Limitation of Liability", body: "Oz Services is not liable for delays caused by traffic, severe weather, or other circumstances beyond our control. Our maximum liability for any claim is limited to the fare paid for the specific trip in question." },
-              { title: "7. Lost Property", body: "Oz Services takes no responsibility for personal items left in vehicles. Found items will be held for 7 days and may be claimed by contacting our customer service team. Unclaimed items will be donated to charity." },
-              { title: "8. Modifications to Terms", body: "We reserve the right to modify these Terms at any time. Continued use of our services after changes constitutes acceptance of the new Terms. We recommend reviewing these Terms periodically." },
+              { title: "1. Acceptance of Terms", body: "By placing a booking with Oz Services, you agree to these Terms and Conditions. Our services provide 24/7 passenger ground transportation across all 50 US states." },
+              { title: "2. Booking & Vehicle Dispatch", body: "Bookings are processed in real time by our dispatch center. A booking is confirmed once confirmation details are transmitted via SMS or email. Vehicle types are assigned according to passenger selection." },
+              { title: "3. Transparent Flat Rates", body: "Fares are quoted upfront in USD and include all standard operating charges. No dynamic surge pricing is applied during peak hours or weather events. Tolls and airport airport fees are calculated at booking." },
+              { title: "4. Cancellation & Refund Policy", body: "Cancellations made in advance of driver dispatch are free of charge. In the event of flight delays, our live flight tracking system adjusts pickup times automatically." },
+              { title: "5. Passenger Safety & Vehicle Care", body: "Passengers are required to adhere to safety regulations, wear seatbelts, and respect drivers and equipment. Vehicles undergo routine sanitation and maintenance." },
+              { title: "6. Customer Support", body: "For questions, corporate account setup, or booking changes, contact our 24/7 dispatch line at 407-793-8143 or (407) 967-603 or email oztaxinearme@gmail.com." },
             ].map(section => (
               <div key={section.title}>
-                <h2 className="text-gray-900 font-bold text-xl mb-3" style={{ fontFamily: "Outfit, sans-serif" }}>{section.title}</h2>
-                <p className="text-gray-600 leading-relaxed text-sm">{section.body}</p>
+                <h2 className="text-slate-900 font-bold text-lg mb-2 font-heading">{section.title}</h2>
+                <p className="text-slate-600 font-normal leading-relaxed text-sm">{section.body}</p>
               </div>
             ))}
+
+            <div className="pt-6 border-t border-slate-100 flex flex-wrap gap-4 justify-between items-center text-xs font-semibold text-slate-500">
+              <span>© {new Date().getFullYear()} Oz Services Taxi</span>
+              <Link href="/privacy-policy" className="text-blue-600 hover:underline">
+                Privacy Policy →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

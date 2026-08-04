@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FiPhone, FiMail, FiMapPin, FiClock, FiSend } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { trackContactSubmission } from "@/lib/utils/gtm";
 
 export default function ContactClient() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
@@ -16,6 +17,7 @@ export default function ContactClient() {
     setLoading(true);
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, form);
+      trackContactSubmission(form.subject || "General Inquiry");
       toast.success("Message sent! We'll get back to you within 24 hours.");
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
     } catch {

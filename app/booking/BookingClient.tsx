@@ -5,6 +5,8 @@ import { FiArrowRight, FiArrowLeft, FiMapPin, FiCalendar, FiClock, FiUsers, FiPh
 import toast from "react-hot-toast";
 import axios from "axios";
 
+import { trackBookingSubmission } from "@/lib/utils/gtm";
+
 const steps = ["Trip Details", "Personal Info", "Review", "Confirmation"];
 
 export default function BookingClient() {
@@ -44,9 +46,8 @@ export default function BookingClient() {
     setStep((s) => Math.max(s - 1, 0));
   };
 
-  const handleSubmit = async () => {
-    if (!validateStep(2)) return;
-    
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const payload = {
@@ -56,6 +57,11 @@ export default function BookingClient() {
         service_type: form.serviceType, passengers: parseInt(form.passengers), notes: form.notes
       };
       await axios.post("/api/bookings", payload);
+      trackBookingSubmission({
+        pickup: form.pickupLocation,
+        dropoff: form.dropoffLocation,
+        vehicleType: form.serviceType,
+      });
       setStep(3); // Move to Success State
     } catch {
       toast.error("Booking failed. Please call us directly or try again later.");

@@ -1,61 +1,63 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiPhone, FiNavigation, FiSend, FiBriefcase, FiClock, FiUsers, FiCompass } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
+  title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",
   description:
-    "Oz Services provides professional USA taxi services including airport transfers, local city rides, corporate accounts, late-night pickups, and group travel — all with zero surge pricing.",
-  alternates: { canonical: "/services" },
+    "Oz Services provides professional USA taxi services including airport taxi transfers, local city rides, corporate taxi accounts, 24/7 late-night dispatch, and long-distance transfers — all with zero surge pricing. Call 407-793-8143 or (407) 967-603.",
+  alternates: { canonical: "https://www.oztaxinearme.com/services" },
   openGraph: {
-    title: "Nationwide Taxi Services | Airport, Corporate & City Transfers",
+    title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",
     description:
-      "Professional taxi services across the USA. Airport transfers, corporate accounts, city rides, and group transport — no surge pricing.",
+      "Professional taxi services across the USA. Airport taxi transfers, corporate accounts, city cab rides, and group transport — no surge pricing.",
+    url: "https://www.oztaxinearme.com/services",
+    siteName: "Oz Services Taxi",
   },
 };
 
 const services = [
   {
-    icon: "🚗",
+    icon: FiNavigation,
     title: "Local Taxi Near Me",
     slug: "/taxi-near-me",
-    desc: "Rapid dispatch for daily errands, appointments, and commutes. Our localized fleet is positioned within major USA cities for under-10-minute response times.",
-    features: ["Same-day booking", "Real-time driver tracking", "Zero surge pricing", "24/7 availability"],
+    desc: "Rapid cab dispatch for daily errands, appointments, and local city commutes. Positioned across major USA cities for fast response times.",
+    features: ["Same-day online taxi booking", "Real-time dispatch updates", "Zero surge pricing", "Available 24/7"],
   },
   {
-    icon: "✈️",
+    icon: FiSend,
     title: "Airport Taxi Transfers",
     slug: "/taxi-near-me",
-    desc: "Reliable trips to and from every major US airport. We monitor your flight data live and adjust for any delays — your driver waits for you, not the other way around.",
-    features: ["Live flight tracking", "Meet & greet in terminal", "Flight delay protection", "No extra waiting fees"],
+    desc: "Reliable airport cab rides to and from all major US airports. Live flight tracking included so your driver is ready when your plane lands.",
+    features: ["Live airport flight tracking", "Terminal pickup coordination", "Flight delay protection", "No waiting penalties"],
   },
   {
-    icon: "🏙️",
-    title: "City & Sightseeing Rides",
-    slug: "/taxi-near-me",
-    desc: "Explore Florida's world-class destinations — theme parks, beaches, boardwalks, and downtown hubs — with a professional driver who knows every route.",
-    features: ["Fixed-rate city routes", "Multi-stop trips available", "Local driver expertise", "Comfortable clean vehicles"],
-  },
-  {
-    icon: "💼",
-    title: "Corporate Taxi Accounts",
+    icon: FiCompass,
+    title: "Long Distance & Intercity Taxi",
     slug: "/pricing",
-    desc: "Dedicated executive travel management for US businesses. Consolidated monthly billing, priority dispatching, and a dedicated account manager for your team.",
-    features: ["Monthly invoicing", "Priority booking queue", "Dedicated account manager", "Volume discounts available"],
+    desc: "Flat-rate long-distance ground transportation between cities and states with no unexpected meter jumps or surge rates.",
+    features: ["Fixed-rate route pricing", "Comfortable executive sedans", "Experienced long-distance drivers", "Clean maintained fleet"],
   },
   {
-    icon: "🌙",
-    title: "Late Night & Early Morning",
-    slug: "/taxi-near-me",
-    desc: "Safe, reliable transportation at any hour. Whether you're heading home after a late evening event or catching a 4am flight, our drivers are available and ready.",
-    features: ["24/7 operations", "Vetted night-shift drivers", "Full GPS tracking", "Safe lighting in all vehicles"],
-  },
-  {
-    icon: "👨‍👩‍👧‍👦",
-    title: "Group & Family Travel",
+    icon: FiBriefcase,
+    title: "Corporate & Executive Travel",
     slug: "/pricing",
-    desc: "Executive minivans and large SUVs for groups of up to 8 passengers. Perfect for family vacations, sports teams, wedding parties, and conference transfers.",
-    features: ["Up to 8 passengers", "Ample luggage space", "Child seat on request", "Multi-vehicle coordination"],
+    desc: "Dedicated executive travel accounts for US businesses. Consolidated monthly billing, priority taxi dispatch, and dedicated account support.",
+    features: ["Monthly invoicing option", "Priority dispatch queue", "Dedicated account management", "Corporate volume discounts"],
+  },
+  {
+    icon: FiClock,
+    title: "24/7 Night & Early Morning Taxi",
+    slug: "/taxi-near-me",
+    desc: "Safe, reliable taxi dispatch at any hour. Whether catching a 4 AM flight or returning from a late event, our drivers operate 24 hours a day.",
+    features: ["Round-the-clock operations", "Vetted licensed drivers", "Full GPS ride tracking", "Safe reliable service"],
+  },
+  {
+    icon: FiUsers,
+    title: "Group & Family Taxi Transportation",
+    slug: "/fleet",
+    desc: "Executive minivans and spacious SUVs accommodating up to 8 passengers for family trips, airport runs, and group travel.",
+    features: ["Up to 8 passengers", "Ample luggage capacity", "Child seat on request", "Multi-vehicle dispatch"],
   },
 ];
 
@@ -63,88 +65,88 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-slate-900 pt-28 pb-20">
+      <section className="bg-slate-900 pt-28 pb-20 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-blue-500 font-bold tracking-widest uppercase text-xs mb-4">
-            What We Offer
+          <p className="text-blue-400 font-bold tracking-widest uppercase text-xs mb-3">
+            Nationwide Dispatch
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading mb-6 tracking-tight">
-            Complete Nationwide{" "}
-            <span className="text-blue-500">Taxi Services</span>
+            Professional <span className="text-blue-500">Taxi Services</span>
           </h1>
-          <p className="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
-            From airport terminals to city centers, from corporate boardrooms to
-            family reunions — Oz Services has a professional solution for every
-            transportation need across America.
+          <p className="text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+            From airport terminals to city centers, corporate travel to 24/7 late night dispatch — Oz Services provides reliable ground transportation across America.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {services.map((srv) => (
-              <div
-                key={srv.title}
-                className="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 group"
-              >
-                {/* Card Top */}
-                <div className="bg-slate-50 border-b border-slate-200 px-7 py-6">
-                  <div className="text-3xl mb-4">{srv.icon}</div>
-                  <h2 className="text-2xl font-black text-slate-900 font-heading mb-2">
-                    {srv.title}
-                  </h2>
-                  <p className="text-slate-600 font-medium leading-relaxed text-[15px]">
-                    {srv.desc}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((srv) => {
+              const Icon = srv.icon;
+              return (
+                <div
+                  key={srv.title}
+                  className="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-lg hover:border-blue-500 transition-all duration-200"
+                >
+                  <div className="bg-slate-900 p-6 text-white border-b border-slate-800">
+                    <div className="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-xl font-bold font-heading mb-2 text-white">
+                      {srv.title}
+                    </h2>
+                    <p className="text-slate-300 font-normal leading-relaxed text-xs sm:text-sm">
+                      {srv.desc}
+                    </p>
+                  </div>
 
-                {/* Feature List */}
-                <div className="px-7 py-6 flex-grow flex flex-col">
-                  <ul className="space-y-3 mb-7 flex-grow">
-                    {srv.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-slate-700 text-sm font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="p-6 flex-grow flex flex-col justify-between">
+                    <ul className="space-y-2.5 mb-6">
+                      {srv.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5 text-slate-700 text-xs font-semibold">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <Link
-                    href={srv.slug}
-                    className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-3 transition-all"
-                  >
-                    Book This Service <FiArrowRight className="w-4 h-4" />
-                  </Link>
+                    <Link
+                      href={srv.slug}
+                      className="inline-flex items-center gap-2 text-blue-600 font-bold text-xs hover:underline"
+                    >
+                      Book This Service <FiArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Strip */}
-      <section className="py-14 bg-blue-600">
+      <section className="py-14 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
-            <h2 className="text-2xl md:text-3xl font-black text-white font-heading mb-1">
-              Not Sure Which Service You Need?
+            <h2 className="text-2xl font-black font-heading mb-1 text-white">
+              Need Instant Taxi Dispatch?
             </h2>
-            <p className="text-blue-100 font-medium">Call our dispatchers and we'll match you with the right vehicle immediately.</p>
+            <p className="text-blue-100 text-sm font-normal">Call our 24/7 dispatchers to book your vehicle immediately.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <a
               href="tel:4077938143"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap text-sm active:scale-95"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors whitespace-nowrap text-xs shadow-md"
             >
-              📞 Call 407-793-8143
+              <FiPhone className="w-4 h-4" /> Call 407-793-8143
             </a>
             <a
               href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-6 py-4 rounded-xl hover:bg-blue-50 transition-colors whitespace-nowrap text-sm active:scale-95"
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors whitespace-nowrap text-xs shadow-md"
             >
-              📞 Call (407) 967-603
+              <FiPhone className="w-4 h-4" /> Call (407) 967-603
             </a>
           </div>
         </div>

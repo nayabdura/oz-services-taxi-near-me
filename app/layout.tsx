@@ -95,6 +95,8 @@ export const metadata: Metadata = {
   },
 };
 
+import GoogleTagManager from "@/components/seo/GoogleTagManager";
+
 export default function RootLayout({
   children,
 }: {
@@ -109,6 +111,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <GoogleTagManager />
         <OrganizationSchema />
         <WebSiteSchema />
         <ServiceSchema />

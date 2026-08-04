@@ -5,6 +5,8 @@ import { FiPhone } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion";
 
+import { trackPhoneCall } from "@/lib/utils/gtm";
+
 export default function FloatingButtons() {
   const [mounted, setMounted] = useState(false);
   const [showPhoneMenu, setShowPhoneMenu] = useState(false);
@@ -46,6 +48,7 @@ export default function FloatingButtons() {
             >
               <a
                 href={`tel:${phone}`}
+                onClick={() => trackPhoneCall(PHONE_1, "Floating Menu")}
                 className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
               >
                 <FiPhone className="w-4 h-4 text-blue-600" />
@@ -53,6 +56,7 @@ export default function FloatingButtons() {
               </a>
               <a
                 href={`tel:${PHONE_2_TEL}`}
+                onClick={() => trackPhoneCall(PHONE_2, "Floating Menu")}
                 className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
               >
                 <FiPhone className="w-4 h-4 text-blue-600" />

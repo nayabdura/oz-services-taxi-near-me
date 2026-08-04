@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 
+import { trackPhoneCall } from "@/lib/utils/gtm";
+
 interface FleetCar {
   id: number;
   name: string;
@@ -157,6 +159,7 @@ export default function FleetClient() {
                         >
                           <a
                             href="tel:4077938143"
+                            onClick={() => trackPhoneCall("407-793-8143", `Fleet: ${car.name}`)}
                             className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors border border-transparent"
                           >
                             <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
@@ -164,6 +167,7 @@ export default function FleetClient() {
                           </a>
                           <a
                             href="tel:407967603"
+                            onClick={() => trackPhoneCall("(407) 967-603", `Fleet: ${car.name}`)}
                             className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors border border-transparent"
                           >
                             <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />

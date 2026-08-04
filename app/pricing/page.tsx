@@ -139,7 +139,7 @@ export default function PricingPage() {
                 {/* Popular Banner */}
                 {plan.popular && (
                   <div className="bg-blue-600 text-white text-xs font-bold uppercase tracking-widest text-center py-2.5">
-                    ★ Most Popular
+                    Most Popular
                   </div>
                 )}
 
