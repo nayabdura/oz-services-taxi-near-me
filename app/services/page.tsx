@@ -3,9 +3,9 @@ import Link from "next/link";
 import { FiArrowRight, FiPhone, FiNavigation, FiSend, FiBriefcase, FiClock, FiUsers, FiCompass } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",
+  title: "Nationwide Taxi Services | 24/7 Cab — Oz Services",
   description:
-    "Oz Services provides professional USA taxi services including airport taxi transfers, local city rides, corporate taxi accounts, 24/7 late-night dispatch, and long-distance transfers — all with zero surge pricing. Call 407-793-8143.",
+    "Oz Services provides 24/7 airport transfers, city rides, corporate accounts & long-distance cab rides across the USA. Zero surge pricing. Book online.",
   alternates: { canonical: "https://www.oztaxinearme.com/services" },
   openGraph: {
     title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",

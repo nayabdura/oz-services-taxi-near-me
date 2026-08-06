@@ -8,9 +8,9 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 const BASE = "https://www.oztaxinearme.com";
 
 export const metadata: Metadata = {
-  title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
+  title: "Taxi Near Me | 24/7 Cab Booking — Oz Services",
   description:
-    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143.",
+    "Looking for a taxi near me? Oz Services dispatches professional licensed drivers across the USA 24/7. No surge pricing. Call 407-793-8143 or book online.",
   alternates: { canonical: "https://www.oztaxinearme.com/taxi-near-me" },
   keywords: [
     "taxi near me",

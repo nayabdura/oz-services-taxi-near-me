@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import FleetClient from "@/components/fleet/FleetClient";
 
 export const metadata: Metadata = {
-  title: "Our Fleet | Sedans, SUVs and Executive Vans | Oz Services Taxi",
-  description: "Browse the Oz Services fleet. We operate economy sedans, premium SUVs, luxury cars, and executive minivans for airport transfers, city rides, and corporate travel across the USA.",
+  title: "Taxi Fleet | Sedans, SUVs & Vans — Oz Services",
+  description: "Explore the Oz Services taxi fleet. Economy sedans, executive SUVs & luxury vans for airport transfers & city travel across the USA. Book online.",
   alternates: { canonical: "https://www.oztaxinearme.com/fleet" },
   openGraph: {
     type: "website",

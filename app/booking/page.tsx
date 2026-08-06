@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import BookingClient from "./BookingClient";
 
 export const metadata: Metadata = {
-  title: "Book a Taxi Online | Instant Confirmation | Oz Services USA",
+  title: "Book a Taxi Online | 24/7 Cab — Oz Services",
   description:
-    "Book your taxi online in under 60 seconds. Airport transfers, city rides, and corporate bookings with instant SMS and email confirmation. No surge pricing across all 50 USA states.",
+    "Book your taxi online in 60 seconds with Oz Services. Instant confirmation for airport transfers & city rides. Zero surge pricing across the USA.",
   alternates: { canonical: "https://www.oztaxinearme.com/booking" },
   openGraph: {
     type: "website",

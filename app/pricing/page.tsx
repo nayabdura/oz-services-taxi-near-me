@@ -3,9 +3,9 @@ import Link from "next/link";
 import { FiCheck, FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Taxi Pricing | No Surge Fees, No Hidden Charges | Oz Services USA",
+  title: "Taxi Fare Rates | Flat Pricing — Oz Services",
   description:
-    "Oz Services publishes full taxi fare rates so you always know what you are paying. Economy, Premium, and Luxury options available. No surge pricing. No hidden fees. Airport transfers, city rides, and corporate travel across the USA.",
+    "Transparent flat-rate taxi pricing across the USA. Economy, SUV & Luxury vehicles with zero surge fees & no hidden charges. Calculate fare online.",
   alternates: { canonical: "https://www.oztaxinearme.com/pricing" },
   openGraph: {
     type: "website",

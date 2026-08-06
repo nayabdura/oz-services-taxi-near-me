@@ -9,9 +9,9 @@ import ServiceAreasMapSection from "@/components/home/ServiceAreasMapSection";
 const BASE = "https://www.oztaxinearme.com";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Oz Services Taxi — Nationwide USA Cab Service",
+  title: "USA Service Areas | 24/7 Taxi — Oz Services",
   description:
-    "Oz Services provides professional taxi service across all 50 US states. From New York to Los Angeles, Chicago to Miami — find your city and book a cab online or call 407-793-8143.",
+    "Oz Services provides 24/7 taxi service across all 50 US states. Find your city, view service coverage & book online or call 407-793-8143.",
   alternates: { canonical: "https://www.oztaxinearme.com/service-areas" },
   keywords: [
     "taxi service USA",

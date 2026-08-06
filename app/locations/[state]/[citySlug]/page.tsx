@@ -26,9 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cityObj) return { title: "Location Not Found" };
 
   const { name, state, airport } = cityObj;
-  const airportText = airport ? ` | ${airport} Airport Transfers` : "";
-  const title = `Taxi in ${name}${airportText} | Oz Services — 24/7 Cab Booking`;
-  const description = `Need a taxi in ${name}, ${state}? Oz Services provides professional cab service in ${name} around the clock with no surge pricing. Airport transfers, city rides and corporate travel. Call 407-793-8143.`;
+  const title = `Taxi in ${name}, ${state} | 24/7 Cab — Oz Services`;
+  const description = `Book a 24/7 taxi in ${name}, ${state} with Oz Services. Flat rates, airport transfers & local rides with zero surge pricing. Call 407-793-8143 or book online.`;
   const canonicalUrl = `https://www.oztaxinearme.com/locations/${cityObj.stateSlug}/taxi-in-${cityObj.slug}`;
 
   return {

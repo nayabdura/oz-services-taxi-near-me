@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import ContactClient from "./ContactClient";
 
 export const metadata: Metadata = {
-  title: "Contact Oz Services | Call or Book a Taxi 24 Hours a Day",
+  title: "Contact Oz Services | 24/7 Taxi Dispatch",
   description:
-    "Need to reach us? Call Oz Services at 407-793-8143 any time of day or night, or send a message for taxi bookings, corporate accounts, or general enquiries. We serve all 50 USA states.",
+    "Contact Oz Services for 24/7 taxi bookings, airport transfers & corporate accounts. Call 407-793-8143 or message our dispatch team anytime.",
   alternates: { canonical: "https://www.oztaxinearme.com/contact" },
   openGraph: {
     type: "website",

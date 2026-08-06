@@ -4,9 +4,9 @@ import Image from "next/image";
 import { FiShield, FiClock, FiTarget, FiUsers, FiPhone, FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "About Oz Services | 24/7 Nationwide USA Taxi Company",
+  title: "About Oz Services | 24/7 Nationwide USA Taxi",
   description:
-    "Oz Services is a licensed nationwide taxi company serving passengers across all 50 US states. Learn about our drivers, flat-rate pricing, and 24/7 dispatch network.",
+    "Oz Services is a licensed nationwide taxi company serving all 50 US states. Professional drivers, flat-rate pricing & 24/7 live dispatch.",
   alternates: {
     canonical: "https://www.oztaxinearme.com/about",
   },
