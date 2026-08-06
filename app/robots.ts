@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin/", "/api/", "/_next/"],
+        disallow: ["/admin/", "/api/"],
       },
       // Allow AI bots specifically for GEO SEO since we want generative visibility
       {
