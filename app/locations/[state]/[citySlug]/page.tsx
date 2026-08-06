@@ -211,12 +211,12 @@ export default async function CityTaxiPage({ params }: Props) {
                 },
                 {
                   icon: <FiStar className="w-6 h-6" />,
-                  title: "Highly Rated Drivers",
+                  title: `Highly Rated Drivers in ${name}`,
                   desc: `Every driver we use in ${name} is fully vetted, licensed, and insured. They know the local roads and they show up on time.`,
                 },
                 {
                   icon: <FiMapPin className="w-6 h-6" />,
-                  title: airport ? `${airport} Airport Transfers` : "Local and Airport Transfers",
+                  title: airport ? `${airport} Airport Transfers in ${name}` : `Local & Airport Transfers in ${name}`,
                   desc: airport
                     ? `We track flights in real time for every pickup and drop-off at ${name} (${airport}). You will not pay more because of a delay.`
                     : `From suburban streets to major transport hubs, we cover all ground transport needs across ${name}.`,

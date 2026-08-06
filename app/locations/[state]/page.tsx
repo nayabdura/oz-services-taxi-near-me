@@ -157,14 +157,14 @@ export default async function LocationPage({ params }: Props) {
               <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-6">
                 <FiStar className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">Top-Rated Drivers</h2>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">Top-Rated Drivers in {name}</h2>
               <p className="text-slate-600">Travel safely with our fully vetted, licensed, and insured professional drivers who know the local routes of {name} perfectly.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-blue-100 text-blue-600 flex items-center justify-center rounded-xl mb-6">
                 <FiMapPin className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">Airport & Local Transfers</h2>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">{name} Airport & Local Transfers</h2>
               <p className="text-slate-600">From major international airports to local suburban addresses, we provide comprehensive ground transportation across the entire state.</p>
             </div>
           </div>

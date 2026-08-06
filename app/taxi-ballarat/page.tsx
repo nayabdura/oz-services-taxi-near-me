@@ -24,7 +24,7 @@ export default function TaxiBallaratPage() {
     <div className="flex flex-col min-h-screen">
       <LocationHeroSection city="Ballarat" />
       <ServicesOverview />
-      <WhyChooseUs />
+      <WhyChooseUs city="Ballarat" />
       <FleetShowcase />
       <StatsSection />
       <Testimonials />

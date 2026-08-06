@@ -25,17 +25,17 @@ const benefits = [
   },
 ];
 
-export default function WhyChooseUs() {
+export default function WhyChooseUs({ city }: { city?: string }) {
   return (
     <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3">
-              Why Choose Oz Services
+              Why Choose Oz Services {city ? `in ${city}` : ""}
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 font-heading mb-6 tracking-tight">
-              Built on Trust & Professionalism
+              {city ? `Built on Trust & Professionalism in ${city}` : "Built on Trust & Professionalism"}
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-normal mb-8">
               A licensed nationwide taxi network with professional drivers, transparent flat rates, and a 24/7 human dispatch center.

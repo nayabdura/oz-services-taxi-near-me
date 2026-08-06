@@ -24,7 +24,7 @@ export default function TaxiGeelongPage() {
     <div className="flex flex-col min-h-screen">
       <LocationHeroSection city="Geelong" />
       <ServicesOverview />
-      <WhyChooseUs />
+      <WhyChooseUs city="Geelong" />
       <FleetShowcase />
       <StatsSection />
       <Testimonials />

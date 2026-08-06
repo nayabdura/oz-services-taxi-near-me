@@ -24,7 +24,7 @@ export default function TaxiMelbournePage() {
     <div className="flex flex-col min-h-screen">
       <LocationHeroSection city="Melbourne" />
       <ServicesOverview />
-      <WhyChooseUs />
+      <WhyChooseUs city="Melbourne" />
       <FleetShowcase />
       <StatsSection />
       <Testimonials />
