@@ -6,7 +6,7 @@ import FAQSchema from "@/components/seo/FAQSchema";
 const faqs = [
   {
     q: "How do I find a taxi near me with Oz Services?",
-    a: "It is easy. Use the booking form on this page, type in where you are and where you need to go, pick your vehicle, and you will get a confirmation right away. If you would rather talk to someone, call 407-793-8143 or (407) 967-603 and our dispatcher will handle everything for you.",
+    a: "It is easy. Use the booking form on this page, type in where you are and where you need to go, pick your vehicle, and you will get a confirmation right away. If you would rather talk to someone, call 407-793-8143 and our dispatcher will handle everything for you.",
   },
   {
     q: "Does Oz Services charge surge pricing during busy hours or bad weather?",
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "Can my business set up a corporate taxi account?",
-    a: "Yes. Business accounts get monthly billing so there is no need to submit individual receipts, plus priority booking and a dedicated account manager. Call 407-793-8143 or (407) 967-603 and we can get your account set up within one business day.",
+    a: "Yes. Business accounts get monthly billing so there is no need to submit individual receipts, plus priority booking and a dedicated account manager. Call 407-793-8143 and we can get your account set up within one business day.",
   },
 ];
 

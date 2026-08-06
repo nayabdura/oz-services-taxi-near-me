@@ -43,12 +43,6 @@ export default function ServiceAreasSection() {
             >
               <FiPhoneCall className="w-4 h-4" /> Call 407-793-8143
             </a>
-            <a
-              href="tel:407967603"
-              className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-xl transition-colors text-xs shadow-md shadow-blue-600/20"
-            >
-              <FiPhoneCall className="w-4 h-4" /> Call (407) 967-603
-            </a>
             <Link
               href="/service-areas"
               className="inline-flex items-center gap-2 whitespace-nowrap text-slate-900 font-bold border-2 border-slate-900 px-4 py-3 rounded-xl hover:bg-slate-900 hover:text-white transition-colors text-xs"

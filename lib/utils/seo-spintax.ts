@@ -46,11 +46,11 @@ const titles = [
 ];
 
 const metaDescriptions = [
-  "Looking for a reliable taxi in {state}? Oz Services offers professional taxicab rides, seamless airport transfers, and corporate booking across {state}. No surge pricing. Call 407-793-8143 or (407) 967-603 or book online.",
+  "Looking for a reliable taxi in {state}? Oz Services offers professional taxicab rides, seamless airport transfers, and corporate booking across {state}. No surge pricing. Call 407-793-8143 or book online.",
   "Need a fast cab in {state}? We provide 24/7 premium taxi services for airport transfers, city rides, and business travel. Discover transparent pricing with Oz Services today.",
   "Searching for a taxi near me in {state}? Oz Services guarantees on-time, safe, and comfortable rides across the entire state. Book your affordable airport transfer instantly online.",
   "Book your {state} taxicab with Oz Services. Experience luxury SUVs, economy sedans, and 24-hour dispatch without the unpredictability of rideshare surge fees.",
-  "America's most trusted taxi service is now available in {state}. From urgent airport drops to late-night local trips, call 407-793-8143 or (407) 967-603 for an immediate pickup.",
+  "America's most trusted taxi service is now available in {state}. From urgent airport drops to late-night local trips, call 407-793-8143 for an immediate pickup.",
   "Traveling through {state} and need dependable transportation? Oz Services delivers top-tier taxi solutions 24 hours a day. Enjoy a stress-free ride with our vetted professional drivers.",
   "Experience the difference with {state}'s leading taxi dispatch. We specialize in corporate travel, long-distance taxi rides, and immediate airport pickups with absolute transparent pricing.",
   "When you need a cab in {state}, trust Oz Services. We monitor your flights for delayed arrivals and ensure our drivers are waiting for you. Book online in under two minutes.",

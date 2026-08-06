@@ -27,7 +27,7 @@ export default function TermsPage() {
               { title: "3. Transparent Flat Rates", body: "Fares are quoted upfront in USD and include all standard operating charges. No dynamic surge pricing is applied during peak hours or weather events. Tolls and airport airport fees are calculated at booking." },
               { title: "4. Cancellation & Refund Policy", body: "Cancellations made in advance of driver dispatch are free of charge. In the event of flight delays, our live flight tracking system adjusts pickup times automatically." },
               { title: "5. Passenger Safety & Vehicle Care", body: "Passengers are required to adhere to safety regulations, wear seatbelts, and respect drivers and equipment. Vehicles undergo routine sanitation and maintenance." },
-              { title: "6. Customer Support", body: "For questions, corporate account setup, or booking changes, contact our 24/7 dispatch line at 407-793-8143 or (407) 967-603 or email oztaxinearme@gmail.com." },
+              { title: "6. Customer Support", body: "For questions, corporate account setup, or booking changes, contact our 24/7 dispatch line at 407-793-8143 or email oztaxinearme@gmail.com." },
             ].map(section => (
               <div key={section.title}>
                 <h2 className="text-slate-900 font-bold text-lg mb-2 font-heading">{section.title}</h2>

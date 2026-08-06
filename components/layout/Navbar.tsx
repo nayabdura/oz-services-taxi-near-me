@@ -8,8 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const PHONE = "407-793-8143";
 const PHONE_TEL = "4077938143";
-const PHONE_2 = "(407) 967-603";
-const PHONE_2_TEL = "407967603";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -191,12 +189,6 @@ export default function Navbar() {
                 >
                   {PHONE}
                 </a>
-                <a
-                  href={`tel:${PHONE_2_TEL}`}
-                  className="text-slate-700 hover:text-blue-600 transition-colors font-bold text-xs whitespace-nowrap"
-                >
-                  {PHONE_2}
-                </a>
               </div>
             </div>
             <Link
@@ -207,43 +199,15 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* lg-only CTA (no phone text to save space) */}
+          {/* lg-only CTA */}
           <div className="hidden lg:flex xl:hidden items-center gap-2 shrink-0">
-            <div ref={lgPhoneRef} className="relative">
-              <button
-                onClick={() => setLgPhoneOpen(!lgPhoneOpen)}
-                className="bg-slate-100 p-2 rounded-full text-slate-700 hover:bg-blue-600 hover:text-white transition-colors"
-                aria-label="Call us options"
-              >
-                <FiPhone className="w-4 h-4" />
-              </button>
-              <AnimatePresence>
-                {lgPhoneOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50 p-2 flex flex-col gap-1"
-                  >
-                    <a
-                      href={`tel:${PHONE_TEL}`}
-                      className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
-                    >
-                      <FiPhone className="w-3.5 h-3.5 text-blue-600" />
-                      {PHONE}
-                    </a>
-                    <a
-                      href={`tel:${PHONE_2_TEL}`}
-                      className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
-                    >
-                      <FiPhone className="w-3.5 h-3.5 text-blue-600" />
-                      {PHONE_2}
-                    </a>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="bg-slate-100 p-2 rounded-full text-slate-700 hover:bg-blue-600 hover:text-white transition-colors"
+              aria-label={`Call ${PHONE}`}
+            >
+              <FiPhone className="w-4 h-4" />
+            </a>
             <Link
               href="/booking"
               className="bg-slate-900 text-white hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap"
@@ -378,12 +342,6 @@ export default function Navbar() {
                   className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg border-2 border-slate-200 text-slate-800 font-bold hover:bg-slate-50 transition-colors"
                 >
                   <FiPhone className="w-5 h-5" /> Call {PHONE}
-                </a>
-                <a
-                  href={`tel:${PHONE_2_TEL}`}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg border-2 border-slate-200 text-slate-800 font-bold hover:bg-slate-50 transition-colors"
-                >
-                  <FiPhone className="w-5 h-5" /> Call {PHONE_2}
                 </a>
                 <Link
                   href="/booking"

@@ -52,8 +52,7 @@ export default function ContactClient() {
                   icon: FiPhone, 
                   title: "24/7 Phone Dispatch", 
                   phones: [
-                    { label: "407-793-8143", href: "tel:+14077938143" },
-                    { label: "(407) 967-603", href: "tel:+1407967603" }
+                    { label: "407-793-8143", href: "tel:+14077938143" }
                   ], 
                   sub: "Available 24 hours a day" 
                 },

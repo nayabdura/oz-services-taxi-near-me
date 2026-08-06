@@ -41,13 +41,6 @@ export default function HeroSection() {
                 <FiPhone className="w-4 h-4" />
                 Call 407-793-8143
               </a>
-              <a
-                href="tel:407967603"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
-              >
-                <FiPhone className="w-4 h-4" />
-                Call (407) 967-603
-              </a>
               <Link
                 href="/booking"
                 className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition-all text-sm whitespace-nowrap"

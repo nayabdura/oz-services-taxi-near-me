@@ -10,7 +10,7 @@ const BASE = "https://www.oztaxinearme.com";
 export const metadata: Metadata = {
   title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
   description:
-    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143 or (407) 967-603.",
+    "Looking for a taxi near me? Oz Services sends a professional, licensed driver to your location across the USA. No surge pricing. Available 24 hours a day. Book online or call 407-793-8143.",
   alternates: { canonical: "https://www.oztaxinearme.com/taxi-near-me" },
   keywords: [
     "taxi near me",
@@ -18,7 +18,10 @@ export const metadata: Metadata = {
     "taxi service near me",
     "24 hour taxi near me",
     "affordable taxi near me",
-    "Oz Services taxi near me",
+    "best taxi service near me",
+    "airport taxi near me",
+    "Oz Services taxi",
+    "book taxi near me",
   ],
   openGraph: {
     type: "website",
@@ -26,20 +29,21 @@ export const metadata: Metadata = {
     url: "https://www.oztaxinearme.com/taxi-near-me",
     siteName: "Oz Services Taxi",
     title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
-    description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24 hours a day across all 50 states.",
+    description:
+      "Find a taxi near you in seconds with Oz Services. 24/7 dispatch across all major US cities. Zero surge pricing. Professional licensed drivers.",
     images: [
       {
         url: "https://www.oztaxinearme.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Taxi Near Me - Oz Services Taxi",
+        alt: "Oz Services – Taxi Near Me | 24/7 Cab Dispatch",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taxi Near Me | Book a Cab Instantly in the USA — Oz Services",
-    description: "Fast taxi dispatch with Oz Services. No surge pricing. Licensed drivers. Available 24 hours a day across all 50 states.",
+    title: "Taxi Near Me | Book a Cab Instantly — Oz Services",
+    description: "Find a taxi near you across the USA. 24/7 dispatch, no surge pricing. Call 407-793-8143.",
     images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
 };
@@ -52,16 +56,16 @@ const reasons = [
 ];
 
 const cities = [
-  { name: "New York", slug: "new-york", note: "Serving JFK/LGA" },
-  { name: "Los Angeles", slug: "california", note: "Serving LAX area" },
-  { name: "Chicago", slug: "illinois", note: "Serving ORD/MDW" },
-  { name: "Houston", slug: "texas", note: "Serving IAH area" },
-  { name: "Miami", slug: "florida", note: "Serving MIA airport" },
-  { name: "Orlando", slug: "florida", note: "Serving MCO airport" },
-  { name: "Las Vegas", slug: "nevada", note: "Serving LAS area" },
-  { name: "Atlanta", slug: "georgia", note: "Serving ATL airport" },
-  { name: "Dallas", slug: "texas", note: "Serving DFW area" },
-  { name: "Seattle", slug: "washington", note: "Serving SEA area" },
+  { name: "New York", slug: "new-york", note: "Serving JFK, LGA & All Boroughs" },
+  { name: "Miami", slug: "florida", note: "Serving MIA & FLL areas" },
+  { name: "Orlando", slug: "florida", note: "Serving MCO & Attractions" },
+  { name: "Chicago", slug: "illinois", note: "Serving ORD & MDW" },
+  { name: "Dallas", slug: "texas", note: "Serving DFW & Love Field" },
+  { name: "Houston", slug: "texas", note: "Serving IAH & Hobby" },
+  { name: "Los Angeles", slug: "california", note: "Serving LAX & Metro LA" },
+  { name: "San Francisco", slug: "california", note: "Serving SFO & Bay Area" },
+  { name: "Atlanta", slug: "georgia", note: "Serving ATL area" },
+  { name: "Boston", slug: "massachusetts", note: "Serving BOS area" },
   { name: "Phoenix", slug: "arizona", note: "Serving PHX area" },
   { name: "Denver", slug: "colorado", note: "Serving DEN area" },
 ];
@@ -69,7 +73,7 @@ const cities = [
 const faqs = [
   {
     question: "How do I find a taxi near me right now?",
-    answer: "Call Oz Services at 407-793-8143 or (407) 967-603 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready to be dispatched 24 hours a day.",
+    answer: "Call Oz Services at 407-793-8143 or use our online booking form at oztaxinearme.com/booking. We have professional drivers across all major US cities ready to be dispatched 24 hours a day.",
   },
   {
     question: "What is the best taxi service near me in the USA?",
@@ -109,7 +113,7 @@ export default function TaxiNearMePage() {
             name: "Oz Services – Taxi Near Me",
             alternateName: "Oz Services",
             url: `${BASE}/taxi-near-me`,
-            telephone: ["+1-407-793-8143", "+1-407-967-603"],
+            telephone: ["+1-407-793-8143"],
             priceRange: "$8 - $20",
             openingHours: "Mo-Su 00:00-23:59",
             areaServed: { "@type": "Country", name: "US" },
@@ -138,12 +142,6 @@ export default function TaxiNearMePage() {
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3.5 rounded-xl transition-colors text-xs whitespace-nowrap"
                   >
                     <FiPhone className="w-4 h-4" /> Call 407-793-8143
-                  </a>
-                  <a
-                    href="tel:407967603"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3.5 rounded-xl transition-colors text-xs whitespace-nowrap"
-                  >
-                    <FiPhone className="w-4 h-4" /> Call (407) 967-603
                   </a>
                   <Link
                     href="/booking"
@@ -285,12 +283,6 @@ export default function TaxiNearMePage() {
               className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap"
             >
               <FiPhone className="w-4 h-4" /> Call 407-793-8143
-            </a>
-            <a
-              href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm whitespace-nowrap"
-            >
-              <FiPhone className="w-4 h-4" /> Call (407) 967-603
             </a>
             <Link
               href="/booking"

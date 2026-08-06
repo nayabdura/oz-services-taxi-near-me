@@ -34,12 +34,6 @@ export default function CTASection() {
           >
             <FiPhone className="w-4 h-4 text-blue-400" /> Call 407-793-8143
           </a>
-          <a
-            href="tel:407967603"
-            className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm px-7 py-4 rounded-xl border border-slate-700 transition-colors whitespace-nowrap"
-          >
-            <FiPhone className="w-4 h-4 text-blue-400" /> Call (407) 967-603
-          </a>
         </div>
 
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-10 border-t border-slate-800/80 pt-8">

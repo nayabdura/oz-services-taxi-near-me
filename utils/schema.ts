@@ -6,7 +6,7 @@ export const localBusinessSchema = {
   alternateName: "Oz Services",
   description: "America's most trusted taxi service. Professional, reliable, and affordable taxi rides 24/7.",
   url: "https://www.oztaxinearme.com",
-  telephone: ["+14077938143", "+1407967603"],
+  telephone: ["+14077938143"],
   email: "oztaxinearme@gmail.com",
   priceRange: "$$",
   currenciesAccepted: "USD",
@@ -38,7 +38,7 @@ export const taxiServiceSchema = {
   availableChannel: {
     "@type": "ServiceChannel",
     serviceUrl: "https://www.oztaxinearme.com/booking",
-    servicePhone: ["+14077938143", "+1407967603"],
+    servicePhone: ["+14077938143"],
   },
 };
 

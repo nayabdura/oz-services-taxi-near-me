@@ -174,13 +174,6 @@ export default function FleetShowcase() {
                           <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
                           Call 407-793-8143
                         </a>
-                        <a
-                          href="tel:407967603"
-                          className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors border border-transparent hover:border-slate-700"
-                        >
-                          <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
-                          Call (407) 967-603
-                        </a>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();

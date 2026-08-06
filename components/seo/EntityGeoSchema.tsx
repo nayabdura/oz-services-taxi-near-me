@@ -17,7 +17,7 @@ export default function EntityGeoSchema({
         alternateName: ["Oz Services", "Oz Taxi", "Oz Taxi Near Me"],
         description: description,
         url: url,
-        telephone: ["+1-407-793-8143", "+1-407-967-603"],
+        telephone: ["+1-407-793-8143"],
         email: "oztaxinearme.com@gmail.com",
         priceRange: "$$",
         currenciesAccepted: "USD",

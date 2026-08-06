@@ -41,7 +41,7 @@ export const sendBookingConfirmationEmail = async (booking: {
           </div>
 
           <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 20px; margin-bottom: 28px;">
-            <p style="margin: 0; color: #1D4ED8; font-size: 14px; font-weight: 600;">📞 Your driver will call you before pickup. For any changes, call us directly at ${process.env.NEXT_PUBLIC_PHONE || '+14077938143'} or ${process.env.NEXT_PUBLIC_PHONE_2 || '+1407967603'}</p>
+            <p style="margin: 0; color: #1D4ED8; font-size: 14px; font-weight: 600;">📞 Your driver will call you before pickup. For any changes, call us directly at ${process.env.NEXT_PUBLIC_PHONE || '407-793-8143'}</p>
           </div>
 
           <a href="${process.env.NEXT_PUBLIC_SITE_URL}/booking" style="display: inline-block; background: #2563EB; color: white; font-weight: 700; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 15px;">View Booking Details</a>

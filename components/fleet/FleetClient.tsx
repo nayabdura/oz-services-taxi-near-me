@@ -165,14 +165,6 @@ export default function FleetClient() {
                             <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
                             Call 407-793-8143
                           </a>
-                          <a
-                            href="tel:407967603"
-                            onClick={() => trackPhoneCall("(407) 967-603", `Fleet: ${car.name}`)}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors border border-transparent"
-                          >
-                            <FiPhoneCall className="w-3.5 h-3.5 text-blue-500" />
-                            Call (407) 967-603
-                          </a>
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
@@ -224,13 +216,6 @@ export default function FleetClient() {
           >
             <FiPhoneCall className="w-5 h-5" />
             <span>Call Dispatch: 407-793-8143</span>
-          </a>
-          <a 
-            href="tel:407967603"
-            className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-sm whitespace-nowrap"
-          >
-            <FiPhoneCall className="w-5 h-5" />
-            <span>Call Dispatch: (407) 967-603</span>
           </a>
         </div>
       </div>

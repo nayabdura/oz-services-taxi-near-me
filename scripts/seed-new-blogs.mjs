@@ -61,7 +61,7 @@ const additionalBlogs = [
 <p>Your designated chauffeur will greet you inside the terminal baggage claim area with a professional name sign, assist with your heavy luggage, and escort you directly to your reserved vehicle parked in priority commercial lanes.</p>
 
 <h2>Secret 5: Keep Dispatch Contact Numbers Saved on Mobile</h2>
-<p>Navigating large airports is significantly easier when you have direct phone access to your transport dispatcher. Save Oz Services dispatch numbers—<strong>407-793-8143</strong> and <strong>(407) 967-603</strong>—directly in your mobile phone contacts for immediate assistance upon landing.</p>
+<p>Navigating large airports is significantly easier when you have direct phone access to your transport dispatcher. Save Oz Services dispatch number—<strong>407-793-8143</strong>—directly in your mobile phone contacts for immediate assistance upon landing.</p>
 
 <h2>Book Your Next USA Airport Transfer Today</h2>
 <p>Experience seamless airport transportation across all 50 states. Visit our <a href="/booking">Airport Taxi Booking Portal</a> to secure your transfer in under 60 seconds.</p>
@@ -106,7 +106,7 @@ const additionalBlogs = [
 <p>Oz Services operates 24/7. Pre-book your post-fireworks pickup, and your assigned driver will be waiting at designated commercial loading zones to whisk your family back to your hotel promptly and affordably.</p>
 
 <h2>Book Your Orlando Taxi Service Today</h2>
-<p>Ready for a stress-free Orlando vacation? Calculate your flat rate on our <a href="/pricing">Pricing Calculator</a> or call our 24/7 Orlando dispatch team at <strong>407-793-8143</strong> or <strong>(407) 967-603</strong>.</p>
+<p>Ready for a stress-free Orlando vacation? Calculate your flat rate on our <a href="/pricing">Pricing Calculator</a> or call our 24/7 Orlando dispatch team at <strong>407-793-8143</strong>.</p>
     `
   },
   {
@@ -142,7 +142,7 @@ const additionalBlogs = [
 <p>Waking children up at 3:30 AM for an early flight is challenging enough without worrying if a rideshare driver will accept your booking. Pre-booking with Oz Services guarantees a driver arrives at your driveway 10 minutes prior to your scheduled pickup time.</p>
 
 <h2>Plan Your Next Family Trip with Oz Services</h2>
-<p>Book your family's airport transfer or city ride today using our simple <a href="/booking">Online Booking Portal</a> or call our 24/7 dispatcher at <strong>407-793-8143</strong> or <strong>(407) 967-603</strong>.</p>
+<p>Book your family's airport transfer or city ride today using our simple <a href="/booking">Online Booking Portal</a> or call our 24/7 dispatcher at <strong>407-793-8143</strong>.</p>
     `
   }
 ];

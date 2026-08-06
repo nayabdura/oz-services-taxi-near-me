@@ -30,7 +30,7 @@ export default function OrganizationSchema() {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: ["+1-407-793-8143", "+1-407-967-603"],
+      telephone: ["+1-407-793-8143"],
       email: "oztaxinearme@gmail.com",
       contactType: "customer service",
       areaServed: "US",

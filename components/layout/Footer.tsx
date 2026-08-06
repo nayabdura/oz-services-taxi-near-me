@@ -6,8 +6,6 @@ import { FiPhone, FiMail, FiMapPin, FiFacebook, FiTwitter, FiInstagram, FiArrowR
 
 const PHONE = "407-793-8143";
 const PHONE_TEL = "4077938143";
-const PHONE_2 = "(407) 967-603";
-const PHONE_2_TEL = "407967603";
 
 const footerLinks = {
   company: [
@@ -137,7 +135,6 @@ export default function Footer() {
                     <div className="flex flex-col">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Call 24/7 Dispatch</span>
                       <a href={`tel:${PHONE_TEL}`} className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">{PHONE}</a>
-                      <a href={`tel:${PHONE_2_TEL}`} className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">{PHONE_2}</a>
                     </div>
                   </div>
                 </li>
@@ -184,12 +181,6 @@ export default function Footer() {
               className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-6 py-4 rounded-xl hover:bg-blue-500 transition-all text-center shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
             >
               <FiPhone className="w-5 h-5" /> Call {PHONE}
-            </a>
-            <a
-              href={`tel:${PHONE_2_TEL}`}
-              className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-6 py-4 rounded-xl hover:bg-blue-500 transition-all text-center shadow-lg shadow-blue-600/20 text-sm whitespace-nowrap"
-            >
-              <FiPhone className="w-5 h-5" /> Call {PHONE_2}
             </a>
             <Link
               href="/booking"

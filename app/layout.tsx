@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Oz Services Taxi",
   },
   description:
-    "Oz Services is America's trusted 24/7 nationwide taxi company. Book a taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. No surge pricing. Call 407-793-8143 or (407) 967-603 or book online.",
+    "Oz Services is America's trusted 24/7 nationwide taxi company. Book a taxi near you instantly for airport transfers, city rides, corporate travel, and late-night pickups across all 50 USA states. No surge pricing. Call 407-793-8143 or book online.",
   keywords: [
     "taxi near me",
     "Oz Services",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     siteName: "Oz Services Taxi",
     title: "Oz Services | Taxi Near Me – Book a Cab 24/7 Across the USA",
     description:
-      "Oz Services – America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving in all USA states 24/7. No surge pricing. Call 407-793-8143 or (407) 967-603.",
+      "Oz Services – America's most reliable taxi service. Airport transfers, city rides, corporate accounts. Serving in all USA states 24/7. No surge pricing. Call 407-793-8143.",
     images: [
       {
         url: "https://www.oztaxinearme.com/og-image.jpg",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Oz Services Taxi Near Me | 24/7 Cab Booking USA",
     description:
-      "Book your taxi with Oz Services online. Fast, safe, and reliable cab service across all 50 USA states – 24/7. No surge pricing. Call 407-793-8143 or (407) 967-603.",
+      "Book your taxi with Oz Services online. Fast, safe, and reliable cab service across all 50 USA states – 24/7. No surge pricing. Call 407-793-8143.",
     images: ["https://www.oztaxinearme.com/og-image.jpg"],
   },
   robots: {

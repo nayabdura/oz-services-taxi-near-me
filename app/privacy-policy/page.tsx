@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
               { title: "4. Data Encryption & Security", body: "We implement industry-standard SSL encryption and security protocols to safeguard all passenger data. Payment transactions are processed in compliance with PCI-DSS standards." },
               { title: "5. Cookies & Analytics", body: "We use essential cookies to maintain secure sessions, remember booking details, and measure anonymous website traffic. You can adjust cookie preferences in your web browser." },
               { title: "6. Passenger Rights & Inquiries", body: "You have the right to request access to, correction of, or deletion of your personal data stored with Oz Services. Contact our support team at oztaxinearme@gmail.com." },
-              { title: "7. Contact Information", body: "For privacy-related inquiries or booking support, contact us at oztaxinearme@gmail.com or call 407-793-8143 or (407) 967-603." },
+              { title: "7. Contact Information", body: "For privacy-related inquiries or booking support, contact us at oztaxinearme@gmail.com or call 407-793-8143." },
             ].map(section => (
               <div key={section.title}>
                 <h2 className="text-slate-900 font-bold text-lg mb-2 font-heading">{section.title}</h2>

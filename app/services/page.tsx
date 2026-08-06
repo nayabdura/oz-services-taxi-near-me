@@ -5,7 +5,7 @@ import { FiArrowRight, FiPhone, FiNavigation, FiSend, FiBriefcase, FiClock, FiUs
 export const metadata: Metadata = {
   title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",
   description:
-    "Oz Services provides professional USA taxi services including airport taxi transfers, local city rides, corporate taxi accounts, 24/7 late-night dispatch, and long-distance transfers — all with zero surge pricing. Call 407-793-8143 or (407) 967-603.",
+    "Oz Services provides professional USA taxi services including airport taxi transfers, local city rides, corporate taxi accounts, 24/7 late-night dispatch, and long-distance transfers — all with zero surge pricing. Call 407-793-8143.",
   alternates: { canonical: "https://www.oztaxinearme.com/services" },
   openGraph: {
     title: "Nationwide Taxi Services | Airport, Corporate & City Transfers — Oz Services",
@@ -168,12 +168,6 @@ export default function ServicesPage() {
               className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors whitespace-nowrap text-xs shadow-md"
             >
               <FiPhone className="w-4 h-4" /> Call 407-793-8143
-            </a>
-            <a
-              href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-bold px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors whitespace-nowrap text-xs shadow-md"
-            >
-              <FiPhone className="w-4 h-4" /> Call (407) 967-603
             </a>
           </div>
         </div>

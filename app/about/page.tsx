@@ -237,12 +237,6 @@ export default function AboutPage() {
             >
               <FiPhone className="w-4 h-4 text-blue-400" /> Call 407-793-8143
             </a>
-            <a
-              href="tel:407967603"
-              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-700 transition-colors"
-            >
-              <FiPhone className="w-4 h-4 text-blue-400" /> Call (407) 967-603
-            </a>
           </div>
         </div>
       </section>
